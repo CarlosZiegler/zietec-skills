@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDM Print Preflight"
+  short_description: "Confere apoio, camadas críticas e arquivo final"
+  default_prompt: "Use $fdm-print-preflight para conferir as peças e o projeto fatiado antes da entrega."

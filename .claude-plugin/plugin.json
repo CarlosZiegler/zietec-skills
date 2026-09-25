@@ -1,0 +1,51 @@
+{
+  "name": "zietec-skills",
+  "version": "1.0.0",
+  "description": "ZieTec agent skills for design, print, and coding-agent workflows.",
+  "author": {
+    "name": "ZieTec",
+    "url": "https://github.com/CarlosZiegler"
+  },
+  "homepage": "https://github.com/CarlosZiegler/zietec-skills",
+  "repository": "https://github.com/CarlosZiegler/zietec-skills",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "print",
+    "agents",
+    "skills",
+    "apple-hig",
+    "fdm"
+  ],
+  "skills": [
+    "./skills/design/design-maestro",
+    "./skills/design/product-studio",
+    "./skills/design/apple-design-principles",
+    "./skills/design/apple-design-ios",
+    "./skills/design/apple-design-platforms",
+    "./skills/design/apple-design-foundations",
+    "./skills/design/apple-design-accessibility",
+    "./skills/design/apple-design-navigation",
+    "./skills/design/apple-design-controls",
+    "./skills/design/apple-design-menus",
+    "./skills/design/apple-design-presentation",
+    "./skills/design/apple-design-content",
+    "./skills/design/apple-design-patterns",
+    "./skills/design/apple-design-media",
+    "./skills/design/apple-design-inputs",
+    "./skills/design/apple-design-spatial",
+    "./skills/design/apple-design-system-experiences",
+    "./skills/design/apple-design-privacy-identity",
+    "./skills/design/apple-design-commerce",
+    "./skills/design/apple-design-health",
+    "./skills/design/apple-design-connected-technologies",
+    "./skills/design/apple-design-ai",
+    "./skills/design/apple-design-games",
+    "./skills/print/blender-print-ready",
+    "./skills/print/fdm-print-preflight",
+    "./skills/print/bambu-h2c-slice-print",
+    "./skills/print/bambu-print-troubleshoot",
+    "./skills/agents/grok-first",
+    "./skills/agents/opencode-first"
+  ]
+}
