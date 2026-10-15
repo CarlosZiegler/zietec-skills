@@ -2,7 +2,7 @@
   "name": "zietec-skills",
   "version": "1.0.0",
   "private": true,
-  "description": "ZieTec agent skills for design, print, and coding-agent workflows",
+  "description": "ZieTec agent skills for design, print, video, and coding-agent workflows",
   "repository": {
     "type": "git",
     "url": "https://github.com/CarlosZiegler/zietec-skills"

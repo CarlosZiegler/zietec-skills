@@ -14,9 +14,11 @@ npx skills@latest add CarlosZiegler/zietec-skills
 
 **Print** (`skills/print/`): Blender-to-FDM modeling, preflight, Bambu Lab H2C slicing, and print troubleshooting.
 
+**Video** (`skills/video/`): narrated product tutorial videos recorded for real (`tutorial-video`).
+
 **Agents** (`skills/agents/`): delegation skills that keep Claude Code as coordinator (`grok-first`, `opencode-first`).
 
-There is no `skills/media/` bucket in this collection. Media / Google Video Creator skills are intentionally excluded and remain in their original repository.
+There is no `skills/media/` bucket in this collection. Media / Google Video Creator skills are intentionally excluded and remain in their original repository; `skills/video/` holds only the tutorial-video skill.
 
 ## Language
 

@@ -1,0 +1,47 @@
+{
+	"title": "Acme Time",
+	"subtitle": "Track working time in the browser",
+	"endTitle": "Acme Time",
+	"endSubtitle": "Web · App · Browser",
+	"brand": {
+		"color": "#4f46e5",
+		"logo": "../public/logo.svg",
+		"logoOnDark": "../public/logo-white.svg"
+	},
+	"voice": {
+		"say": "Anna",
+		"rate": 178,
+		"openai": {
+			"model": "gpt-4o-mini-tts",
+			"voice": "marin",
+			"instructions": "Sprache: Deutsch. Sprich wie eine deutsche Muttersprachlerin aus Deutschland, klares Hochdeutsch mit authentischer deutscher Aussprache – kein amerikanischer oder englischer Akzent. Ton: freundlich, ruhig, professionell, wie eine Produkterklärung. Speak German as a native speaker from Germany; no American accent."
+		}
+	},
+	"scenes": [
+		{
+			"id": "intro",
+			"chapter": "",
+			"vo": "One sentence on what the product solves."
+		},
+		{
+			"id": "overview",
+			"chapter": "1 · Overview",
+			"vo": "Where you start and what you see first."
+		},
+		{
+			"id": "action",
+			"chapter": "2 · Main action",
+			"vo": "The one click the product is about."
+		},
+		{
+			"id": "form",
+			"chapter": "3 · Confirm",
+			"vo": "Check the details and confirm."
+		},
+		{
+			"id": "outro",
+			"chapter": "",
+			"vo": "Acme Time. One closing sentence."
+		}
+	]
+}

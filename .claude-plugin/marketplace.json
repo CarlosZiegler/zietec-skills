@@ -9,7 +9,7 @@
     {
       "name": "zietec-skills",
       "source": "./",
-      "description": "ZieTec agent skills for design, print, and coding-agent workflows.",
+      "description": "ZieTec agent skills for design, print, video, and coding-agent workflows.",
       "category": "productivity",
       "keywords": [
         "design",
@@ -17,7 +17,9 @@
         "agents",
         "skills",
         "apple-hig",
-        "fdm"
+        "fdm",
+        "video",
+        "tutorial"
       ]
     }
   ]

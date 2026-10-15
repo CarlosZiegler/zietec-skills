@@ -1,6 +1,6 @@
 # ZieTec Skills
 
-Agent skills from [ZieTec](https://github.com/CarlosZiegler) for design, print, and coding-agent workflows. Compatible with [skills.sh](https://skills.sh).
+Agent skills from [ZieTec](https://github.com/CarlosZiegler) for design, print, video, and coding-agent workflows. Compatible with [skills.sh](https://skills.sh).
 
 [![skills.sh](https://skills.sh/b/CarlosZiegler/zietec-skills)](https://skills.sh/CarlosZiegler/zietec-skills)
 
@@ -59,6 +59,12 @@ Blender modeling through Bambu Lab H2C slicing and troubleshooting.
 - **[bambu-h2c-slice-print](./skills/print/bambu-h2c-slice-print/SKILL.md)**: Use when preparing, slicing or validating a Bambu Studio project for the H2C, including per-object supports, color-separated plates and AMS/nozzle mapping, or operating a print the user has authorized.
 - **[bambu-print-troubleshoot](./skills/print/bambu-print-troubleshoot/SKILL.md)**: Use when a Bambu H2C print fails, spaghetti or floating-cantilever warnings appear, an HMS code is reported, or a printed part has adhesion, extrusion, dimensional or support defects.
 
+## Video
+
+Narrated product tutorial videos, produced automatically.
+
+- **[tutorial-video](./skills/video/tutorial-video/SKILL.md)**: Produce narrated product tutorial videos automatically — script, OpenAI voice-over in a native accent, a real recording driven by Playwright (web app, browser-extension popup) or the iOS simulator (mobile app), cursor and tap highlights, captions, ducked music, title and end cards, 1080p mp4.
+
 ## Agents
 
 Delegation skills that keep Claude Code as coordinator.
@@ -74,6 +80,7 @@ Skill bodies were **copied** into this monorepo. The original repositories remai
 - [`CarlosZiegler/bambu-h2c-skills`](https://github.com/CarlosZiegler/bambu-h2c-skills) → `skills/print/*`
 - [`CarlosZiegler/grok-first`](https://github.com/CarlosZiegler/grok-first) → `skills/agents/grok-first`
 - [`CarlosZiegler/opencode-first`](https://github.com/CarlosZiegler/opencode-first) → `skills/agents/opencode-first`
+- [`CarlosZiegler/tutorial-video-skill`](https://github.com/CarlosZiegler/tutorial-video-skill) → `skills/video/tutorial-video` (templates here are generic examples)
 - `design-maestro` and `product-studio` are new design skills added here under `skills/design/`
 
 See [CONTEXT.md](./CONTEXT.md) for how the buckets are organized. Licensed under [MIT](./LICENSE).

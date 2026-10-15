@@ -1,7 +1,7 @@
 {
   "name": "zietec-skills",
   "version": "1.0.0",
-  "description": "ZieTec agent skills for design, print, and coding-agent workflows.",
+  "description": "ZieTec agent skills for design, print, video, and coding-agent workflows.",
   "author": {
     "name": "ZieTec",
     "url": "https://github.com/CarlosZiegler"
@@ -15,7 +15,9 @@
     "agents",
     "skills",
     "apple-hig",
-    "fdm"
+    "fdm",
+    "video",
+    "tutorial"
   ],
   "skills": [
     "./skills/design/design-maestro",
@@ -46,6 +48,7 @@
     "./skills/print/bambu-h2c-slice-print",
     "./skills/print/bambu-print-troubleshoot",
     "./skills/agents/grok-first",
-    "./skills/agents/opencode-first"
+    "./skills/agents/opencode-first",
+    "./skills/video/tutorial-video"
   ]
 }
