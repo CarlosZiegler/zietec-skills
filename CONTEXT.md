@@ -10,7 +10,7 @@ npx skills@latest add CarlosZiegler/zietec-skills
 
 ## Buckets
 
-**Design** (`skills/design/`): product and design orchestration (`design-maestro`, `product-studio`) plus Apple Human Interface Guidelines skills (`apple-design-*`).
+**Design** (`skills/design/`): product and design orchestration (`design-maestro`, `product-studio`, `tempera`) plus Apple Human Interface Guidelines skills (`apple-design-*`).
 
 **Print** (`skills/print/`): Blender-to-FDM modeling, preflight, Bambu Lab H2C slicing, and print troubleshooting.
 
