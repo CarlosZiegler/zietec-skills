@@ -1,13 +1,13 @@
 ---
 name: apple-design-ios
-description: "Design, implement, or review iPhone interfaces using Apple’s iOS Human Interface Guidelines. Use for iOS screen structure, touch ergonomics, adaptive behavior, and integration with iPhone system experiences."
+description: "Design, implement, or review iPhone interfaces using Apple’s iOS Human Interface Guidelines. Use for iOS screen structure, touch ergonomics, adaptive behavior including the foldable iPhone Duo, and integration with iPhone system experiences."
 ---
 
 # Design for iOS
 
 ## Apply the skill
 
-Establish the primary task, supported iPhone configurations, minimum iOS version, and existing framework. When an app or design artifact is provided, inspect it before proposing changes; for a new concept, work from the brief and state necessary assumptions. Preserve the chosen stack, including SwiftUI, UIKit, React Native, or another framework; translate native behavior into that stack instead of replacing it.
+Establish the primary task, supported iPhone configurations (including iPhone Duo, if the app runs on it), minimum iOS version, and existing framework. When an app or design artifact is provided, inspect it before proposing changes; for a new concept, work from the brief and state necessary assumptions. Preserve the chosen stack, including SwiftUI, UIKit, React Native, or another framework; translate native behavior into that stack instead of replacing it.
 
 Model the main destinations, navigation state, and any scoped modal task before arranging controls. Specify what happens after Back, cancellation, backgrounding, an interrupted operation, and reentry through a deep link. Use the iOS reference for device-specific priorities.
 
@@ -21,6 +21,7 @@ Select the topic that matches the design decision; do not load this entire list 
 
 - [Designing for iOS](references/designing-for-ios.md)
 - [Implementation and review](references/implementation-review.md) — for screen delivery, adaptation checks, and implementation review.
+- [Designing for iPhone Duo](references/designing-for-iphone-duo.md) — for the two displays, device poses, the fold, and the vertical bar rail.
 
 ## Source use
 

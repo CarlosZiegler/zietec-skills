@@ -6,6 +6,6 @@
 - Include descriptive labels and recognizable symbols. Use badges selectively for significant information.
 - Choose enough tabs for the app’s real structure while avoiding overflow and unnecessary fragmentation.
 
-Check current platform behavior before specifying placement or customization. iPad can combine tab and sidebar navigation; a fixed rule that every iPad app must begin with a permanent sidebar is not supported by the current guidance.
+Check current platform behavior before specifying placement or customization. iPad can combine tab and sidebar navigation; a fixed rule that every iPad app must begin with a permanent sidebar is not supported by the current guidance. On iPhone Duo the system moves the tab bar into a vertical rail beside the content on the outer display and in landscape; keep the default placement and give each tab a title and a symbol ([Designing for iPhone Duo](https://developer.apple.com/design/human-interface-guidelines/designing-for-iphone-duo)).
 
 Source: [Apple HIG — Tab bars](https://developer.apple.com/design/human-interface-guidelines/tab-bars). Checked 2026-09-08.

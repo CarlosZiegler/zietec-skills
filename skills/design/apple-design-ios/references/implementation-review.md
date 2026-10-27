@@ -25,6 +25,7 @@ Read [Loading](https://developer.apple.com/design/human-interface-guidelines/loa
 | VoiceOver or alternate input | Can someone complete the task and understand its result? |
 | Background and return | Is the correct context restored, with truthful operation state? |
 | Long translation or RTL | Do labels fit and directional relationships retain their meaning? |
+| iPhone Duo closed, open, partially open, and in Split View | Does content stay clear of the vertical bar rail and the fold, and do state and scroll position survive folding? See [Designing for iPhone Duo](designing-for-iphone-duo.md). |
 
 Use [Layout](https://developer.apple.com/design/human-interface-guidelines/layout), [Typography](https://developer.apple.com/design/human-interface-guidelines/typography), [Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility), and [Right to left](https://developer.apple.com/design/human-interface-guidelines/right-to-left) for platform-specific recommendations, including exact target and text-size guidance.
 
