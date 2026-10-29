@@ -50,6 +50,7 @@ export default async ({ page, log }) => {
 	};
 	const clickOn = async (locator, move = 750) => {
 		await locator.scrollIntoViewIfNeeded().catch(() => {});
+		await sleep(250); // let a smooth scroll settle before measuring
 		const box = await locator.boundingBox();
 		if (!box) throw new Error("no box");
 		await stage("move", box.x + Math.min(box.width / 2, 120), box.y + box.height / 2, move);

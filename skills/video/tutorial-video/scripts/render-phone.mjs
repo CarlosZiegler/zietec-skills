@@ -1,7 +1,9 @@
 // Composes the app tutorial: one stage image per scene (stage.html, rendered with Playwright), the
 // simulator recording in the phone, a red ring on every tap, the voice-over at each scene's start
 // and a quiet generated pad ducked under it. Writes out/<lang>/$TUTORIAL_NAME-<lang>.mp4.
-import { cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// The recording (out/<lang>/sim.mp4) is first re-encoded with macOS `avconvert` (see below), and
+// the rectangles in timeline.blur are pixelated while they are on screen.
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
@@ -30,8 +32,18 @@ cpSync(join(here, "stage.html"), join(stageDir, "stage.html")); // copied from t
 // brand.logo (on light) and brand.logoOnDark, paths relative to the tutorial folder.
 if (brand.logo) cpSync(resolve(here, brand.logo), join(stageDir, "logo.svg"));
 if (brand.logoOnDark) cpSync(resolve(here, brand.logoOnDark), join(stageDir, "logo-dark.svg"));
+// TUTORIAL_CHROME, else Playwright's own headless shell, else the newest one installed (the
+// project's Playwright may be newer than the browsers in the cache).
+const pwCache = join(process.env.HOME, "Library/Caches/ms-playwright");
+const newestShell = () => {
+	const dir = (existsSync(pwCache) ? readdirSync(pwCache) : [])
+		.filter((d) => /^chromium_headless_shell-\d+$/.test(d))
+		.sort((a, b) => Number(a.split("-")[1]) - Number(b.split("-")[1]))
+		.at(-1);
+	return dir && join(pwCache, dir, "chrome-headless-shell-mac-arm64/chrome-headless-shell");
+};
 const browser = await chromium.launch({
-	executablePath: `${process.env.HOME}/Library/Caches/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell`,
+	executablePath: process.env.TUTORIAL_CHROME ?? (existsSync(chromium.executablePath()) ? undefined : newestShell()),
 });
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
 for (const scene of script.scenes) {
@@ -82,6 +94,55 @@ const phoneOn = sceneSpans
 	.join("+");
 const simOffset = Math.max(0, t0 - tl.videoStart);
 
+// 3b. The recording. `simctl io recordVideo` writes H.264 that ffmpeg mis-times after long still
+//     periods (pictures up to ~7 s out of place, a whole screen can vanish). Apple's own decoder
+//     reads it right, so ffmpeg only ever sees an avconvert copy. SIM_AVCONVERT=0 skips it,
+//     SIM_AVCONVERT_PRESET picks another preset (`avconvert --help` lists them).
+const sizeOf = (f) =>
+	execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", f], {
+		encoding: "utf8",
+	})
+		.trim()
+		.split(",")
+		.map(Number);
+let simFile = join(out, "sim.mp4");
+const [origW] = sizeOf(simFile);
+if (process.env.SIM_AVCONVERT !== "0") {
+	const av = join(out, "sim-av.mov");
+	execFileSync(
+		"avconvert",
+		["--source", simFile, "--output", av, "--preset", process.env.SIM_AVCONVERT_PRESET ?? "PresetHighestQuality", "--replace"],
+		{ stdio: "ignore" },
+	);
+	simFile = av;
+}
+const [rawW, rawH] = sizeOf(simFile);
+const scale = rawW / origW; // a scaling preset (e.g. Preset1920x1080) shrinks the recording: scale the rectangles too
+
+// Pixelation: timeline.blur = [{x, y, w, h, from, to}] — rectangles in the original recording's pixels,
+// times in wall-clock seconds; timeline.noBlur = [{from, to}] cuts windows (e.g. a full-screen
+// sheet covers the rectangles). Fixed rectangles, pixelated (not blurred): the same rectangles
+// can be reused for stills.
+const cutOut = (list, gaps) =>
+	gaps.reduce(
+		(acc, g) => acc.flatMap((b) => (g.to <= b.from || g.from >= b.to ? [b] : [{ ...b, to: g.from }, { ...b, from: g.to }])),
+		list,
+	);
+const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+const blurGroups = new Map();
+for (const b of cutOut(tl.blur ?? [], tl.noBlur ?? [])) {
+	if (!(b.to > b.from)) continue;
+	const x = Math.max(0, Math.round(b.x * scale));
+	const y = Math.max(0, Math.round(b.y * scale));
+	const w = even(Math.min(b.w * scale, rawW - x));
+	const h = even(Math.min(b.h * scale, rawH - y));
+	const k = `${x},${y},${w},${h}`;
+	if (!blurGroups.has(k)) blurGroups.set(k, { x, y, w, h, spans: [] });
+	blurGroups.get(k).spans.push([Math.max(0, b.from - tl.videoStart), Math.max(0, b.to - tl.videoStart)]);
+}
+const blocks = [...blurGroups.values()];
+const CELL = Number(process.env.PIXEL_CELL ?? 22);
+
 const inputs = [];
 const filters = [];
 sceneSpans.forEach((s, i) => {
@@ -90,9 +151,20 @@ sceneSpans.forEach((s, i) => {
 });
 filters.push(`${sceneSpans.map((_, i) => `[s${i}]`).join("")}concat=n=${sceneSpans.length}:v=1:a=0[bg]`);
 const simIdx = sceneSpans.length;
-inputs.push("-i", join(out, "sim.mp4"));
+inputs.push("-i", simFile);
+// Pixelate in the recording's own pixels and time, before it is trimmed and scaled.
+filters.push(`[${simIdx}:v]fps=30,format=yuv420p${blocks.length ? `,split=${blocks.length + 1}[px0]${blocks.map((_, i) => `[pc${i}]`).join("")}` : "[px0]"}`);
+let simLast = "px0";
+blocks.forEach((b, i) => {
+	const enable = b.spans.map(([a, z]) => `between(t,${a.toFixed(2)},${z.toFixed(2)})`).join("+");
+	filters.push(
+		`[pc${i}]crop=${b.w}:${b.h}:${b.x}:${b.y},scale=${Math.max(1, Math.round(b.w / CELL))}:${Math.max(1, Math.round(b.h / CELL))},scale=${b.w}:${b.h}:flags=neighbor[pp${i}]`,
+		`[${simLast}][pp${i}]overlay=${b.x}:${b.y}:enable='${enable}'[px${i + 1}]`,
+	);
+	simLast = `px${i + 1}`;
+});
 filters.push(
-	`[${simIdx}:v]trim=start=${simOffset.toFixed(3)},setpts=PTS-STARTPTS,fps=30,scale=${SCREEN.w}:${SCREEN.h},tpad=stop_mode=clone:stop_duration=${total.toFixed(1)}[sim]`,
+	`[${simLast}]trim=start=${simOffset.toFixed(3)},setpts=PTS-STARTPTS,scale=${SCREEN.w}:${SCREEN.h},tpad=stop_mode=clone:stop_duration=${total.toFixed(1)}[sim]`,
 );
 const maskIdx = simIdx + 1;
 inputs.push("-loop", "1", "-i", join(stageDir, "mask.png"));
@@ -146,4 +218,4 @@ execFileSync(
 	],
 	{ stdio: "inherit" },
 );
-console.log(`${file} (${total.toFixed(1)} s)`);
+console.log(`${file} (${total.toFixed(1)} s, ${blocks.length} pixelated rectangles)`);

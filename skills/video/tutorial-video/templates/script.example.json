@@ -1,10 +1,10 @@
 {
-	"title": "Acme Time",
-	"subtitle": "Track working time in the browser",
-	"endTitle": "Acme Time",
+	"title": "Produktname",
+	"subtitle": "Was das Video zeigt",
+	"endTitle": "Produktname",
 	"endSubtitle": "Web · App · Browser",
 	"brand": {
-		"color": "#4f46e5",
+		"color": "#dd083b",
 		"logo": "../public/logo.svg",
 		"logoOnDark": "../public/logo-white.svg"
 	},
@@ -15,33 +15,29 @@
 			"model": "gpt-4o-mini-tts",
 			"voice": "marin",
 			"instructions": "Sprache: Deutsch. Sprich wie eine deutsche Muttersprachlerin aus Deutschland, klares Hochdeutsch mit authentischer deutscher Aussprache – kein amerikanischer oder englischer Akzent. Ton: freundlich, ruhig, professionell, wie eine Produkterklärung. Speak German as a native speaker from Germany; no American accent."
+		},
+		"elevenlabs": {
+			"voiceId": "<from scripts/voice-samples.mjs, added to the account>",
+			"model": "eleven_v4",
+			"languageCode": "de",
+			"settings": { "stability": 0.5, "similarity_boost": 0.75 }
 		}
 	},
 	"scenes": [
 		{
 			"id": "intro",
 			"chapter": "",
-			"vo": "One sentence on what the product solves."
+			"vo": "Ein Satz, was das Produkt löst."
 		},
 		{
-			"id": "overview",
-			"chapter": "1 · Overview",
-			"vo": "Where you start and what you see first."
-		},
-		{
-			"id": "action",
-			"chapter": "2 · Main action",
-			"vo": "The one click the product is about."
-		},
-		{
-			"id": "form",
-			"chapter": "3 · Confirm",
-			"vo": "Check the details and confirm."
+			"id": "step1",
+			"chapter": "1 · Erster Schritt",
+			"vo": "Was man hier tut und warum."
 		},
 		{
 			"id": "outro",
 			"chapter": "",
-			"vo": "Acme Time. One closing sentence."
+			"vo": "Produktname. Ein Satz zum Schluss."
 		}
 	]
 }
