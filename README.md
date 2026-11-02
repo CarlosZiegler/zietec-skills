@@ -22,6 +22,27 @@ This repository follows the folder layout supported by the [Skills CLI](https://
 
 `.claude-plugin/` is included so Claude Code can load the collection as a **local** plugin. It is not listed on Anthropic’s official Claude marketplace.
 
+## At a glance
+
+33 skills in four buckets. Each skill is self-contained: install only the ones you need.
+
+| Bucket | Skills | What you need |
+|---|---|---|
+| [Design](#design) | design-maestro, product-studio, forja, tempera, 21 × apple-design-* | Nothing for the HIG skills. forja and tempera produce their output in Claude Design (claude.ai). |
+| [Print](#print) | blender-print-ready, fdm-print-preflight, bambu-h2c-slice-print, bambu-print-troubleshoot | Blender (with its MCP add-on for live work), Bambu Studio, a Bambu Lab H2C for printing. |
+| [Video](#video) | tutorial-video, ads-video | ffmpeg, Chrome/Chromium, a voice provider. Details in [Requirements](#requirements-video-skills). |
+| [Agents](#agents) | grok-first, opencode-first | Claude Code plus the Grok Build CLI or OpenCode CLI, signed in. |
+
+## What's new
+
+- **2026-11-02**: new **ads-video** skill: short app ads and store promo videos (9:16, 4:5, 1:1, 16:9) with cards, device frames, voice-over, music and sound effects from one JSON config.
+- **2026-10-29**: **tutorial-video** synced with its source: ElevenLabs and Higgsfield voices, `avconvert` fix for simulator recordings, pixelated stills, new scripts.
+- **2026-10-27**: iPhone Duo (foldable) guidance in **apple-design-ios**, navigation and layout skills.
+- **2026-10-20**: new **forja** skill (product package in Claude Design, EN · PT · DE).
+- **2026-10-19**: new **tempera** skill (forja plus a verification harness).
+- **2026-10-15**: new **tutorial-video** skill.
+- **2026-09-25**: collection created for skills.sh.
+
 ## Design
 
 Product and design orchestration, plus Apple Human Interface Guidelines skills.
@@ -68,6 +89,32 @@ Narrated product tutorial videos and short app ads, produced automatically.
 - **[tutorial-video](./skills/video/tutorial-video/SKILL.md)**: Produce narrated product tutorial videos automatically — script, voice-over in a native accent (ElevenLabs, OpenAI, Higgsfield or macOS say), a real recording driven by Playwright (web app, browser-extension popup) or the iOS simulator (mobile app, debug or release build), cursor and tap highlights, captions, pixelated personal data, ducked music, title and end cards, 1080p mp4; plus pixelated stills for docs.
 - **[ads-video](./skills/video/ads-video/SKILL.md)**: Build short app ads and store promo videos (9:16, 4:5, 1:1, 16:9; 15–30 s) from screen recordings — bold title and claim cards, the app inside a drawn phone or open foldable, native voice-over, a music bed ducked under the voice (MusicGen or Lyria) and synthesized sound effects, all from one JSON config, with a timing check that every voice line fits its scene and a review checklist (loudness, safe areas, private data, store rules).
 
+### Requirements (video skills)
+
+**ads-video**
+
+| Need | For | Notes |
+|---|---|---|
+| ffmpeg | cutting, mixing, loudness | Any recent build; `drawtext` is not needed. |
+| Chrome or Chromium | rendering the title and claim cards (headless) | Found automatically on macOS; else set `CHROME=/path`. |
+| Python 3 + Pillow | `build.py`, device frames | Or `uv run`, which reads the inline dependencies. `sfx.py` needs only the standard library. |
+| Screen recordings | the app footage | iOS Simulator (`xcrun simctl io … recordVideo`) or a device; Maestro is handy to drive the app. On macOS, `avconvert` fixes simulator timestamps. |
+| Voice (one of) | narration | **Higgsfield** connector in claude.ai (default, preset voice "Petra", no key in scripts), ElevenLabs, OpenAI, Kokoro via `npx hyperframes tts`, or macOS `say` for drafts (`--draft-voice say`). |
+| Music (one of) | the bed under the voice | **Lyria** via `npx hyperframes bgm` when `GEMINI_API_KEY` or `GOOGLE_API_KEY` is set; else **MusicGen** locally (`transformers`, `torch`, `soundfile`). Or bring your own track. |
+| Fonts | cards | Loaded from Google Fonts; offline, point the config at locally installed fonts. |
+
+Optional: your own phone mockup PNG (`device.phone.mockup`); otherwise the frame is drawn in code.
+
+**tutorial-video**
+
+| Need | For |
+|---|---|
+| Node.js + Playwright | recording web apps and browser-extension popups |
+| Xcode + iOS Simulator | recording mobile apps (release-type simulator build recommended) |
+| ffmpeg, macOS `avconvert` | rendering; fixing simulator recording timestamps |
+| Voice (one of) | `ELEVENLABS_API_KEY`, `OPENAI_API_KEY`, the Higgsfield connector, or macOS `say` for drafts |
+| Python 3 + Pillow | contact sheets and pixelated stills |
+
 ## Agents
 
 Delegation skills that keep Claude Code as coordinator.
@@ -84,6 +131,7 @@ Skill bodies were **copied** into this monorepo. The original repositories remai
 - [`CarlosZiegler/grok-first`](https://github.com/CarlosZiegler/grok-first) → `skills/agents/grok-first`
 - [`CarlosZiegler/opencode-first`](https://github.com/CarlosZiegler/opencode-first) → `skills/agents/opencode-first`
 - [`CarlosZiegler/tutorial-video-skill`](https://github.com/CarlosZiegler/tutorial-video-skill) → `skills/video/tutorial-video` (templates here are generic examples)
-- `design-maestro` and `product-studio` are new design skills added here under `skills/design/`
+- `design-maestro`, `product-studio`, `forja` and `tempera` are design skills written here under `skills/design/`
+- `ads-video` was written here under `skills/video/`
 
 See [CONTEXT.md](./CONTEXT.md) for how the buckets are organized. Licensed under [MIT](./LICENSE).
