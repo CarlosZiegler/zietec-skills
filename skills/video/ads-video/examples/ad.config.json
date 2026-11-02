@@ -1,0 +1,63 @@
+{
+  "format": "9:16",
+  "out_dir": "out",
+  "work_dir": "work",
+  "output": "{app}-ad-{ad}-{ratio}.mp4",
+  "brand": {
+    "app": "Acme",
+    "lang": "de",
+    "logo": "brand/logo-white.svg",
+    "colors": {
+      "primary": ["#3b4cca", "#4a5be0", "#2a379e"],
+      "accent_on_primary": "#d7dcff",
+      "accent_gradient": ["#3b4cca", "#7a5cff"],
+      "light_base": "#f4f5fb",
+      "light_glows": ["rgba(170,182,255,.85)", "rgba(186,226,255,.9)", "rgba(226,212,255,.9)"],
+      "ink": "#14161f"
+    },
+    "fonts": { "display": "Inter Tight", "body": "Schibsted Grotesk", "mono": "JetBrains Mono" }
+  },
+  "ads": {
+    "day": {
+      "music": "music/bright.wav",
+      "music_offset": 0,
+      "scenes": [
+        {
+          "type": "card", "bg": "primary", "duration": 2.8,
+          "eyebrow": "EIN TAG MIT ACME",
+          "title": "Ein Tag.<br><em>Eine App.</em>",
+          "text": "Termine, Aufgaben und Notizen, immer dabei.",
+          "vo": { "text": "Ein Tag. Eine App.", "file": "vo/01.mp3", "offset": 0.3 }
+        },
+        {
+          "type": "clip", "bg": "light", "device": "phone",
+          "eyebrow": "08:00 · MORGENS",
+          "title": "Einchecken.<br><em>Mit einem Tipp.</em>",
+          "recording": "rec/day.mov", "start": 15.6, "end": 22.0, "taps": [16.8],
+          "vo": { "text": "Morgens einchecken, mit einem einzigen Tipp.", "file": "vo/02.mp3", "offset": 0.4 }
+        },
+        {
+          "type": "clip", "bg": "light", "device": "phone",
+          "eyebrow": "12:00 · MITTAGS",
+          "title": "Anfragen,<br><em>ohne Formular.</em>",
+          "recording": "rec/day.mov", "start": 21.9, "end": 30.4, "taps": [22.2, 26.1],
+          "vo": { "text": "Mittags eine Anfrage stellen, ganz ohne Formular.", "file": "vo/03.mp3", "offset": 0.4 }
+        },
+        {
+          "type": "clip", "bg": "primary", "device": "phone",
+          "eyebrow": "18:00 · ABENDS",
+          "title": "Ihr Tagesbericht.<br><em>Schon da.</em>",
+          "recording": "rec/day.mov", "start": 46.6, "end": 51.2, "taps": [47.7],
+          "vo": { "text": "Und abends ist Ihr Bericht schon da.", "file": "vo/04.mp3", "offset": 0.4 }
+        },
+        {
+          "type": "card", "bg": "primary", "duration": 3.8,
+          "eyebrow": "ACME",
+          "title": "Alles für<br>Ihren Tag.<br><em>In einer App.</em>",
+          "text": "Acme · Jetzt kostenlos laden.",
+          "vo": { "text": "Acme. Alles in einer App.", "file": "vo/05.mp3", "offset": 0.3 }
+        }
+      ]
+    }
+  }
+}

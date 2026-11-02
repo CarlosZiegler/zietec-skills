@@ -17,7 +17,8 @@
     "apple-hig",
     "fdm",
     "video",
-    "tutorial"
+    "tutorial",
+    "ads"
   ],
   "skills": [
     "./skills/design/design-maestro",
@@ -51,6 +52,7 @@
     "./skills/print/bambu-print-troubleshoot",
     "./skills/agents/grok-first",
     "./skills/agents/opencode-first",
-    "./skills/video/tutorial-video"
+    "./skills/video/tutorial-video",
+    "./skills/video/ads-video"
   ]
 }

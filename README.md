@@ -63,9 +63,10 @@ Blender modeling through Bambu Lab H2C slicing and troubleshooting.
 
 ## Video
 
-Narrated product tutorial videos, produced automatically.
+Narrated product tutorial videos and short app ads, produced automatically.
 
 - **[tutorial-video](./skills/video/tutorial-video/SKILL.md)**: Produce narrated product tutorial videos automatically — script, voice-over in a native accent (ElevenLabs, OpenAI, Higgsfield or macOS say), a real recording driven by Playwright (web app, browser-extension popup) or the iOS simulator (mobile app, debug or release build), cursor and tap highlights, captions, pixelated personal data, ducked music, title and end cards, 1080p mp4; plus pixelated stills for docs.
+- **[ads-video](./skills/video/ads-video/SKILL.md)**: Build short app ads and store promo videos (9:16, 4:5, 1:1, 16:9; 15–30 s) from screen recordings — bold title and claim cards, the app inside a drawn phone or open foldable, native voice-over, a music bed ducked under the voice (MusicGen or Lyria) and synthesized sound effects, all from one JSON config, with a timing check that every voice line fits its scene and a review checklist (loudness, safe areas, private data, store rules).
 
 ## Agents
 
