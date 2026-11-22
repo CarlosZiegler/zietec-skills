@@ -50,7 +50,7 @@ python3 <forja>/scripts/gen_images.py build/imagens/prompts.json build/imagens
 ```
 
 - Saída: `<id>.webp` (até 1600 px de largura, qualidade 82) e `manifest.json` com prompt, formato e alt.
-- Copie os `.webp` para `project/img/` e use caminho relativo (`./img/hero.webp`) nos artboards, com `alt` no idioma do arquivo e `width`/`height` fixos para não haver salto de layout.
+- No build local, use `./img/<id>.webp` (o preview resolve). Para publicar, suba os `.webp` como assets do canvas (`upload_asset`, até 10 por chamada) e troque cada `./img/<id>.webp` pela url `/_blob/<id>` devolvida. O tipo Design não serve imagem solta em `project/`. Guarde o mapa em `build/img_blobs.json` e aplique-o como último passo do `build_all.sh`. Use `alt` no idioma do arquivo e `width`/`height` fixos para não haver salto de layout.
 - **Olhe cada imagem** (Read no arquivo) antes de usar: mãos, rosto, texto inventado, marca d'água, anatomia. Regere só a que falhar (`--only hero`).
 - Em fundo escuro ou com texto por cima, garanta contraste com um véu (gradiente local) e meça.
 - Nos slides e nas screenshots de loja, use as mesmas imagens em tamanho maior; não gere de novo.

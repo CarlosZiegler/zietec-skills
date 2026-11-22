@@ -1,5 +1,12 @@
 # Forja: changelog
 
+
+### v2.1.1 (2026-11-22) — aprendido no Salles Squad v2
+- Imagens do Codex publicadas como assets do canvas (`/_blob/<id>`), com o mapa em `build/img_blobs.json`. Imagem solta em `project/img/` não aparece.
+- Nomes das ferramentas de artifact do servidor `claude-artifacts` (`create_from_type`, `publish_files` em modo patch, `upload_asset`).
+- O Codex do Mac do usuário está sempre autorizado. O `device_bash` remoto é uma VM Linux e não chega nele: use device-auth na nuvem.
+- Nota de layout: rótulos com `nowrap` em tabelas de 390 px.
+
 ## v2.1 (2026-11-22)
 
 - **Imagens com o Codex CLI** (seção 4.6): fotos, cenas e modelos 3D gerados com a geração de imagem do Codex do usuário, no lugar de silhuetas e placeholders. Script `scripts/gen_images.py` e `references/imagens-codex.md` com rotas (Mac, nuvem com `codex login --device-auth`, espaço reservado), prompts e regras.

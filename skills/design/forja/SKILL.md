@@ -382,7 +382,7 @@ Interface é HTML/CSS/SVG. Mas onde um desenho em CSS fica com cara de rascunho 
 - **Comece o login cedo** (na etapa 0) e siga construindo enquanto o usuário entra; as imagens só precisam estar prontas antes das telas finais.
 - **Olhe cada imagem** antes de usar (mãos, rosto, texto inventado, anatomia) e regere só a que falhar.
 - **Nunca**: pessoa real identificável (o cliente, o fundador), logos ou marcas, texto dentro da imagem, antes/depois de corpo como promessa.
-- As imagens vão em `project/img/` e servem aos 3 idiomas, aos slides e às screenshots de loja; só o `alt` muda.
+- **Publicação das imagens**: o tipo Design não serve imagem solta em `project/`. Suba cada `.webp` como asset do canvas (`upload_asset`, ou `asset: true` no Artifact) e use a url `/_blob/<id>` no `<img src>`. Guarde o mapa id → url em `build/img_blobs.json` e aplique-o no fim do build, para que um rebuild não volte aos caminhos locais. As mesmas imagens servem aos 3 idiomas, aos slides e às screenshots de loja; só o `alt` muda.
 
 Detalhes em `references/imagens-codex.md`.
 

@@ -73,3 +73,7 @@ python3 scripts/contrast.py build                            # pares de cor do b
 - **Doc em alemão** fica ~5–10% mais longo em páginas; normal.
 - **Datas**: o próximo passo do pitch tem data real, posterior ao dia da entrega.
 - **Contato**: nunca o e-mail de trabalho do usuário; no pitch, só o nome.
+- **Ferramentas de artifact com outros nomes** (servidor `claude-artifacts`): `quickstart` + publish com `type_url` viram `create_from_type` (slug do tipo Design, uma vez, com o título). Publish com `root`/`files` vira `publish_files` em modo `patch`, um de cada vez, com o `base_version` do resultado anterior. `null` vira `remove`. Imagens vão por `upload_asset`.
+- **Imagens soltas em `project/img/`** não aparecem no canvas. Suba como asset e use `/_blob/<id>` (§4.6). Aconteceu no Salles Squad v2.
+- **Tabela estreita no mobile**: célula com `.num` (`white-space: nowrap`) numa coluna fixa invade a coluna vizinha ("A cada 15 dias" por cima do texto). Em tabelas de 390 px, dê `white-space: normal` nos rótulos e meça a altura de novo no alemão, porque a tela cresce.
+
