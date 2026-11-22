@@ -634,7 +634,6 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 **Cuidados**:
 
 - **craft**: o plugin instala um hook que roda no início de toda sessão. Use só as regras destiladas aqui.
-
 - **design-review**: manda um ping de uso para um servidor externo a cada revisão, e o modo Pro envia o design para fora.
 - **critique**: roda `npx impeccable` e injeta um script na página.
 - **claude-handoff**: aparece com auditoria "Warn" no skills.sh.
