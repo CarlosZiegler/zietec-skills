@@ -1,11 +1,14 @@
-# Forja
+# Forja (v2)
+
+> v2 de 2026-11-22. A v1 continua em [forja-v1](../forja-v1/) (tag `forja-v1.0`) para comparar ou voltar. O que mudou: [CHANGELOG](../../../docs/forja/CHANGELOG.md).
 
 **Da ideia ao pacote de produto.** Uma ideia de app ou micro-SaaS entra; sai um canvas do Claude Design com:
 
 - 9 telas mobile e 9 desktop com motion;
 - pitch de 14 slides;
 - documentação de produto A4 em 6 seções (Vision Board, PRD, User Flows, User Stories, ARD, Cronograma);
-- tudo em **EN · PT · DE**, com seletor de idioma e direção de arte própria em cada produto.
+- tudo em **EN · PT · DE**, com seletor de idioma e direção de arte própria em cada produto;
+- na v2: veredito de produto e nome antes das telas, 3 direções com seletor, página de Estados, onboarding e upgrade, passes de qualidade (simplificar, alinhamento, pior caso, auto-revisão), página de Lançamento e arquivos de handoff para o Claude Code.
 
 A Forja foi usada em mais de 30 produtos, entre eles Zugang (o piloto), Klarbeleg, Lernlupe e Teilo. Este pacote descreve a skill do jeito que ela roda na prática:
 
@@ -26,7 +29,9 @@ forja/
 │   ├── fluxo-de-trabalho.md         # como a sessão anda: ideia → overview → subagente → portões → entrega
 │   ├── brief-novo-produto.md        # modelo de prompt para o subagente que constrói um produto
 │   ├── atualizar-produto.md         # ajuste, pivô, links/referências, retrofit de idiomas
-│   └── build-e-publicacao.md        # motor local, contagens, ordem de build, publicação, notas aprendidas
+│   ├── build-e-publicacao.md        # motor local, contagens, ordem de build, publicação, notas aprendidas
+│   ├── estados-e-qualidade.md       # v2: catálogo de estados, pior caso, mobile-native, coreografia, gridlines, auto-revisão
+│   └── lancamento-e-handoff.md      # v2: screenshots de loja, storyboard do teaser, DESIGN.md/PRD.md/CLAUDE.md
 └── scripts/
     ├── fetch_fonts.py               # Google Fonts → woff2 + local.css (para medir e fotografar sem rede)
     ├── preview.py                   # renderizador mínimo de .dc.html (holes, sc-for, sc-if) + Playwright
