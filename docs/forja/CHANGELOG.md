@@ -1,5 +1,9 @@
 # Forja: changelog
 
+## v2.1 (2026-11-22)
+
+- **Imagens com o Codex CLI** (seção 4.6): fotos, cenas e modelos 3D gerados com a geração de imagem do Codex do usuário, no lugar de silhuetas e placeholders. Script `scripts/gen_images.py` e `references/imagens-codex.md` com rotas (Mac, nuvem com `codex login --device-auth`, espaço reservado), prompts e regras.
+
 ## v2 (2026-11-22)
 
 A v2 parte da v1 e acrescenta etapas antes das telas (produto e nome), durante (direções e estados) e depois (qualidade, lançamento e handoff). Nada da v1 foi removido.

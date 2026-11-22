@@ -31,6 +31,7 @@ Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tel
 | `nome` | 0.2: nome com torneio e checagem em PT/DE/EN |
 | `simplificar-design` | 9: passe de corte antes da auto-revisão |
 | `ads-video` | 10: teaser em vídeo, se o usuário pedir o vídeo pronto |
+| Codex CLI (do usuário) | 4.6: fotos, cenas e modelos 3D gerados com a geração de imagem do Codex |
 
 **Referência de qualidade** (não de visual): o piloto "Zugang", um monitor de acessibilidade BFSG. Ele serve de régua para profundidade, verificação e acabamento. **Não copie as cores, a fonte, os layouts nem os componentes dele.** Cada produto tem direção de arte própria (seção 4).
 
@@ -44,6 +45,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/build-e-publicacao.md` | Motor local, verificação e publicação no tipo Design; notas aprendidas |
 | `references/estados-e-qualidade.md` | Ao desenhar as telas e na verificação: estados, pior caso, mobile-native, coreografia, alinhamento, auto-revisão |
 | `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
+| `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
 
 ---
@@ -371,6 +373,19 @@ A direção de arte (4.1–4.2) fixa a marca. As direções testam a **estrutura
 
 Registre a escolha em Decisões. A página Direções guarda as 3 variantes, com a vencedora marcada na legenda.
 
+### 4.6 Imagens geradas com o Codex CLI
+
+Interface é HTML/CSS/SVG. Mas onde um desenho em CSS fica com cara de rascunho (pessoa, produto em uso, ambiente, corpo ou objeto em 3D), **gere a imagem com o Codex CLI do usuário**, que usa a assinatura dele. Exemplo: no hero de um app para mulheres, uma foto editorial de uma mulher real e fictícia treinando, não uma silhueta de boneco.
+
+- **Logo depois da direção de arte**, liste as imagens do pacote (6 a 12) em `build/imagens/prompts.json`: um prefixo `estilo` que amarra todas à direção de arte, a descrição de cada uma, o formato e o `alt` em PT, EN e DE.
+- **Gere** com `scripts/gen_images.py` (chama `codex exec` com a geração de imagem nativa e converte para WebP). Rotas: shell no Mac do usuário; na nuvem, `npm i -g @openai/codex` + `codex login --device-auth`, com o link e o código enviados ao usuário; sem Codex, espaço reservado e `prompts.json` pronto para depois.
+- **Comece o login cedo** (na etapa 0) e siga construindo enquanto o usuário entra; as imagens só precisam estar prontas antes das telas finais.
+- **Olhe cada imagem** antes de usar (mãos, rosto, texto inventado, anatomia) e regere só a que falhar.
+- **Nunca**: pessoa real identificável (o cliente, o fundador), logos ou marcas, texto dentro da imagem, antes/depois de corpo como promessa.
+- As imagens vão em `project/img/` e servem aos 3 idiomas, aos slides e às screenshots de loja; só o `alt` muda.
+
+Detalhes em `references/imagens-codex.md`.
+
 ---
 
 ## 5. Telas
@@ -552,6 +567,7 @@ As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_font
   1. **Simplificar**: skill `simplificar-design` em modo autocheck nas telas 1–3 e 6–7. Conte elementos, ações primárias, cores e tamanhos antes e depois; corte o que não ganha seu lugar sem perder estados nem acessibilidade.
   2. **Alinhamento (gridlines)**: `probe.js` de `pritamux/gridlines` (MIT) no preview local, a 390 e 1440 px, com sheets abertos. Cada contêiner com linha de texto, linha de caixa e linha final; corrija no padding do contêiner. Aprovado: todo item a no máximo 1 px da sua linha.
   3. **Pior caso**: renderize a lista com o fixture de pior caso e corrija o que quebrar.
+  - **Imagens**: toda imagem foi olhada; nenhuma pessoa real, logo ou texto embutido; `alt` nos 3 idiomas; `width`/`height` fixos.
   4. **Auto-revisão de design**: renderize e olhe. O que vejo primeiro, é o mais importante, qual é a próxima ação? Depois hierarquia, espaço, estabilidade (nada muda de tamanho ao carregar, trocar rótulo ou alternar Mensal/Anual), interação, contraste medido, texto (`text-wrap: balance` em títulos), consistência e motion. Também alvos, estados e os testes "parece feito por IA?" e "parece com o produto anterior?".
   - Classifique os achados (bloqueia > atrasa > parece descuidado), corrija dentro do escopo, renderize de novo e guarde a lista do que mudou para a entrega.
 
@@ -585,6 +601,7 @@ Resposta curta, no idioma do usuário:
 - o que está no canvas e onde tocar em Play;
 - a direção escolhida (ou assumida, se ninguém respondeu) e a direção de arte em 1 linha (paleta, fonte, ideia);
 - o que os passes de qualidade corrigiram e os estados que ficaram em aberto;
+- as imagens geradas (quantas, com qual rota) e as que ficaram como espaço reservado;
 - os arquivos de handoff enviados;
 - o que é hipótese;
 - qualquer correção de afirmação anterior ou da própria ideia, como concorrente que já faz o mesmo ou regra legal diferente;
