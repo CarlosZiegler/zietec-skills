@@ -75,7 +75,7 @@ O orquestrador (você) não reconstrói nada: lê o retorno, confere se os port�
 - Doc: todas as páginas com `main.scrollHeight ≤ 948`, sumário com números certos.
 - Telas: lógica testada, links e seletor de idioma corretos, nenhum overflow.
 - Estados: catálogo marcado por tela, página Estados com os de tela inteira e o pior caso da lista.
-- Passes de qualidade feitos (simplificar, gridlines, pior caso, auto-revisão) e a lista do que mudou.
+- Passes de qualidade feitos (simplificar, gridlines, pior caso, anti-slop, auto-revisão) e a lista do que mudou, com as contagens do `slop_check.py` e as 6 respostas.
 - Lançamento: 6 screenshots e storyboard; handoff: `DESIGN.md`, `PRD.md`, `CLAUDE.md` gerados.
 - Nenhum e-mail do usuário em lugar nenhum; contato no pitch = só o nome.
 - `Artifact action=list scope=files` confirma tudo sob `project/`.

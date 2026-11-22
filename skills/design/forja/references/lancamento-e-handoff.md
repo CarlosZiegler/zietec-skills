@@ -36,6 +36,7 @@ Gere em `build/handoff/` e envie com SendUserFile. Não vão para o canvas.
 ## Marca (cores com hex e papel, fontes, logo)
 ## Referências (pegar / evitar)
 ## Restrições (plataformas, WCAG, alvos, tema, ícones, motion)
+## Contrato anti-slop (um acento, uma família de cinzas, escala de raios, conjunto de ícones, um rótulo por ação, exceções de marca com o porquê; metas do slop_check)
 ## Tokens
 <cores por papel: text, text-muted, surface, fill-1, border, primary, focus, status-*; escala de tipo; espaçamento; raios; sombras; durações e easing>
 ## Componentes e matriz de estados
@@ -65,6 +66,7 @@ Antes de mexer em UI, leia DESIGN.md. Antes de mexer em escopo, leia PRD.md.
 
 ## Regras
 - Tokens só por papel; nenhum hex solto em componente.
+- Contrato anti-slop do DESIGN.md vale no código: nada de gradiente de lavagem, emoji como ícone, raio fora da escala, palavra de slop ou rótulo novo para uma ação existente.
 - Toda tela com os estados do DESIGN.md.
 - Interface em EN · PT · DE; nenhum texto fixo fora dos arquivos de tradução.
 - Mudou algo compartilhado: liste as telas afetadas antes.
@@ -73,6 +75,7 @@ Antes de mexer em UI, leia DESIGN.md. Antes de mexer em escopo, leia PRD.md.
 ## Verificar o próprio trabalho
 - Teste e2e do fluxo de ativação (do primeiro acesso ao evento de ativação).
 - Screenshot antes e depois em toda mudança de UI.
+- Revisão de interface com o `web-design-guidelines` da Vercel (foco, rótulos, `alt`, `transition: all`, `…`, tabular-nums) antes de dizer pronto.
 - Itens que só um aparelho real confirma (hover preso, teclado, safe area): listar no PR.
 
 ## Skills recomendadas

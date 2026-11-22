@@ -68,7 +68,8 @@ Direção inicial: <referência do mundo real, paleta-base, par de fontes, arqu�
 - Renderize e **olhe** os 42 slides: matriz sem "?", 8 riscos visíveis, Gantt visual, próximo passo com data posterior a hoje, nenhum miolo vazio ou texto cortado.
 - Doc: todas as páginas com `main.scrollHeight ≤ 948` nos 3 idiomas.
 - Telas: `checklogic.js` passa em todas, links e seletor corretos, sem overflow.
-- Passes de qualidade feitos, nesta ordem: simplificar, gridlines, pior caso, auto-revisão. Guarde o que mudou.
+- Passes de qualidade feitos, nesta ordem: simplificar, gridlines, pior caso, anti-slop (`build/slop_check.py` até zerar os FAIL + as 6 perguntas de `references/anti-slop.md` em `build/anti_slop.md`), auto-revisão. Guarde o que mudou.
+- Contrato anti-slop no `design_brief.py` antes da primeira tela.
 - Lançamento: 6 screenshots 1290×2796 e o storyboard; `teaser.json` no formato do `ads-video`.
 - Handoff: `DESIGN.md`, `PRD.md`, `CLAUDE.md` em `build/handoff/`.
 

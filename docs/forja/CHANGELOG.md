@@ -1,6 +1,13 @@
 # Forja: changelog
 
 
+### v2.2 (2026-11-22) — passe anti-slop
+- `references/anti-slop.md`: contrato de design (um acento, uma família de cinzas, escala de raios, um conjunto de ícones, um rótulo por ação, exceção só com porquê), catálogo do que é slop, regras de copy e de interface, metas e portão de 6 perguntas.
+- `scripts/slop_check.py`: contagens objetivas nos `.dc.html` (matizes, violeta, gradiente de lavagem, vidro, raios, emoji, rótulos, `...`, aspas, `transition: all`, foco, zoom, `img`, botão de ícone, campo sem rótulo, `onclick` em div, fade no scroll, palavras e frases de slop em EN/PT/DE, resíduo).
+- Seção 9 ganha o passe 4 (anti-slop) entre pior caso e auto-revisão; contrato no `design_brief.py`; `DESIGN.md`/`CLAUDE.md` do handoff levam o contrato e a revisão Vercel para o código.
+- Fontes: uizze anti-ui-slop (Apache-2.0), ThinkUI (só a ideia, reescrita), Taste Skill (MIT), Vercel Web Interface Guidelines (MIT), Emil Kowalski (MIT, já integrado).
+- Testado no Salles Squad v2: 193 artboards, 1 FAIL real ("Unlocks" no doc EN), corrigido; 7 WARN legítimos (shimmer do carregando e fundos das screenshots de loja).
+
 ### v2.1.1 (2026-11-22) — aprendido no Salles Squad v2
 - Imagens do Codex publicadas como assets do canvas (`/_blob/<id>`), com o mapa em `build/img_blobs.json`. Imagem solta em `project/img/` não aparece.
 - Nomes das ferramentas de artifact do servidor `claude-artifacts` (`create_from_type`, `publish_files` em modo patch, `upload_asset`).

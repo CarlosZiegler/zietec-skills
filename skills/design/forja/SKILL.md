@@ -32,6 +32,7 @@ Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tel
 | `simplificar-design` | 9: passe de corte antes da auto-revisão |
 | `ads-video` | 10: teaser em vídeo, se o usuário pedir o vídeo pronto |
 | Codex CLI (do usuário) | 4.6: fotos, cenas e modelos 3D gerados com a geração de imagem do Codex |
+| Anti-slop (uizze, ThinkUI, Taste, Vercel, Emil; destilado em `references/anti-slop.md`) | 4: contrato de design; 9: contagens + portão de 6 perguntas |
 
 **Referência de qualidade** (não de visual): o piloto "Zugang", um monitor de acessibilidade BFSG. Ele serve de régua para profundidade, verificação e acabamento. **Não copie as cores, a fonte, os layouts nem os componentes dele.** Cada produto tem direção de arte própria (seção 4).
 
@@ -46,6 +47,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/estados-e-qualidade.md` | Ao desenhar as telas e na verificação: estados, pior caso, mobile-native, coreografia, alinhamento, auto-revisão |
 | `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
+| `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
 
 ---
@@ -255,6 +257,7 @@ Grave também um `design_brief.py`, que vira a nota do topo da página Direçõe
 - **Clima**: 2–3 palavras + "nunca parecer" (as linhas 2 e 5 acima).
 - **Referências**: cada uma com "pegar: …; evitar: …".
 - **Restrições**: plataformas, WCAG, alvos de toque, tema, um só conjunto de ícones.
+- **Contrato anti-slop**: um acento (+ no máximo um apoio de marca), uma família de cinzas, uma escala de raios, um conjunto de ícones, um rótulo por ação, e o porquê de cada exceção de marca (gradiente, cor fora do contrato). Detalhes em `references/anti-slop.md`.
 - **Decisões**: data, decisão, porquê. Atualize ao longo do run.
 - **Perguntas em aberto**.
 
@@ -567,8 +570,9 @@ As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_font
   1. **Simplificar**: skill `simplificar-design` em modo autocheck nas telas 1–3 e 6–7. Conte elementos, ações primárias, cores e tamanhos antes e depois; corte o que não ganha seu lugar sem perder estados nem acessibilidade.
   2. **Alinhamento (gridlines)**: `probe.js` de `pritamux/gridlines` (MIT) no preview local, a 390 e 1440 px, com sheets abertos. Cada contêiner com linha de texto, linha de caixa e linha final; corrija no padding do contêiner. Aprovado: todo item a no máximo 1 px da sua linha.
   3. **Pior caso**: renderize a lista com o fixture de pior caso e corrija o que quebrar.
+  4. **Anti-slop**: `python3 build/slop_check.py project --radii <escala>` até zerar os FAIL (cada WARN corrigido ou com porquê no `design_brief.py`); depois responda as 6 perguntas (específico, evidência, estados, conteúdo, hierarquia, limites honestos) em `build/anti_slop.md`. Regras de copy e de interface e as metas em `references/anti-slop.md`.
   - **Imagens**: toda imagem foi olhada; nenhuma pessoa real, logo ou texto embutido; `alt` nos 3 idiomas; `width`/`height` fixos.
-  4. **Auto-revisão de design**: renderize e olhe. O que vejo primeiro, é o mais importante, qual é a próxima ação? Depois hierarquia, espaço, estabilidade (nada muda de tamanho ao carregar, trocar rótulo ou alternar Mensal/Anual), interação, contraste medido, texto (`text-wrap: balance` em títulos), consistência e motion. Também alvos, estados e os testes "parece feito por IA?" e "parece com o produto anterior?".
+  5. **Auto-revisão de design**: renderize e olhe. O que vejo primeiro, é o mais importante, qual é a próxima ação? Depois hierarquia, espaço, estabilidade (nada muda de tamanho ao carregar, trocar rótulo ou alternar Mensal/Anual), interação, contraste medido, texto (`text-wrap: balance` em títulos), consistência e motion. Também alvos, estados e os testes "parece feito por IA?" e "parece com o produto anterior?".
   - Classifique os achados (bloqueia > atrasa > parece descuidado), corrija dentro do escopo, renderize de novo e guarde a lista do que mudou para a entrega.
 
 O tipo Design pede para não verificar depois de publicar sem o usuário pedir. Toda verificação acontece localmente, antes.
@@ -601,6 +605,7 @@ Resposta curta, no idioma do usuário:
 - o que está no canvas e onde tocar em Play;
 - a direção escolhida (ou assumida, se ninguém respondeu) e a direção de arte em 1 linha (paleta, fonte, ideia);
 - o que os passes de qualidade corrigiram e os estados que ficaram em aberto;
+- as contagens finais do `slop_check.py`, os WARN mantidos com o porquê e as 6 respostas do portão anti-slop;
 - as imagens geradas (quantas, com qual rota) e as que ficaram como espaço reservado;
 - os arquivos de handoff enviados;
 - o que é hipótese;
@@ -643,6 +648,10 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 - craft (https://github.com/diego3g/craft, MIT): brief DESIGN.md, catálogo de estados, eixos de divergência, regras de crítica
 - emilkowalski/skills (https://github.com/emilkowalski/skills, MIT): prototype, mobile-native, choreograph, break-ui, learn-taste; animate-expo na implementação em Expo
 - gridlines (https://github.com/pritamux/gridlines, MIT): passe de alinhamento com `probe.js`
+- anti-ui-slop (https://github.com/uizze/uizze/tree/main/skills/anti-ui-slop, Apache-2.0): contrato, contagens rápidas, craft e auditoria
+- thinkui-anti-slop (https://thinkui.xyz/skills, licença não declarada): só a ideia do portão de 6 perguntas, reescrita
+- taste-skill (https://github.com/Leonxlnx/taste-skill, MIT): palavras e frases de slop, regras de copy, "um sistema"
+- web-design-guidelines (https://github.com/vercel-labs/agent-skills, MIT): regras de interface; rode-o também no código, na implementação
 - impeccable distill (https://github.com/pbakaus/impeccable, Apache-2.0): base da `simplificar-design`
 - revenue-centric-design (https://github.com/heliocosta-dev/revenue-centric-design, licença própria, nada de apostas): base da `produto`
 - device-frames, hyperframes e brag: molduras de aparelho e teaser em vídeo para a página Lançamento
@@ -654,5 +663,6 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 - **design-review**: manda um ping de uso para um servidor externo a cada revisão, e o modo Pro envia o design para fora.
 - **critique**: roda `npx impeccable` e injeta um script na página.
 - **claude-handoff**: aparece com auditoria "Warn" no skills.sh.
+- **taste-skill**: instala um hook `Stop` e um gate em Node + Chrome. **ThinkUI e uizze**: o MCP de referências é pago (opcional); sem ele, a etapa de evidência fica registrada como não feita.
 
 Não execute nada disso sem o usuário pedir.
