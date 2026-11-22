@@ -18,7 +18,7 @@ Regra de ouro: se o boneco, a silhueta ou o "placeholder" deixaria a tela com ca
 
 Escolha a primeira que funcionar:
 
-1. **Shell no Mac do usuário** (Claude Code ou Cowork local): `codex` já está instalado e logado. Rode `scripts/gen_images.py` direto.
+1. **Shell no Mac do usuário** (Claude Code ou Cowork local): o usuário tem o Codex CLI instalado e logado no Mac e autorizou usá-lo sempre. Rode `scripts/gen_images.py` direto. Atenção: o `device_bash` da ponte remota é uma VM Linux, não o macOS; ele não chega nesse Codex. Nesse caso use a rota 2.
 2. **Sessão na nuvem** (sem acesso ao Mac): instale e faça login com a conta do usuário:
    ```sh
    npm i -g @openai/codex@latest
