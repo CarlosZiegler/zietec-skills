@@ -46,6 +46,10 @@ A v2 parte da v1 e acrescenta etapas antes das telas (produto e nome), durante (
 
 A Forja que gerou mais de 30 pacotes: pesquisa, 9 + 9 telas com motion, doc A4 em 6 seções, pitch de 14 slides, EN · PT · DE, direção de arte própria por produto, subagente por produto, portão do pitch e atualização no mesmo link. Congelada em `skills/design/forja-v1/` e na commit `64941bb`.
 
+## Snapshot do claude.ai
+
+A cópia da Forja que estava salva na conta do claude.ai antes da v2 (mais simples que a v1 do repositório, com as edições de 22/11 vindas de craft, emilkowalski/skills e gridlines) está em [`snapshots/forja-claude-ai-2026-11-22.SKILL.md`](./snapshots/forja-claude-ai-2026-11-22.SKILL.md).
+
 ## Como voltar para a v1
 
 - **No chat**: diga "usa a Forja v1". A skill `forja-v1` existe ao lado da `forja`.
