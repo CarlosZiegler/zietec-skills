@@ -1,6 +1,6 @@
 # Forja (v2)
 
-> v2 de 2026-11-22. A v1 continua em [forja-v1](../forja-v1/) (tag `forja-v1.0`) para comparar ou voltar. O que mudou: [CHANGELOG](../../../docs/forja/CHANGELOG.md).
+> v2 de 2026-11-22. A v1 continua em [forja-v1](../forja-v1/) (commit `64941bb`) para comparar ou voltar. O que mudou: [CHANGELOG](../../../docs/forja/CHANGELOG.md).
 
 **Da ideia ao pacote de produto.** Uma ideia de app ou micro-SaaS entra; sai um canvas do Claude Design com:
 

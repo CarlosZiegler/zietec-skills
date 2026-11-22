@@ -5,7 +5,7 @@ description: "Versão 1 congelada da Forja (outubro de 2026), a que gerou mais d
 
 # Forja v1: da ideia ao pacote de produto (versão congelada)
 
-> Versão congelada em 2026-11-22, tag `forja-v1.0`. A versão atual é a `forja` (v2). Os arquivos de apoio desta versão ficam nesta pasta; se a skill foi salva sem eles, clone https://github.com/CarlosZiegler/zietec-skills e use `skills/design/forja-v1/`.
+> Versão congelada em 2026-11-22, commit `64941bb`. A versão atual é a `forja` (v2). Os arquivos de apoio desta versão ficam nesta pasta; se a skill foi salva sem eles, clone https://github.com/CarlosZiegler/zietec-skills e use `skills/design/forja-v1/`.
 
 Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com quatro partes:
 

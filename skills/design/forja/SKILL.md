@@ -5,7 +5,7 @@ description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no C
 
 # Forja v2: da ideia ao pacote de produto
 
-> **Versão 2** (2026-11-22). A v1 está congelada em `skills/design/forja-v1` (tag `forja-v1.0`). Se o usuário disser "usa a Forja v1" ou não gostar do resultado, use a `forja-v1`. O que mudou está em `docs/forja/CHANGELOG.md` do repositório.
+> **Versão 2** (2026-11-22). A v1 está congelada em `skills/design/forja-v1` (commit `64941bb`). Se o usuário disser "usa a Forja v1" ou não gostar do resultado, use a `forja-v1`. O que mudou está em `docs/forja/CHANGELOG.md` do repositório.
 >
 > Se os arquivos de apoio (`references/`, `scripts/`) não estiverem nesta pasta, por exemplo numa skill salva só com o SKILL.md, clone https://github.com/CarlosZiegler/zietec-skills e use `skills/design/forja/`.
 

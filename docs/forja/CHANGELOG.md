@@ -44,11 +44,11 @@ A v2 parte da v1 e acrescenta etapas antes das telas (produto e nome), durante (
 
 ## v1 (2026-10-20)
 
-A Forja que gerou mais de 30 pacotes: pesquisa, 9 + 9 telas com motion, doc A4 em 6 seções, pitch de 14 slides, EN · PT · DE, direção de arte própria por produto, subagente por produto, portão do pitch e atualização no mesmo link. Congelada em `skills/design/forja-v1/` e na tag `forja-v1.0`.
+A Forja que gerou mais de 30 pacotes: pesquisa, 9 + 9 telas com motion, doc A4 em 6 seções, pitch de 14 slides, EN · PT · DE, direção de arte própria por produto, subagente por produto, portão do pitch e atualização no mesmo link. Congelada em `skills/design/forja-v1/` e na commit `64941bb`.
 
 ## Como voltar para a v1
 
 - **No chat**: diga "usa a Forja v1". A skill `forja-v1` existe ao lado da `forja`.
 - **No claude.ai**: a skill `forja-v1` fica salva na sua conta junto da `forja`. Para voltar de vez, troque o conteúdo da `forja` pelo SKILL.md de `skills/design/forja-v1/`.
-- **No repositório**: `git checkout forja-v1.0 -- skills/design/forja` restaura a pasta da v1 no lugar da v2.
+- **No repositório**: `git checkout 64941bb -- skills/design/forja` restaura a pasta da v1 no lugar da v2. Para ter uma tag: `git tag forja-v1.0 64941bb && git push origin forja-v1.0`.
 - **Instalação via skills.sh**: `npx skills@latest add CarlosZiegler/zietec-skills --skill forja-v1`.

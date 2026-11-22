@@ -28,7 +28,7 @@ There is no `skills/media/` bucket in this collection. Media / Google Video Crea
 
 **Skill**: a folder with `SKILL.md` (required) and any bundled references, agent configs, or scripts.
 
-**Frozen version**: a copy of a skill kept under `<name>-v<N>` with a git tag (`forja-v1.0`), so a new version can be tried and rolled back.
+**Frozen version**: a copy of a skill kept under `<name>-v<N>` and the commit it was frozen from, so a new version can be tried and rolled back.
 
 **Bucket**: a thematic grouping under `skills/`. Installers discover skills by walking these folders.
 

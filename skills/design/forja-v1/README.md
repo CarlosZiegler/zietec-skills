@@ -1,6 +1,6 @@
 # Forja v1 (congelada)
 
-> Esta é a versão 1, congelada na tag `forja-v1.0`. Para a versão atual veja [forja](../forja/). Use esta só para comparar ou voltar.
+> Esta é a versão 1, congelada no commit `64941bb`. Para a versão atual veja [forja](../forja/). Use esta só para comparar ou voltar.
 
 **Da ideia ao pacote de produto.** Uma ideia de app ou micro-SaaS entra; sai um canvas do Claude Design com:
 

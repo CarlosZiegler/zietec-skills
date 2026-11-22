@@ -36,7 +36,7 @@ This repository follows the folder layout supported by the [Skills CLI](https://
 
 ## What's new
 
-- **2026-11-22**: **forja v2**: product verdict and name before the screens, 3 directions with a picker, a States page, onboarding and upgrade screens, quality passes (simplify, gridlines, worst case, self-review), a Launch page and handoff files for Claude Code. **forja-v1** stays frozen next to it (tag `forja-v1.0`); see [the changelog](./docs/forja/CHANGELOG.md). New **produto**, **nome** and **simplificar-design** skills, and a [survey of saved skills and tools](./docs/referencias/2026-11-skills-salvas-no-x.md).
+- **2026-11-22**: **forja v2**: product verdict and name before the screens, 3 directions with a picker, a States page, onboarding and upgrade screens, quality passes (simplify, gridlines, worst case, self-review), a Launch page and handoff files for Claude Code. **forja-v1** stays frozen next to it (commit `64941bb`); see [the changelog](./docs/forja/CHANGELOG.md). New **produto**, **nome** and **simplificar-design** skills, and a [survey of saved skills and tools](./docs/referencias/2026-11-skills-salvas-no-x.md).
 - **2026-11-02**: new **ads-video** skill: short app ads and store promo videos (9:16, 4:5, 1:1, 16:9) with cards, device frames, voice-over, music and sound effects from one JSON config.
 - **2026-10-29**: **tutorial-video** synced with its source: ElevenLabs and Higgsfield voices, `avconvert` fix for simulator recordings, pixelated stills, new scripts.
 - **2026-10-27**: iPhone Duo (foldable) guidance in **apple-design-ios**, navigation and layout skills.

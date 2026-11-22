@@ -104,4 +104,4 @@ Não descreva cada tela; o usuário abre o canvas.
 | "Compara com este concorrente / meu repositório" | Leia (WebFetch, `gh api`, ou o navegador do usuário se o repositório for privado), compare em tabela, recomende e ofereça atualizar o pacote |
 | "Quais outros nichos?" | Responda no chat com opções e ofereça construir |
 | "Gera o vídeo" | Skill `ads-video` com o `teaser.json` da página Lançamento |
-| "Volta para a Forja v1" / não gostou do resultado | Use a skill `forja-v1` (pasta `skills/design/forja-v1`, tag `forja-v1.0`) |
+| "Volta para a Forja v1" / não gostou do resultado | Use a skill `forja-v1` (pasta `skills/design/forja-v1`, commit `64941bb`) |
