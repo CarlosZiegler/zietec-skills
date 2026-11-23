@@ -60,3 +60,7 @@ python3 <forja>/scripts/gen_images.py build/imagens/prompts.json build/imagens
 - Um bloco com a proporção certa, a cor de superfície do produto e uma legenda discreta "imagem: <id>".
 - Nunca um boneco, silhueta genérica ou foto de banco com marca d'água.
 - Quando a imagem chegar, troque só o `src`; o layout não muda.
+
+## Limites conhecidos do Codex
+
+- Render anatômico feminino **de frente** costuma ser bloqueado ou expirar (Salles Squad v3). Prefira costas, vista 3/4 ou figura neutra estilizada sem detalhes; se falhar 2 vezes, reaproveite uma imagem anterior com a cor ajustada e registre em problemas conhecidos.
