@@ -100,6 +100,8 @@ Aplique em toda tela antes de olhar a captura final:
 - **Datas**: relativas até 7 dias, depois absolutas.
 - **Plural certo** ("1 aluna", "2 alunas").
 - **Toque**: alvos ≥ 44 px; ações destrutivas longe da ação principal.
+- **Rótulo de botão centralizado e numa linha só** (regra, não gosto): `.btn`, `.btn2`, pílulas e chips têm `text-align:center; white-space:nowrap`. Se dois botões lado a lado não cabem com o texto inteiro, **empilhe** (coluna de largura total) ou encurte o rótulo; nunca deixe quebrar em duas linhas nem alinhar à esquerda. Vale nos 3 idiomas: alemão é o pior caso.
+- **Constância de marcadores**: um só jeito de dizer "feito" no produto inteiro: círculo na tinta (primary) com check branco, em série, exercício, passo, item de lista e confirmação. Verde (`success`) fica para status **com texto** (pílula "Enviado", mensagem "Código certo"), nunca para o círculo de concluído. Seleção (rádio, plano) é outra coisa e tem o seu marcador próprio, também igual em toda parte. Antes de entregar, procure duas formas diferentes para o mesmo significado (check verde aqui, preto ali; pílula num lugar, texto no outro) e una.
 
 ## 6. Fluxos de entrada (login e cadastro)
 
@@ -151,3 +153,20 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Seleções inset com raio concêntrico; nenhuma seleção encostando na borda.
 - [ ] Fluxo de entrada (boas-vindas → entrar → código) desenhado.
 - [ ] Detalhes da §5 conferidos na captura em 2× (zoom), não só no tamanho normal.
+- [ ] Nenhum rótulo de botão quebrando linha ou estourando (portão no navegador: `scrollWidth > clientWidth` em `.btn,.btn2,.gpill,.chip,.pill`, ignorando selos e `::after`), nos 3 idiomas.
+- [ ] Um marcador de "feito" só (tinta + check branco); verde só em status com texto.
+
+## 11. Bibliotecas de UI para consultar (o que pegar de cada uma)
+
+Consulte quando a tela pedir um componente específico; pegue o *padrão*, não o código nem o visual inteiro.
+
+| Biblioteca | O que pegar | O que não pegar |
+|---|---|---|
+| libraries.dev | microinterações de espera e voz (orbe "pensando", anel de voz, brilho na borda) para estados de IA/carregando | gradientes neon e brilho como enfeite fixo |
+| pro.beui.dev | catálogo de telas mobile por categoria (núcleo, autenticação, paywall, perfil, **estados**): use como checklist de cobertura do inventário | o visual de landing com degradê |
+| uiarc.dev | gráficos com **linha de base** (sessão contra a média do próprio usuário, faixas acima/abaixo) e cartões de métrica com detalhe ao lado | globo/galáxia decorativos |
+| bencho.dev | microinterações por gesto (press, drag, slide, swipe); **régua de seleção** (ticks) para número com o polegar (carga, reps, peso); barra empilhada com Dia/Semana | sons por padrão |
+| boardui.com | painel de saúde/atividade: barras com dias, anel de pontuação com 3 parciais, **heatmap anual** com Semanal/Mensal/Anual, contribuições com 4 mini-números | densidade de dashboard admin no app da usuária |
+| affectui.com | quadro "precisa de você / em andamento / feito" para filas da equipe; nota enfileirada enquanto algo roda | metáfora de agentes onde não há agentes |
+| kobra.systems | documentação de componente: partes nomeadas (anatomia), atributos `data-slot`, `prompt.md` para o agente; OTP em grupos 3-3 | — |
+| ui.watermelon.sh | seções de landing (hero, prova, preço) como referência de estrutura | estética de template genérico |

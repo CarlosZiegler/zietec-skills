@@ -44,7 +44,7 @@ Sem ninguém para aprovar, siga direto e deixe "aprovar" na entrega. Com o usuá
 ## 3. Onde ele mora
 
 1. **Artifact do tipo Design System** ("<Produto> · Design System"), criado com `create_from_type` (tipo "Design System"):
-   - `project/README.md` (o brand book), `project/tokens.json` (listas, no formato do tipo), `components/<Comp>/README.md` e `preview.html` com cada matriz de estados, `components/bundle.css` com as classes, e a capa (`components/Cover/preview.html`);
+   - `project/README.md` (o brand book), `project/tokens.json` (listas, no formato do tipo), `components/<Comp>/README.md` (com a **anatomia**: partes nomeadas e o `data-slot` de cada uma, como no Kobra) e `preview.html` com cada matriz de estados, `components/bundle.css` com as classes, e a capa (`components/Cover/preview.html`);
    - siga as instruções que o `create_from_type` devolve.
 2. **Instalado no canvas** do pacote, como manda o tipo Design (passo 4):
    - `project/ds/<pasta>/tokens.json` copiado do sistema;

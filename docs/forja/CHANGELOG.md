@@ -1,6 +1,12 @@
 # Forja: changelog
 
 
+### v2.7 (2026-11-23) — constância de UI e bibliotecas de referência
+- Feedback do usuário no Salles Squad: rótulos de botão quebrando em duas linhas e alinhados à esquerda; check verde na lista de exercícios e preto nas séries.
+- `estilo-base.md` §5: rótulo de botão centralizado e numa linha (empilhar ou encurtar quando não cabe, conferir em alemão); um marcador de "feito" só (tinta + check branco), verde só em status com texto. Checklist com o portão de botões no navegador.
+- Nova §11: o que pegar de libraries.dev, pro.beui.dev, uiarc.dev, bencho.dev, boardui.com, affectui.com, kobra.systems e ui.watermelon.sh.
+- `design-system.md`: README de componente com anatomia (partes nomeadas e `data-slot`).
+
 ### v2.6 (2026-11-23) — design system com craft
 - Novo `references/design-system.md` (craft-system/setup/sync de diego3g/craft, MIT): fundamentos por papel, regras de interação únicas, componentes com matriz de estados e índice; artifact do tipo Design System + instalado no canvas (`project/ds/…`, `designSystems`) + páginas "Design system" + `var(--token)` nas telas + auditoria de hex soltos.
 - SKILL.md: entregável 1b.
