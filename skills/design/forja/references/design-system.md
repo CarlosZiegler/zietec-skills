@@ -67,3 +67,7 @@ Relatório por severidade:
 - telas usando variação local em vez de uma variante.
 
 Na Forja, quem constrói é o próprio agente, então corrija tudo o que for mecânico e reporte o resto. Num pacote do usuário que já existe, só reporte e espere ele escolher o que corrigir.
+
+## 5. Lição do Salles Squad
+
+Na matriz, peça de vidro **precisa de conteúdo real por trás**: uma foto do produto recortada na célula. Formas soltas (bolinha colorida + barras cinzas) parecem defeito, e texto atrás vira ruído. No artifact Design System, envie a foto como asset e use a URL `/_blob/` nos previews.
