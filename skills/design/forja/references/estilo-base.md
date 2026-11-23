@@ -1,6 +1,6 @@
 # Estilo base da Forja: minimal nativo com vidro
 
-**É o padrão de todo pacote.** Leia antes da direção de arte (seção 4). O produto só sai desta base se o usuário pedir outro estilo com palavras ("quero editorial", "quero retrô"). A variação entre produtos acontece **dentro** da base (seção 6).
+**É o padrão de todo pacote.** Leia antes da direção de arte (seção 4). O produto só sai desta base se o usuário pedir outro estilo com palavras ("quero editorial", "quero retrô"). A variação entre produtos acontece **dentro** da base (seção 9).
 
 Referências do usuário (nov/2026):
 - **App novo do Claude** (iOS/Android, nov/2026): quase vazio, saudação em serifa no centro, uma marca pequena colorida, controles de vidro flutuando sobre o conteúdo, tab bar em pílula, sheets com cantos grandes, listas sem cartão.
@@ -45,15 +45,28 @@ Não copie telas, marcas ou ícones dessas referências. Pegue a **disciplina**:
 
 **Onde o vidro é proibido**: cartões de conteúdo, linhas de lista, gráficos, tabelas, fundo de tela inteira. Conteúdo é sólido ou sem container.
 
-**Receita** (claro):
+**Receita** (claro). O vidro tem que *parecer material*: translúcido, com borda de luz em cima, e com conteúdo visível por trás. Branco a 90% com sombra é um cartão branco, não vidro.
 
 ```css
-background: rgba(255,255,255,.72);
-backdrop-filter: blur(24px) saturate(180%);
--webkit-backdrop-filter: blur(24px) saturate(180%);
-border: 1px solid rgba(255,255,255,.65);
-box-shadow: 0 0 0 .5px rgba(15,17,21,.08), 0 8px 24px rgba(15,17,21,.08);
+.glass {
+  background: rgba(250,250,252,.55);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),   /* luz batendo na borda de cima */
+    inset 0 0 0 .5px rgba(255,255,255,.5),  /* aro interno claro */
+    0 0 0 .5px rgba(15,17,21,.10),          /* contorno fino de fora */
+    0 10px 30px rgba(15,17,21,.12);         /* separa do conteúdo */
+}
 ```
+
+**Tab bar de vidro (padrão iOS 26 / app do Claude / Lightyear)**:
+- cápsula flutuante a 8–12 px da borda inferior, altura 60–64, 3–5 itens;
+- item ativo = **pílula clara e sutil** (`rgba(15,17,21,.07)`, ou vidro mais claro) com ícone em tinta ou acento, **nunca um bloco preto sólido**; inativos em cinza `#5F6570`;
+- rótulos de 10–11 px sob os ícones quando há 4+ abas (Apple: nome específico, não "Início");
+- **sempre** com conteúdo rolando por trás na artboard (foto, cartão, lista), e um esmaecido suave (scroll edge) entre o conteúdo e a barra.
+
+**CTA flutuante**: o botão sólido flutua **sozinho** (pílula em tinta, sombra macia `0 8px 24px rgba(15,17,21,.18)`), com um esmaecido do fundo por baixo. **Nunca** coloque um botão sólido dentro de outra cápsula de vidro ou com aro cinza (vira "borda dupla"). Apple: nunca empilhe uma superfície translúcida sobre outra.
 
 Escuro: `rgba(28,29,33,.62)` com borda `rgba(255,255,255,.08)`. O vidro precisa de algo atrás para aparecer: deixe o conteúdo rolar por baixo da tab bar e dos botões de topo; nas artboards estáticas, mostre conteúdo passando por trás. Se o navegador não suportar `backdrop-filter`, o fallback é a superfície sólida a 94%.
 
@@ -71,14 +84,48 @@ Escuro: `rgba(28,29,33,.62)` com borda `rgba(255,255,255,.08)`. O vidro precisa 
 - **Pitch e doc**: a mesma base. Slides e páginas brancas ou cinza frio, Inter no texto, a serifa de display nos títulos grandes, um número-herói por slide, fotos do Codex em cartões de raio 20–24. Nada de fonte manuscrita nem textura de papel.
 - **Desktop**: mesma base; sidebar clara e silenciosa (lista como no mobile), conteúdo com largura máxima, toolbar e diálogos de vidro, tabelas densas com `tabular-nums`.
 
-## 5. Motion (com as skills do Emil)
+## 5. Detalhes que separam 8 de 10 (Emil Kowalski, Apple, Appllama)
+
+Aplique em toda tela antes de olhar a captura final:
+
+- **Raio concêntrico**: elemento dentro de outro arredondado usa `raio interno = raio externo − espaçamento`. Cartão 24 com respiro 6 → linha selecionada 18. Nada de seleção encostando na borda do cartão.
+- **Seleção em lista (planos, opções)**: a linha selecionada fica *inset* (margem de 6 px dentro do cartão), com fundo sutil (`rgba(15,17,21,.04)`) **ou** anel de 1,5 px em tinta/acento, nunca os dois pesados juntos. Marcador = círculo preenchido no acento com check branco (estilo iOS), não um "donut" grosso. Separadores finos (0,5 px) entre linhas não selecionadas, recuados do lado do texto.
+- **Uma borda só**: nada de borda cinza em volta de botão sólido, cartão com borda + sombra forte, ou contorno dentro de contorno.
+- **Cinzas**: preenchimentos cinza só como camada sutil (≤ 6% de tinta) ou superfície #F2F3F5; um bloco cinza médio chapado parece desabilitado.
+- **Pressionar**: `scale(.97)` no `:active` em 100–160 ms; linhas de lista ganham fundo (não escala).
+- **Easing**: `cubic-bezier(.23,1,.32,1)` para entrar, `cubic-bezier(.32,.72,0,1)` para sheets; nunca `ease-in`; nada nasce de `scale(0)` (use .95 + opacidade); popover cresce a partir do gatilho.
+- **Tipo**: títulos grandes com tracking `-0.02em` e entrelinha 1.05–1.15; corpo com entrelinha 1.45 e no máximo ~65 caracteres; ênfase pelo peso da mesma família (não misture serifa dentro de um título sans).
+- **Números**: `tabular-nums` em tudo que conta; "R$ 799" com o centavo/sufixo menor quando for número-herói (estilo Revolut `$19.98`).
+- **Avatar e ícone** com `flex-shrink: 0`; nada esmagado.
+- **Datas**: relativas até 7 dias, depois absolutas.
+- **Plural certo** ("1 aluna", "2 alunas").
+- **Toque**: alvos ≥ 44 px; ações destrutivas longe da ação principal.
+
+## 6. Fluxos de entrada (login e cadastro)
+
+Estude 10–20 telas reais antes (seção 8). O padrão que funciona (Revolut, Lightyear, app do Claude):
+1. **Boas-vindas**: 2–3 slides curtos (título grande + 1 linha + imagem), indicador de progresso em segmentos no topo, e **dois botões empilhados de largura total**: primário "Criar conta" e secundário "Entrar".
+2. **Entrar**: Apple / Google primeiro (botões de largura total com o ícone da marca do provedor), depois e-mail; ou só telefone/e-mail com **link mágico ou código de 6 dígitos** (campos separados, colar preenche tudo, reenviar com contagem).
+3. **Código**: teclado numérico, foco automático, erro inline ("Código incorreto. Faltam 2 tentativas"), sem botão "Continuar" quando o 6º dígito já envia.
+4. **Permissões** (notificações, fotos) pedidas **no momento do uso**, com uma tela de pré-pedido explicando o ganho.
+5. Navegação: login é porta de mão única (voltar não volta ao login); login pedido por uma ação abre como modal e conclui a ação.
+Todo pacote tem esse fluxo no mobile (dentro da tela 6, Onboarding ativo, ou como telas 6a–6c) e um login simples no desktop quando houver painel.
+
+## 7. Motion (com as skills do Emil)
 
 - Sheets sobem com mola curta (`cubic-bezier(.32,.72,0,1)`, 380–450 ms), fundo escurece 20%.
 - Botões: escala 0,97 no toque, 120 ms. Tab bar: a pílula do ativo desliza entre ícones.
 - Números mudam com rolagem de dígitos; nada de fade-in em cada cartão ao rolar.
 - `prefers-reduced-motion` respeitado em tudo.
 
-## 6. O que varia de produto para produto
+## 8. Pesquisa de referência antes da tela-chave
+
+Antes das direções (§4.5 da skill), estude telas reais do mesmo tipo:
+- **Mobbin** (o usuário está logado no Chrome dele): busque o app de referência (Revolut, Lightyear, Flighty…) e o tipo de tela/fluxo (Onboarding, Logging in, Paywall, Home). Anote o *padrão* (esqueleto, hierarquia, onde fica o CTA, como mostra progresso), nunca copie pixels nem marcas.
+- **Appllama** (MCP pago, opcional; skills MIT em github.com/Appllama/appllama-skills): 20–30 telas da categoria quando o MCP estiver conectado.
+- Registre em `design_brief.py` → Referências: "pegar: …; evitar: …" com o app e a tela.
+
+## 9. O que varia de produto para produto
 
 Dentro da base, escolha e grave no `design_brief.py`:
 1. **Acento** (um), com contraste medido; diferente dos últimos pacotes do conjunto a evitar.
@@ -90,7 +137,7 @@ Dentro da base, escolha e grave no `design_brief.py`:
 
 A página Direções continua com 3 direções, mas **todas dentro da base**: elas variam em estrutura (o que é o herói da tela, onde fica a ação, densidade), não em estética.
 
-## 7. Checklist da base (entra no passe anti-slop)
+## 10. Checklist da base (entra no passe anti-slop)
 
 - [ ] Fundo cinza frio quase branco (ou escuro) e superfícies brancas; nada de creme ou papel.
 - [ ] Inter/Geist em toda a interface; serifa só em display; nenhuma fonte manuscrita.
@@ -99,3 +146,8 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Um acento, usado pouco; ação primária em tinta.
 - [ ] Listas sem cartão por linha; cartões só para agrupar.
 - [ ] Um número-herói por tela, no máximo.
+- [ ] Tab bar de vidro de verdade (translúcida, aro de luz, conteúdo por trás, ativo em pílula clara, não bloco preto).
+- [ ] CTA sólido flutuando sozinho, sem cápsula/aro em volta.
+- [ ] Seleções inset com raio concêntrico; nenhuma seleção encostando na borda.
+- [ ] Fluxo de entrada (boas-vindas → entrar → código) desenhado.
+- [ ] Detalhes da §5 conferidos na captura em 2× (zoom), não só no tamanho normal.

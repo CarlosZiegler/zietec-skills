@@ -1,6 +1,12 @@
 # Forja: changelog
 
 
+### v2.4 (2026-11-23) — detalhes (Emil/Apple/Appllama), vidro de verdade, login
+- Feedback do usuário no Salles Squad v3 (nota 8): CTA preto dentro de cápsula com aro cinza, seleção de plano encostando na borda e cinza chapado, tab bar "branca" e não de vidro.
+- `estilo-base.md`: receita de vidro com aro de luz e conteúdo por trás; tab bar iOS 26 (ativo em pílula clara, rótulos); CTA sólido flutuando sozinho; nova §5 "Detalhes" (raio concêntrico, seleção inset, uma borda só, press, easing, tipo, números, plural, datas); nova §6 fluxo de entrada (boas-vindas → entrar → código); nova §8 pesquisa no Mobbin/Appllama antes da tela-chave; checklist ampliado.
+- SKILL.md: tela 6 passa a incluir o fluxo de entrada (6a–6c); §4.5 pede pesquisa antes e detalhes depois.
+- Fontes: emilkowalski/skills (emil-design-eng, apple-design, ui-cheatsheet; MIT), Appllama skills (MIT), Mobbin (padrões de Revolut e Lightyear, sem copiar).
+
 ### v2.3 (2026-11-23) — base visual padrão: minimal nativo com vidro
 - Novo `references/estilo-base.md`: padrão de todo pacote, na linha do app novo do Claude (nov/2026), Revolut, Flighty e iOS 26. Fundo cinza frio quase branco, Inter/Geist na interface, serifa só em display, vidro obrigatório no cromo flutuante (topo, tab bar, barra de baixo, sheets, menus) e proibido no conteúdo, listas sem cartão por linha, número-herói por tela, ação primária em tinta.
 - Seção 4 reescrita: a variação entre produtos acontece dentro da base (acento, marca pequena, serifa de display, fotografia, número-herói, modo). Estilo fora da base só com pedido do usuário.

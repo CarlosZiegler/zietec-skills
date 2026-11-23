@@ -266,7 +266,7 @@ Grave também um `design_brief.py`, que vira a nota do topo da página Direçõe
 
 ### 4.2 Varie dentro da base
 
-O que muda de produto para produto (seção 6 do `estilo-base.md`): **acento**, **marca pequena**, **serifa de display** (Newsreader, Source Serif 4, Fraunces ou nenhuma), **fotografia** do Codex, **número-herói e visualização principal** (anel, número gigante, linha do tempo, barra, calendário, mapa) e **modo** (claro por padrão; escuro para uso noturno ou de cabine). Também variam a estrutura da landing (hero dividido, número gigante, produto em contexto, lista narrativa) e a assinatura de motion, sempre com as regras de 4.4.
+O que muda de produto para produto (seção 9 do `estilo-base.md`): **acento**, **marca pequena**, **serifa de display** (Newsreader, Source Serif 4, Fraunces ou nenhuma), **fotografia** do Codex, **número-herói e visualização principal** (anel, número gigante, linha do tempo, barra, calendário, mapa) e **modo** (claro por padrão; escuro para uso noturno ou de cabine). Também variam a estrutura da landing (hero dividido, número gigante, produto em contexto, lista narrativa) e a assinatura de motion, sempre com as regras de 4.4.
 
 O que **não** muda: fundo cinza frio quase branco, Inter/Geist na interface, vidro no cromo flutuante, listas sem cartão por linha, ação primária em tinta, legibilidade (corpo ≥ 15 px, nada manuscrito).
 
@@ -333,6 +333,8 @@ button,[role="button"],[role="tab"],[role="switch"],.chip{user-select:none;-webk
 ```
 
 ### 4.5 Três direções da tela-chave (antes das 9 telas)
+
+**Antes**, estude telas reais do mesmo tipo no Mobbin (o usuário está logado no Chrome dele) ou no Appllama (`estilo-base.md` §8) e anote os padrões em Referências. Depois de construir, aplique os detalhes do `estilo-base.md` §5 e confira as capturas em 2×.
 
 A direção de arte (4.1–4.2) fixa a marca. As direções testam a **estrutura**. Pegue a tela que mais vende o produto (normalmente Primeiro valor ou Visão geral) e desenhe 3 direções que diferem num eixo:
 
@@ -401,7 +403,7 @@ Detalhes em `references/imagens-codex.md`.
 3. **Visão geral**: a métrica principal, blocos de contagem, próximo passo, alertas. Nunca vazia: dado de exemplo ou primeiro passo guiado.
 4. **Lista com filtro**: filtro interativo, `sc-for` sobre dados JSON na lógica.
 5. **Detalhe**: ação principal que abre um sheet (`sc-if`) com progresso e depois sucesso. No desktop vira diálogo centralizado. O scrim é um `<button tabindex="-1" aria-label>` e o sheet tem botão X.
-6. **Onboarding ativo**: no máximo 3 passos que levam ao evento de ativação, com progresso visível e celebração quando ele acontece. Atrito declarativo (que qualifica) fica; atrito administrativo sai.
+6. **Entrada + onboarding ativo**: antes, o fluxo de entrada do `estilo-base.md` §6 (boas-vindas com "Criar conta"/"Entrar", entrar com Apple/Google/e-mail, código de 6 dígitos) como artboards 6a–6c; depois, no máximo 3 passos que levam ao evento de ativação, com progresso visível e celebração quando ele acontece. Atrito declarativo (que qualifica) fica; atrito administrativo sai.
 7. **Upgrade no limite**: o momento em que a pessoa bate no limite do plano, enquadrado como o que ela perde, com os 3 planos (o do meio em destaque). Nunca um paywall que interrompe sem motivo.
 8. **Recurso secundário**, conforme o produto.
 9. **Visão do canal** (agência, escritório, clínica, time) com white-label.

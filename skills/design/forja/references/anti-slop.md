@@ -10,7 +10,8 @@ Fontes destiladas (regras reescritas, nada copiado; consulte o original se preci
 | ThinkUI `thinkui-anti-slop` (thinkui.xyz/skills) | não declarada | Só a ideia do portão de 6 perguntas, em palavras nossas |
 | Taste Skill (github.com/Leonxlnx/taste-skill) | MIT | Lista de palavras e frases prontas, regras de copy, "um sistema", nada de fade no scroll, sem violeta |
 | Vercel Web Interface Guidelines (vercel-labs/agent-skills) | MIT | Tipografia, foco, formulários, imagens, animação e copy de interface |
-| Emil Kowalski (emilkowalski/skills) | MIT | Já estava: prototype, mobile-native, choreograph, break-ui, learn-taste |
+| Emil Kowalski (emilkowalski/skills) | MIT | prototype, mobile-native, choreograph, break-ui, learn-taste; **emil-design-eng, apple-design e ui-cheatsheet** destilados em `estilo-base.md` §3 e §5 |
+| Appllama (github.com/Appllama/appllama-skills) | MIT (nome e marca não) | Leis anti-slop e de fidelidade nativa, navegação (portas de mão única), estudar telas reais antes; MCP pago opcional |
 
 **Cuidados.** ThinkUI e uizze vendem um MCP pago de referências reais. É opcional e só entra se o usuário conectar; sem ele, diga que a etapa de evidência ficou de fora, nunca invente uma referência. A Taste Skill instala um hook `Stop` no Claude Code e um gate em Node com Chrome: use só as regras destiladas aqui, sem instalar nada sem o usuário pedir.
 
