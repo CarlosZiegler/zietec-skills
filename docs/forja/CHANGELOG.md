@@ -1,6 +1,10 @@
 # Forja: changelog
 
 
+### v2.6 (2026-11-23) — design system com craft
+- Novo `references/design-system.md` (craft-system/setup/sync de diego3g/craft, MIT): fundamentos por papel, regras de interação únicas, componentes com matriz de estados e índice; artifact do tipo Design System + instalado no canvas (`project/ds/…`, `designSystems`) + páginas "Design system" + `var(--token)` nas telas + auditoria de hex soltos.
+- SKILL.md: entregável 1b.
+
 ### v2.5 (2026-11-23) — app completo e flows
 - Novo `references/flows.md`: inventário de telas a partir do PRD (`build/inventario.py`), página do app completo (mobile e desktop), uma página por flow no padrão do AutoFolio (linhas: caminho principal, ramos/estados, alternativos; tela inteira por passo com o alvo marcado; sticky com ação → resultado, regra e falha; links de protótipo; perguntas no fim) e mapa de flows. Feature nova = página "<Feature> (aprovar)".
 - SKILL.md: entregável 4b; app completo e flows só no idioma-base.

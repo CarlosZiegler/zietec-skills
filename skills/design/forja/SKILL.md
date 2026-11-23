@@ -12,6 +12,7 @@ description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no C
 Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com estas partes:
 
 1. **Direções**: brief de design e 3 direções da tela-chave, com a escolhida marcada.
+1b. **Design system** (craft-system): fundamentos por papel, regras de interação, componentes com matriz de estados e índice, publicado como artifact do tipo Design System, instalado no canvas e com páginas próprias (`references/design-system.md`).
 2. **Mobile**: 9 telas de 390 px, protótipo navegável com motion.
 3. **Desktop**: as mesmas 9 telas adaptadas para 1440 px.
 4. **Estados**: vazio, erro, offline, carregando, pior caso e afins de cada tela.
@@ -49,6 +50,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
 | `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
+| `references/design-system.md` | Logo depois da direção de arte e antes das telas: camadas do design system (craft-system), regras firmes, onde ele mora (artifact Design System + instalado no canvas + páginas + tokens no código) e a auditoria antes da entrega |
 | `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
