@@ -63,3 +63,7 @@ As 9 telas em EN · PT · DE continuam nas páginas Mobile/Desktop do pacote. As
 3. Página "**<Feature> (aprovar)**" com as 3 linhas da seção 3 e as perguntas.
 4. Telas existentes que mudam aparecem no flow com o sufixo "· muda" e uma nota do que mudou.
 5. Nada de reescrever as outras páginas; publicar em modo patch.
+
+## 6. Tamanho (aprendido no Salles Squad v3)
+
+O pacote trilíngue + app completo + 14 flows deu 441 arquivos (205 do pacote + 57 telas do app + 23 do painel + 154 passos + mapa), 14 MB e 28 páginas. O tipo Design aceita 512 arquivos e 40 páginas por canvas. Se o inventário passar disso, publique os flows num **segundo canvas** ("<Produto> · App e flows") e ponha um link nos dois. Não corte passos para caber.
