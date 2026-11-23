@@ -23,6 +23,28 @@ FLOWS = [
 
 - Toda user story aparece em pelo menos uma tela; toda tela pertence a pelo menos um flow. O script falha se sobrar story sem tela.
 - Conte: um v1 típico tem 40–90 telas mobile e 15–40 desktop (com estados). Menos de 30 no total é sinal de amostra, não de app.
+- **Cobertura por categoria** (checklist do catálogo do beUI Pro): passe o inventário contra estas categorias e marque o que não se aplica, por escrito:
+  - **Entrada**: boas-vindas, criar conta, entrar, código ou link mágico, recuperar acesso, permissões com pré-pedido.
+  - **Núcleo**: a tela principal, o item em detalhe, criar, editar, excluir com desfazer, buscar e filtrar.
+  - **Comunicação**: conversa ou mensagens com a equipe, notificações dentro do app, lembretes.
+  - **Pagamento**: paywall ou planos, checkout, sucesso, falha, cancelar, renovar.
+  - **Perfil e configurações**: conta, privacidade, exportar dados, excluir conta, idioma, notificações.
+  - **Estados** de cada tela do núcleo: vazio, carregando, erro, offline, sem permissão, limite do plano, sucesso.
+
+  Uma categoria inteira faltando é a pergunta que o usuário vai fazer depois ("a aluna consegue falar com o coach?"). Responda antes, no inventário.
+
+## 1b. Pesquisa de flow no Mobbin e no Appllama (obrigatória antes de desenhar cada flow)
+
+O visual vem do `estilo-base.md`; a **estrutura** do flow (quantos passos, onde ficam os ramos, como erra e como desfaz) vem de apps reais. Para cada flow do inventário que tenha um equivalente conhecido (entrar, criar conta, onboarding, conversa, checkout, assinatura, filtro, editar perfil, enviar arquivo, compartilhar, convidar…):
+
+1. **Mobbin, no Chrome do usuário** (ele está logado): menu *Flows* ou a busca de flows, em iOS e, se houver painel, Web. URL que funciona: `https://mobbin.com/search/apps/ios?content_type=flows&sort=trending&filter=flowActions.<Ação>`, com a ação escrita como no menu (ex.: `Chatting+%26+Sending+Messages`, `Creating+Account`, `Filtering+%26+Sorting`, `Editing+Profile`). Cada resultado mostra a sequência de telas e o número de passos.
+2. Escolha **3 a 5 flows**: 1–2 da mesma categoria do produto e 2–3 de referência de qualidade (Revolut, Airbnb, Flighty, Linear, o app do Claude…).
+3. **Appllama**, quando o MCP estiver conectado: 20–30 telas da categoria para os estados (vazio, erro, carregando) que o Mobbin mostra pouco.
+4. Anote em `build/referencias_flows.py`, por flow: `app · nº de passos · onde está a ação principal · como trata erro e vazio · como desfaz/confirma · o que pegar · o que evitar`. Só o padrão: **não** copie pixels, textos, marcas nem coloque capturas de outros apps no canvas.
+5. Na página do flow, o primeiro sticky da linha principal diz em 2–3 linhas "Referências: <app> faz em N passos, com X; pegamos Y; evitamos Z".
+6. Compare: se o nosso flow tem o dobro de passos das referências, corte; se elas têm um ramo que o nosso não tem (desfazer, rascunho, offline), acrescente.
+
+Sem Chrome nem Appllama disponíveis, diga isso numa linha no relatório e siga com os padrões do `estilo-base.md` §6 e do `padroes-ui.md`.
 
 ## 2. Páginas no canvas
 

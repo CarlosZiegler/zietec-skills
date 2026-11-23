@@ -126,6 +126,7 @@ Antes das direções (§4.5 da skill), estude telas reais do mesmo tipo:
 - **Mobbin** (o usuário está logado no Chrome dele): busque o app de referência (Revolut, Lightyear, Flighty…) e o tipo de tela/fluxo (Onboarding, Logging in, Paywall, Home). Anote o *padrão* (esqueleto, hierarquia, onde fica o CTA, como mostra progresso), nunca copie pixels nem marcas.
 - **Appllama** (MCP pago, opcional; skills MIT em github.com/Appllama/appllama-skills): 20–30 telas da categoria quando o MCP estiver conectado.
 - Registre em `design_brief.py` → Referências: "pegar: …; evitar: …" com o app e a tela.
+- Para os **flows** (app completo), a pesquisa é por flow e obrigatória: `flows.md` §1b.
 
 ## 9. O que varia de produto para produto
 
@@ -156,17 +157,7 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Nenhum rótulo de botão quebrando linha ou estourando (portão no navegador: `scrollWidth > clientWidth` em `.btn,.btn2,.gpill,.chip,.pill`, ignorando selos e `::after`), nos 3 idiomas.
 - [ ] Um marcador de "feito" só (tinta + check branco); verde só em status com texto.
 
-## 11. Bibliotecas de UI para consultar (o que pegar de cada uma)
+## 11. Padrões de componentes e pesquisa de flows
 
-Consulte quando a tela pedir um componente específico; pegue o *padrão*, não o código nem o visual inteiro.
-
-| Biblioteca | O que pegar | O que não pegar |
-|---|---|---|
-| libraries.dev | microinterações de espera e voz (orbe "pensando", anel de voz, brilho na borda) para estados de IA/carregando | gradientes neon e brilho como enfeite fixo |
-| pro.beui.dev | catálogo de telas mobile por categoria (núcleo, autenticação, paywall, perfil, **estados**): use como checklist de cobertura do inventário | o visual de landing com degradê |
-| uiarc.dev | gráficos com **linha de base** (sessão contra a média do próprio usuário, faixas acima/abaixo) e cartões de métrica com detalhe ao lado | globo/galáxia decorativos |
-| bencho.dev | microinterações por gesto (press, drag, slide, swipe); **régua de seleção** (ticks) para número com o polegar (carga, reps, peso); barra empilhada com Dia/Semana | sons por padrão |
-| boardui.com | painel de saúde/atividade: barras com dias, anel de pontuação com 3 parciais, **heatmap anual** com Semanal/Mensal/Anual, contribuições com 4 mini-números | densidade de dashboard admin no app da usuária |
-| affectui.com | quadro "precisa de você / em andamento / feito" para filas da equipe; nota enfileirada enquanto algo roda | metáfora de agentes onde não há agentes |
-| kobra.systems | documentação de componente: partes nomeadas (anatomia), atributos `data-slot`, `prompt.md` para o agente; OTP em grupos 3-3 | — |
-| ui.watermelon.sh | seções de landing (hero, prova, preço) como referência de estrutura | estética de template genérico |
+- Componentes reutilizáveis (régua numérica, gráficos com linha de base, heatmap, anel com parciais, quadro de fila, estados de IA, anatomia de componente): `padroes-ui.md`.
+- Estrutura de cada flow pesquisada no Mobbin e no Appllama antes de desenhar: `flows.md` §1b. O visual já está decidido aqui; a pesquisa é para passos, ramos, erro e desfazer.

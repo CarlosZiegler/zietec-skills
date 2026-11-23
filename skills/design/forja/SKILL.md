@@ -16,7 +16,7 @@ Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com estas partes:
 2. **Mobile**: 9 telas de 390 px, protótipo navegável com motion.
 3. **Desktop**: as mesmas 9 telas adaptadas para 1440 px.
 4. **Estados**: vazio, erro, offline, carregando, pior caso e afins de cada tela.
-4b. **App completo e flows**: todas as telas do v1 (inventário a partir do PRD) e uma página por flow, passo a passo, com cada ação, ramo e estado, como num arquivo de Figma ou no Mobbin (`references/flows.md`). Feature nova num pacote existente = página "<Feature> (aprovar)" com o flow completo.
+4b. **App completo e flows**: todas as telas do v1 (inventário a partir do PRD) e uma página por flow, passo a passo, com cada ação, ramo e estado, como num arquivo de Figma ou no Mobbin (`references/flows.md`). Feature nova num pacote existente = página "<Feature> (aprovar)" com o flow completo. Antes de desenhar cada flow, pesquise a estrutura em flows reais no Mobbin (Chrome do usuário) e no Appllama (`flows.md` §1b); o inventário passa pelo checklist de cobertura por categoria (entrada, núcleo, comunicação, pagamento, perfil, estados).
 5. **Pitch**: 14 slides 16:9 (1920×1080) no mesmo visual.
 6. **Documentação de Produto**: A4 paginado, cabeçalho e rodapé em toda página, 6 seções.
 7. **Lançamento**: screenshots de App Store e roteiro do teaser em vídeo.
@@ -51,6 +51,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
 | `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
 | `references/design-system.md` | Logo depois da direção de arte e antes das telas: camadas do design system (craft-system), regras firmes, onde ele mora (artifact Design System + instalado no canvas + páginas + tokens no código) e a auditoria antes da entrega |
+| `references/padroes-ui.md` | Ao precisar de um componente além do básico: régua numérica, gráficos (linha de base pessoal, heatmap, anel com parciais), quadro de fila, estados de IA, anatomia de componente; o que não trazer das bibliotecas |
 | `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
@@ -641,6 +642,8 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 - Para a landing: seo-audit (https://skills.sh/coreyhaines31/marketingskills/seo-audit) e ai-seo (https://skills.sh/coreyhaines31/marketingskills/ai-seo)
 - craft (https://github.com/diego3g/craft, MIT): brief DESIGN.md, catálogo de estados, eixos de divergência, regras de crítica
 - emilkowalski/skills (https://github.com/emilkowalski/skills, MIT): prototype, mobile-native, choreograph, break-ui, learn-taste; animate-expo na implementação em Expo
+- Bibliotecas de componentes (padrões em `references/padroes-ui.md`): bencho.dev, uiarc.dev, boardui.com, pro.beui.dev, kobra.systems, affectui.com, libraries.dev, ui.watermelon.sh
+- Flows reais: Mobbin (https://mobbin.com, logado no Chrome do usuário; menu Flows) e Appllama (MCP, skills MIT em github.com/Appllama/appllama-skills)
 - gridlines (https://github.com/pritamux/gridlines, MIT): passe de alinhamento com `probe.js`
 - anti-ui-slop (https://github.com/uizze/uizze/tree/main/skills/anti-ui-slop, Apache-2.0): contrato, contagens rápidas, craft e auditoria
 - thinkui-anti-slop (https://thinkui.xyz/skills, licença não declarada): só a ideia do portão de 6 perguntas, reescrita

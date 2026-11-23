@@ -1,6 +1,11 @@
 # Forja: changelog
 
 
+### v2.8 (2026-11-23) — padrões das bibliotecas na skill e pesquisa de flows
+- Novo `references/padroes-ui.md`: régua numérica, stepper; gráficos (linha de base pessoal, heatmap com Semanal/Mensal/Anual, anel com parciais, barras por período, barra empilhada); quadro "precisa de você · em andamento · feito"; estados de espera e de IA; microinterações por gesto; anatomia de componente com `data-slot` e `prompt.md`; o que não trazer.
+- `flows.md` §1: checklist de cobertura por categoria (entrada, núcleo, comunicação, pagamento, perfil, estados). Nova §1b obrigatória: antes de cada flow, 3–5 flows reais no Mobbin (Chrome do usuário, URL de busca de flows) e no Appllama; notas em `build/referencias_flows.py`; sticky "Referências" na página; comparar passos e ramos. Sem copiar telas.
+- SKILL.md: 4b e tabela de referências apontam para os dois.
+
 ### v2.7 (2026-11-23) — constância de UI e bibliotecas de referência
 - Feedback do usuário no Salles Squad: rótulos de botão quebrando em duas linhas e alinhados à esquerda; check verde na lista de exercícios e preto nas séries.
 - `estilo-base.md` §5: rótulo de botão centralizado e numa linha (empilhar ou encurtar quando não cabe, conferir em alemão); um marcador de "feito" só (tinta + check branco), verde só em status com texto. Checklist com o portão de botões no navegador.
