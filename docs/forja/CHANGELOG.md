@@ -1,6 +1,10 @@
 # Forja: changelog
 
 
+### v2.9 (2026-11-23) — papéis, configurações em 3 níveis e página de IA
+- `padroes-ui.md` §9: papéis como conjuntos de permissão (uma pessoa, vários papéis; registro profissional libera o que a lei reserva); configurações em 3 níveis (plano → equipe → usuário) com limiares ajustáveis; perguntar cedo se o produto é de um cliente ou de muitos (multi-tenant desde a v1).
+- `padroes-ui.md` §10: features de IA numa página própria, uma linha por feature, com onde roda, guarda, quem aprova e onde liga/desliga; regras (nunca prescreve, estimado marcado e editável, aprovação humana, estatística em código).
+
 ### v2.8 (2026-11-23) — padrões das bibliotecas na skill e pesquisa de flows
 - Novo `references/padroes-ui.md`: régua numérica, stepper; gráficos (linha de base pessoal, heatmap com Semanal/Mensal/Anual, anel com parciais, barras por período, barra empilhada); quadro "precisa de você · em andamento · feito"; estados de espera e de IA; microinterações por gesto; anatomia de componente com `data-slot` e `prompt.md`; o que não trazer.
 - `flows.md` §1: checklist de cobertura por categoria (entrada, núcleo, comunicação, pagamento, perfil, estados). Nova §1b obrigatória: antes de cada flow, 3–5 flows reais no Mobbin (Chrome do usuário, URL de busca de flows) e no Appllama; notas em `build/referencias_flows.py`; sticky "Referências" na página; comparar passos e ramos. Sem copiar telas.

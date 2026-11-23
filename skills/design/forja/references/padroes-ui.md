@@ -51,3 +51,16 @@ Catálogo por categoria (entrada, núcleo, comunicação, pagamento, perfil e co
 ## 8. O que não trazer
 
 Brilho neon e "border beam" como enfeite fixo, gooey, globos e galáxias decorativos, avatares 3D de mascote, landing de template genérico (watermelon) e degradê de fundo: tudo isso fere o `anti-slop.md`. Entram só se o produto pedir e o usuário aprovar.
+
+## 9. Papéis e configurações (produto que atende equipes)
+
+- **Papéis são conjuntos de permissão, não pessoas**: Dono, Profissional A, Profissional B, Suporte, personalizado. Uma pessoa pode ter vários papéis. Quando a profissão é regulada, o registro (CREF, CRN, CRM…) é da pessoa e é ele que libera editar o que a lei reserva.
+- **Configurações em 3 níveis**, explicados na própria tela: o **plano** da plataforma libera o recurso; a **equipe** liga, desliga e define valores dentro disso; o **usuário final** ajusta só o que é dele. Recurso fora do plano aparece bloqueado com uma linha de explicação, sem paywall agressivo.
+- Todo limiar que vira alerta (dor, prazo, risco) tem valor padrão documentado e é ajustável pela equipe.
+- Pergunte cedo: o produto é de um cliente ou de muitos? Se puder ser de muitos, desenhe multi-tenant e white-label desde a v1, com o cliente atual como primeiro tenant.
+
+## 10. Features de IA (página própria, uma linha por feature)
+
+Padrão do Doro: as features de IA ficam numa página só delas, uma linha por feature, cada linha com as telas do fluxo e um sticky com **o que faz · onde roda (aparelho ou nuvem UE) · guarda/limite · quem aprova · em qual nível liga/desliga**.
+Regras: a IA nunca prescreve (dose, treino, dieta, diagnóstico); todo valor estimado vem marcado ("estimado por IA") e é editável; sugestões só valem depois da aprovação humana; estatística é código, a IA só redige; consentimento para dados de saúde; dá para desligar.
+Conjunto que costuma valer em app de acompanhamento: registro por foto e por voz, resumo do mês em cartões, preparação para a consulta (pauta antes, resumo para o profissional, combinados viram tarefas depois), rascunho de resposta para a equipe, insights com evidência mínima, leitura de documentos (exames, etiquetas).
