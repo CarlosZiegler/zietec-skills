@@ -132,9 +132,18 @@ def main():
             ng += 1
         if ng and os.path.basename(f) not in a.allow_gradient:
             add('WARN', 'gradiente', f, f'{ng} gradiente(s) de lavagem: mantenha só com motivo de marca escrito no design_brief')
-        nb = low.count('backdrop-filter')
-        if nb > 1:
-            add('WARN', 'vidro', f, f'{nb} backdrop-filter: vidro só na superfície rara que precisa')
+        # vidro: obrigatório no cromo flutuante, proibido em conteúdo (estilo-base.md §3)
+        for m in re.finditer(r'class="([^"]*\b(card|row|item|cell|tile)[^"]*)"[^>]*style="[^"]*backdrop-filter', low):
+            add('WARN', 'vidro-no-conteudo', f, f'backdrop-filter em .{m.group(2)}: vidro só no cromo flutuante')
+        if re.search(r'<nav\b', low) and 'backdrop-filter' not in low:
+            add('WARN', 'cromo-sem-vidro', f, 'tela com navegação e nenhum vidro: tab bar, topo e sheets levam vidro na base')
+        # fontes manuscritas ou script: proibidas (ruins de ler)
+        for fam in ('caveat', 'kalam', 'pacifico', 'dancing script', 'dancing+script', 'indie flower', 'indie+flower',
+                    'permanent marker', 'permanent+marker', 'shadows into light', 'shadows+into+light', 'gloria hallelujah',
+                    'patrick hand', 'patrick+hand', 'great vibes', 'great+vibes', 'homemade apple', 'reenie beanie'):
+            if fam in low:
+                add('FAIL', 'fonte-manuscrita', f, f'{fam}: proibida na base (ilegível); use a sans ou a serifa de display')
+                break
 
         # raios fora da escala
         if radii:

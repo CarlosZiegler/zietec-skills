@@ -1,6 +1,6 @@
 # Anti-slop: contrato, contagens e portão
 
-Leia na seção 4, ao fechar a direção de arte, e na seção 9, antes da auto-revisão. Objetivo: nenhuma tela parecer "feita por IA" nem servir, sem mudança, para um concorrente.
+Leia na seção 4, ao fechar a direção de arte, e na seção 9, antes da auto-revisão. A base visual padrão está em `references/estilo-base.md`; este arquivo diz o que não pode aparecer nela. Objetivo: nenhuma tela parecer "feita por IA" nem servir, sem mudança, para um concorrente.
 
 Fontes destiladas (regras reescritas, nada copiado; consulte o original se precisar):
 
@@ -33,7 +33,8 @@ Exceção, que vale para tudo neste arquivo: uma escolha deliberada de marca fic
 **Visual**
 - Gradiente de lavagem (roxo, índigo, malha) e brilho em botão. Padrões desenhados com gradiente, como régua, pauta ou máscara, não contam.
 - Índigo, violeta ou lavanda sem motivo de marca.
-- Vidro ou blur em todo cartão.
+- Vidro em cartão de conteúdo, linha de lista ou fundo inteiro. Na base da Forja o vidro é **obrigatório** no cromo flutuante (botões de topo, tab bar, barra de baixo, sheets, menus) e proibido no conteúdo (`references/estilo-base.md`).
+- Fonte manuscrita ou script em qualquer texto de interface (Caveat e afins): é ruim de ler.
 - Vários acentos espalhados pelas telas.
 - Cinzas quentes e frios misturados.
 - Raios aleatórios.

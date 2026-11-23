@@ -1,6 +1,11 @@
 # Forja: changelog
 
 
+### v2.3 (2026-11-23) — base visual padrão: minimal nativo com vidro
+- Novo `references/estilo-base.md`: padrão de todo pacote, na linha do app novo do Claude (nov/2026), Revolut, Flighty e iOS 26. Fundo cinza frio quase branco, Inter/Geist na interface, serifa só em display, vidro obrigatório no cromo flutuante (topo, tab bar, barra de baixo, sheets, menus) e proibido no conteúdo, listas sem cartão por linha, número-herói por tela, ação primária em tinta.
+- Seção 4 reescrita: a variação entre produtos acontece dentro da base (acento, marca pequena, serifa de display, fotografia, número-herói, modo). Estilo fora da base só com pedido do usuário.
+- Proibidas fontes manuscritas (Caveat e afins): o usuário achou ilegível a nota manuscrita do Salles Squad v2. `slop_check.py` dá FAIL nelas e avisa vidro em conteúdo ou navegação sem vidro.
+
 ### v2.2 (2026-11-22) — passe anti-slop
 - `references/anti-slop.md`: contrato de design (um acento, uma família de cinzas, escala de raios, um conjunto de ícones, um rótulo por ação, exceção só com porquê), catálogo do que é slop, regras de copy e de interface, metas e portão de 6 perguntas.
 - `scripts/slop_check.py`: contagens objetivas nos `.dc.html` (matizes, violeta, gradiente de lavagem, vidro, raios, emoji, rótulos, `...`, aspas, `transition: all`, foco, zoom, `img`, botão de ícone, campo sem rótulo, `onclick` em div, fade no scroll, palavras e frases de slop em EN/PT/DE, resíduo).

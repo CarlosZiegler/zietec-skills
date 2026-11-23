@@ -47,6 +47,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/estados-e-qualidade.md` | Ao desenhar as telas e na verificação: estados, pior caso, mobile-native, coreografia, alinhamento, auto-revisão |
 | `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
+| `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
 
@@ -236,58 +237,45 @@ O conteúdo parte de `produto_brief.py` (etapa 0.1): ICP, aha, evento de ativaç
 
 ---
 
-## 4. Direção de arte: própria em cada produto
+## 4. Direção de arte: base minimal nativa, identidade própria por produto
 
-O usuário quer **design real e variado**: seguir as skills de design, mas **nunca repetir o mesmo visual**. Antes de desenhar, defina a direção de arte do produto e grave-a em `brand.py` (tokens) e num parágrafo "Direção de arte" no doc (seção 01 ou anexo).
+**Padrão de todo pacote: `references/estilo-base.md`** (minimal nativo com vidro, na linha do app novo do Claude, Revolut e Flighty). Leia antes de qualquer tela. Só saia da base se o usuário pedir outro estilo com palavras; nesse caso registre o pedido em Decisões e use a variação livre do fim desta seção.
 
-### 4.1 Decida a partir do produto, não do template
+Grave a direção em `brand.py` (tokens) e num parágrafo "Direção de arte" no doc (seção 01 ou anexo).
 
-Responda por escrito, em 5 linhas:
+### 4.1 Decida a identidade a partir do produto
 
-1. Quem usa, onde e em que estado de espírito. Ex.: motorista no carro ao sol, concurseira à noite, dono de oficina entre obras, dev no terminal.
-2. Que sensação o produto precisa passar. Ex.: calma, precisão, energia, acolhimento, rigor jurídico, calor artesanal.
-3. Que referência do mundo real inspira. Ex.: painel de carro, caderno de estudo, formulário oficial, etiqueta de floricultura, terminal. Não use outro app como referência.
-4. Qual é a assinatura visual: um elemento só dele que se repete com parcimônia.
+Responda em 5 linhas antes de desenhar:
+
+1. Quem usa, onde e em que estado de espírito. Ex.: aluna no intervalo do treino, motorista ao sol, dono de oficina entre obras.
+2. Que sensação o produto precisa passar dentro da base: calma, precisão, energia, acolhimento.
+3. Qual é o **número-herói** ou o objeto central da tela mais usada (estilo Flighty/Revolut).
+4. Qual é a marca pequena do produto (o "spark"): símbolo, monograma ou glifo, pequeno e raro.
 5. O que este produto **não** pode parecer.
 
 Grave também um `design_brief.py`, que vira a nota do topo da página Direções e, no fim, o `DESIGN.md` do handoff:
 
 - **Produto**: o que é, quem usa, em que aparelho, o trabalho da tela mais usada.
 - **Público e voz**: nível técnico, formalidade, formatos locais.
-- **Clima**: 2–3 palavras + "nunca parecer" (as linhas 2 e 5 acima).
+- **Clima**: 2–3 palavras + "nunca parecer".
 - **Referências**: cada uma com "pegar: …; evitar: …".
 - **Restrições**: plataformas, WCAG, alvos de toque, tema, um só conjunto de ícones.
-- **Contrato anti-slop**: um acento (+ no máximo um apoio de marca), uma família de cinzas, uma escala de raios, um conjunto de ícones, um rótulo por ação, e o porquê de cada exceção de marca (gradiente, cor fora do contrato). Detalhes em `references/anti-slop.md`.
+- **Contrato anti-slop**: um acento, uma família de cinzas (fria, da base), escala de raios da base, um conjunto de ícones de traço, um rótulo por ação, e o porquê de cada exceção. Detalhes em `references/anti-slop.md`.
 - **Decisões**: data, decisão, porquê. Atualize ao longo do run.
 - **Perguntas em aberto**.
 
-### 4.2 Varie de verdade, em pelo menos 4 destes eixos
+### 4.2 Varie dentro da base
 
-- **Paleta**:
-  - Não parta sempre do cinza neutro + azul de ação.
-  - Escolha fundo, superfície, tinta, ação e marca próprios. Pode ser fundo quente, papel creme, escuro de verdade (app noturno), alto contraste, tons terrosos ou monocromático com um acento.
-  - Status (erro, alerta, ok) podem ser ajustados à paleta, mantendo forma + texto.
-- **Tipografia**:
-  - Escolha um par do Google Fonts adequado ao produto, por exemplo:
-    - serifada editorial + sans;
-    - grotesca condensada para números grandes;
-    - humanista arredondada para consumidor;
-    - mono para produto dev.
-  - Evite Inter, Roboto, Arial e a fonte usada no produto anterior.
-- **Estrutura da landing**: hero dividido, hero editorial centrado, número gigante, produto em contexto, antes/depois, lista narrativa. Não repita a estrutura "card sobre painel colorido + carrossel de fatos + 3 passos" em todo produto.
-- **Navegação do app**: tab bar com pílula, tab bar só com ícones, barra superior segmentada, botão flutuante de ação, lista-mestre. No desktop: sidebar, topbar, rail estreito ou split view.
-- **Forma**: raios (0–4 px técnico, 12–16 equilibrado, 24+ macio); sombras em camadas versus plano com bordas; densidade compacta versus arejada.
-- **Visualização principal**: anel, número gigante, barra de progresso, linha do tempo, calendário, mapa de calor, gauge, pilha de cartões. Escolha a que o dado pede.
-- **Motion**: a assinatura de movimento muda com o produto. Pode ser contagem, desenho de linha, empilhar cartões, revelar por máscara ou seguir um percurso. Mantenha as regras de 4.4.
-- **Ilustração e ícones**: traço fino, preenchido, geométrico, recorte de papel, ou nenhum.
+O que muda de produto para produto (seção 6 do `estilo-base.md`): **acento**, **marca pequena**, **serifa de display** (Newsreader, Source Serif 4, Fraunces ou nenhuma), **fotografia** do Codex, **número-herói e visualização principal** (anel, número gigante, linha do tempo, barra, calendário, mapa) e **modo** (claro por padrão; escuro para uso noturno ou de cabine). Também variam a estrutura da landing (hero dividido, número gigante, produto em contexto, lista narrativa) e a assinatura de motion, sempre com as regras de 4.4.
+
+O que **não** muda: fundo cinza frio quase branco, Inter/Geist na interface, vidro no cromo flutuante, listas sem cartão por linha, ação primária em tinta, legibilidade (corpo ≥ 15 px, nada manuscrito).
 
 **Checagem de diferença**:
 
-- Liste os produtos Forja anteriores com `Artifact action=list type=Design`, ou os que existirem na sessão.
-- Se houver builds locais, leia o `brand.py` de cada um (paleta, fontes, arquétipo) e monte um "conjunto a evitar". Em lotes paralelos, dê a cada subagente uma direção inicial diferente.
-- Compare a nova direção com as últimas: cor de marca, fonte, estrutura da landing, navegação e visualização principal.
-- Se 3 ou mais eixos baterem com algum produto anterior, mude antes de construir. Não repita a combinação fonte + paleta + arquétipo de nenhum produto.
-- O usuário pede sempre para **caprichar no design**: a direção nasce de uma referência do mundo real do produto (caderno quadriculado, desenho técnico, painel de carro), não de um template.
+- Liste os produtos Forja anteriores (`list_artifacts` com type "Design", ou `Artifact action=list type=Design`) e leia o `brand.py` dos builds locais que existirem.
+- O acento e a marca pequena não podem repetir os dos últimos pacotes. Em lotes paralelos, dê a cada subagente um acento diferente.
+
+**Variação livre (só com pedido do usuário)**: paleta própria (fundo quente, escuro de verdade, terrosos), par de fontes fora da base, formas de 0–4 px a 24+ px. Mesmo assim valem a legibilidade e o anti-slop.
 
 ### 4.3 O que não muda (qualidade mínima, vinda das skills de design)
 
@@ -356,7 +344,7 @@ A direção de arte (4.1–4.2) fixa a marca. As direções testam a **estrutura
 | Ênfase | o que o olho encontra primeiro (status, resumo, próximo passo) |
 | Remoção | o que some (padrões inteligentes no lugar de opções) |
 
-- Cor, tema, fonte e raio **não são eixos** aqui: as 3 usam a mesma direção de arte.
+- Cor, tema, fonte e raio **não são eixos** aqui: as 3 usam a mesma direção de arte, dentro da base de `references/estilo-base.md`.
 - Antes de desenhar, escreva a tabela: direção (nome descritivo, nunca "A/B/C"), eixo, valor, custo. Duas linhas com o mesmo eixo e valor: troque uma.
 - Uma direção é deliberadamente mais ousada. Nenhuma é espantalho.
 - Mesmos dados realistas, mesmo tamanho, mesma fidelidade, motion incluído.
