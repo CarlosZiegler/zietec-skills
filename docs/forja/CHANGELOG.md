@@ -1,6 +1,11 @@
 # Forja: changelog
 
 
+### v2.5 (2026-11-23) — app completo e flows
+- Novo `references/flows.md`: inventário de telas a partir do PRD (`build/inventario.py`), página do app completo (mobile e desktop), uma página por flow no padrão do AutoFolio (linhas: caminho principal, ramos/estados, alternativos; tela inteira por passo com o alvo marcado; sticky com ação → resultado, regra e falha; links de protótipo; perguntas no fim) e mapa de flows. Feature nova = página "<Feature> (aprovar)".
+- SKILL.md: entregável 4b; app completo e flows só no idioma-base.
+- O padrão visual do Salles Squad v3 (v2.3–v2.4) fica como padrão da Forja v2.
+
 ### v2.4 (2026-11-23) — detalhes (Emil/Apple/Appllama), vidro de verdade, login
 - Feedback do usuário no Salles Squad v3 (nota 8): CTA preto dentro de cápsula com aro cinza, seleção de plano encostando na borda e cinza chapado, tab bar "branca" e não de vidro.
 - `estilo-base.md`: receita de vidro com aro de luz e conteúdo por trás; tab bar iOS 26 (ativo em pílula clara, rótulos); CTA sólido flutuando sozinho; nova §5 "Detalhes" (raio concêntrico, seleção inset, uma borda só, press, easing, tipo, números, plural, datas); nova §6 fluxo de entrada (boas-vindas → entrar → código); nova §8 pesquisa no Mobbin/Appllama antes da tela-chave; checklist ampliado.

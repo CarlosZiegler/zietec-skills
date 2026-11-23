@@ -15,13 +15,14 @@ Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com estas partes:
 2. **Mobile**: 9 telas de 390 px, protótipo navegável com motion.
 3. **Desktop**: as mesmas 9 telas adaptadas para 1440 px.
 4. **Estados**: vazio, erro, offline, carregando, pior caso e afins de cada tela.
+4b. **App completo e flows**: todas as telas do v1 (inventário a partir do PRD) e uma página por flow, passo a passo, com cada ação, ramo e estado, como num arquivo de Figma ou no Mobbin (`references/flows.md`). Feature nova num pacote existente = página "<Feature> (aprovar)" com o flow completo.
 5. **Pitch**: 14 slides 16:9 (1920×1080) no mesmo visual.
 6. **Documentação de Produto**: A4 paginado, cabeçalho e rodapé em toda página, 6 seções.
 7. **Lançamento**: screenshots de App Store e roteiro do teaser em vídeo.
 
 Fora do canvas, saem também os **arquivos de handoff** para o Claude Code: `DESIGN.md`, `PRD.md` e `CLAUDE.md` (seção 10).
 
-Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tela, slide e página (seção 8). Direções, Estados e Lançamento saem só no idioma-base.
+Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tela, slide e página (seção 8). Direções, Estados, App completo, Flows e Lançamento saem só no idioma-base.
 
 **Skills parceiras** (use se estiverem disponíveis; se não, siga o resumo de cada etapa aqui):
 
@@ -48,6 +49,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
 | `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
+| `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
 | `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
 
