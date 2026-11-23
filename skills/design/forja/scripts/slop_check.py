@@ -129,6 +129,10 @@ def main():
             cols = re.findall(r'#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|transparent', m.group(2))
             if len(stops) != len(set(stops)) or len(set(cols)) <= 1:
                 continue  # parada dura ou cor chapada
+            # esmaecido (scroll edge, sombra de leitura sobre foto): um tom só variando a opacidade não é lavagem de cor
+            rgbs = {tuple(re.findall(r'\d+', c)[:3]) for c in cols if c.startswith('rgb')}
+            if rgbs and len(rgbs) == 1 and all(c.startswith('rgb') or c == 'transparent' for c in cols):
+                continue
             ng += 1
         if ng and os.path.basename(f) not in a.allow_gradient:
             add('WARN', 'gradiente', f, f'{ng} gradiente(s) de lavagem: mantenha só com motivo de marca escrito no design_brief')
