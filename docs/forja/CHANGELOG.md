@@ -1,6 +1,10 @@
 # Forja: changelog
 
 
+### v2.10 (2026-11-24) — cor primária própria por produto
+- O preto virou identidade do Salles Squad; o Carlos pediu cores novas para o Mossy. Agora cada produto tem a sua primária, escolhida pelo usuário entre 4 paletas aplicadas numa mini tela, sem repetir produtos anteriores (`docs/forja/paletas-usadas.md`).
+- `estilo-base.md`: tabela da base, §9.0, regra de marcador de "feito" e checklist atualizados.
+
 ### v2.9 (2026-11-23) — papéis, configurações em 3 níveis e página de IA
 - `padroes-ui.md` §9: papéis como conjuntos de permissão (uma pessoa, vários papéis; registro profissional libera o que a lei reserva); configurações em 3 níveis (plano → equipe → usuário) com limiares ajustáveis; perguntar cedo se o produto é de um cliente ou de muitos (multi-tenant desde a v1).
 - `padroes-ui.md` §10: features de IA numa página própria, uma linha por feature, com onde roda, guarda, quem aprova e onde liga/desliga; regras (nunca prescreve, estimado marcado e editável, aprovação humana, estatística em código).

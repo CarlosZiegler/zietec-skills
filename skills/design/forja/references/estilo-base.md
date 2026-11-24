@@ -19,7 +19,7 @@ Não copie telas, marcas ou ícones dessas referências. Pegue a **disciplina**:
 | Texto | `#0F1115` | `#F4F5F7` |
 | Texto secundário | `#5F6570` (≥ 4,5:1 no fundo) | `#A1A6AF` |
 | Linha | `rgba(15,17,21,.08)` | `rgba(255,255,255,.08)` |
-| Ação primária | tinta (`#0F1115`), botão preto em pílula ou círculo | branco |
+| Ação primária | **cor própria do produto** (escolhida pelo usuário, ver §9.0); tinta `#0F1115` só se ele escolher preto e nenhum outro produto já usa | branco (contraste ≥ 4,5:1) |
 | **Acento do produto** | **um**, escolhido por produto (seção 6) | o mesmo, ajustado |
 
 - O acento aparece pouco: a marca do produto, o estado ativo, o número-herói, um indicador. Nunca em blocos grandes de fundo.
@@ -101,7 +101,7 @@ Aplique em toda tela antes de olhar a captura final:
 - **Plural certo** ("1 aluna", "2 alunas").
 - **Toque**: alvos ≥ 44 px; ações destrutivas longe da ação principal.
 - **Rótulo de botão centralizado e numa linha só** (regra, não gosto): `.btn`, `.btn2`, pílulas e chips têm `text-align:center; white-space:nowrap`. Se dois botões lado a lado não cabem com o texto inteiro, **empilhe** (coluna de largura total) ou encurte o rótulo; nunca deixe quebrar em duas linhas nem alinhar à esquerda. Vale nos 3 idiomas: alemão é o pior caso.
-- **Constância de marcadores**: um só jeito de dizer "feito" no produto inteiro: círculo na tinta (primary) com check branco, em série, exercício, passo, item de lista e confirmação. Verde (`success`) fica para status **com texto** (pílula "Enviado", mensagem "Código certo"), nunca para o círculo de concluído. Seleção (rádio, plano) é outra coisa e tem o seu marcador próprio, também igual em toda parte. Antes de entregar, procure duas formas diferentes para o mesmo significado (check verde aqui, preto ali; pílula num lugar, texto no outro) e una.
+- **Constância de marcadores**: um só jeito de dizer "feito" no produto inteiro: círculo na cor primária do produto com check branco, em série, exercício, passo, item de lista e confirmação. Verde (`success`) fica para status **com texto** (pílula "Enviado", mensagem "Código certo"), nunca para o círculo de concluído. Seleção (rádio, plano) é outra coisa e tem o seu marcador próprio, também igual em toda parte. Antes de entregar, procure duas formas diferentes para o mesmo significado (check verde aqui, preto ali; pílula num lugar, texto no outro) e una.
 
 ## 6. Fluxos de entrada (login e cadastro)
 
@@ -130,6 +130,12 @@ Antes das direções (§4.5 da skill), estude telas reais do mesmo tipo:
 
 ## 9. O que varia de produto para produto
 
+**9.0 Cor primária: cada produto tem a sua, e o usuário escolhe.** A ação primária (botão principal, interruptor ligado, marcador de "feito", ícone ativo, seleção) usa a cor primária do produto. Antes de gerar as telas:
+1. Leia `docs/forja/paletas-usadas.md` no repositório: nenhum produto novo repete a primária de outro (preto já é do Salles Squad).
+2. Mostre **4 paletas** aplicadas numa mini tela do próprio produto (herói, progresso, interruptor, botão), com hex, contraste do texto branco na primária medido (≥ 4,5:1) e uma recomendação ligada ao produto.
+3. Espere a escolha; grave em `design_brief.py`, no `tokens.json` e numa linha nova de `paletas-usadas.md`.
+Fundo continua quase branco (pode levar um leve tom da primária, nunca creme); um acento só para progresso e destaque; texto em acento claro sempre num tom escuro do acento.
+
 Dentro da base, escolha e grave no `design_brief.py`:
 1. **Acento** (um), com contraste medido; diferente dos últimos pacotes do conjunto a evitar.
 2. **Marca pequena**: símbolo, monograma ou glifo próprio, usado como o "spark" do Claude, pequeno e raro.
@@ -146,7 +152,7 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Inter/Geist em toda a interface; serifa só em display; nenhuma fonte manuscrita.
 - [ ] Corpo ≥ 15 px no mobile; contraste medido.
 - [ ] Vidro em todo cromo flutuante (topo, tab bar, barra de baixo, sheets, menus) e em nenhum conteúdo.
-- [ ] Um acento, usado pouco; ação primária em tinta.
+- [ ] Primária própria do produto (escolhida, não repetida de outro produto) e um acento usado pouco.
 - [ ] Listas sem cartão por linha; cartões só para agrupar.
 - [ ] Um número-herói por tela, no máximo.
 - [ ] Tab bar de vidro de verdade (translúcida, aro de luz, conteúdo por trás, ativo em pílula clara, não bloco preto).
@@ -155,7 +161,7 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Fluxo de entrada (boas-vindas → entrar → código) desenhado.
 - [ ] Detalhes da §5 conferidos na captura em 2× (zoom), não só no tamanho normal.
 - [ ] Nenhum rótulo de botão quebrando linha ou estourando (portão no navegador: `scrollWidth > clientWidth` em `.btn,.btn2,.gpill,.chip,.pill`, ignorando selos e `::after`), nos 3 idiomas.
-- [ ] Um marcador de "feito" só (tinta + check branco); verde só em status com texto.
+- [ ] Um marcador de "feito" só (primária + check branco); verde de status não se confunde com a primária.
 
 ## 11. Padrões de componentes e pesquisa de flows
 
