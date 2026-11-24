@@ -1,6 +1,12 @@
 # Forja: changelog
 
 
+### v2.14 (2026-11-24) — sobreposição vira gate
+- Achado no Corner: a tabela de “Quem vê o quê” usava `class="tbl pm"`; `.pm` é o marcador de progresso global (absoluto, com translateX), e a tabela cobria a barra lateral. Nenhum gate via, porque overflow e botões medem bordas, não camadas.
+- Novo `scripts/overlap_check.py`: renderiza com o preview (holes escapados) e marca texto sobre texto (caixas de texto visíveis que se cruzam, fora de pais comuns, tolerância de 2 px), controle sobre texto e elemento absoluto/fixo com tabela ou lista cobrindo texto de fora. Ignora badge, knob, celular do pitch, camadas (dialog, sheet, menu, toast, dock, abas, painel lateral) e mede só a parte visível de texto cortado por overflow.
+- SKILL.md §9: o gate entra nas checagens, com a regra de nomes de classe com prefixo da tela.
+- Rodado no Corner (0 FAIL após renomear `pm`, `kv`, `wk`, `.d`, `h2`, `.msgb` e um rótulo de segmento), Lumbo e Mossy (0 FAIL) e Salles (3 FAIL reais: pílula de prazo sobre o nome da treinadora em Pedidos de troca; não corrigido, só relatado).
+
 ### v2.13 (2026-11-24) — hole é texto e idioma congelado
 - Achado no Mossy: o `<svg>` do ícone ia como valor de hole (`{{ x.i }}`); o runtime escapa e o código aparecia na tela. A pré-visualização local não escapava, então nenhum gate viu.
 - `preview.py`: escapa todo hole, como o runtime.
