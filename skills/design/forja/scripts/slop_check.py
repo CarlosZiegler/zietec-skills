@@ -214,6 +214,28 @@ def main():
         if re.search(r'<h[12]\b', low) and 'text-wrap' not in low and 'balance' not in low:
             add('WARN', 'titulo-sem-balance', f, 'h1/h2 sem text-wrap: balance')
 
+        # Impeccable (pbakaus/impeccable, Apache-2.0): tiques de UI gerada
+        if re.search(r'(-webkit-)?background-clip\s*:\s*text', low):
+            add('FAIL', 'texto-gradiente', f, 'background-clip: text: ênfase vem de peso ou tamanho, não de gradiente')
+        for m in re.finditer(r'box-shadow\s*:\s*(-?\d+)px\s+(-?\d+)px\s+0(px)?\s', low):
+            if max(abs(int(m.group(1))), abs(int(m.group(2)))) >= 4:
+                add('FAIL', 'sombra-dura', f, m.group(0) + ' (sombra sem desfoque deslocada: fantasia neobrutalista)')
+        for m in re.finditer(r'border-(left|right)\s*:\s*([3-9])px\s+solid', low):
+            add('WARN', 'faixa-lateral', f, m.group(0) + ': barra num lado do cartão; use borda inteira, tinta ou ícone')
+        for m in re.finditer(r'cubic-bezier\(\s*[0-9.]+\s*,\s*(-?[0-9.]+)\s*,\s*[0-9.]+\s*,\s*(-?[0-9.]+)\s*\)', low):
+            if float(m.group(1)) > 1 or float(m.group(2)) > 1:
+                add('WARN', 'mola-overshoot', f, m.group(0) + ': overshoot só em celebração, nunca em ação de rotina')
+        nd = text.count('—')
+        if nd > 2:
+            add('WARN', 'travessao-demais', f, f'{nd} travessões: reescreva com ponto, vírgula ou dois-pontos')
+        for p in (r'\bnot just [^.]{2,40}, ', r'\bnão é só [^.]{2,40}, é\b', r'\bnicht nur [^.]{2,40}, sondern\b'):
+            m = re.search(p, tlow)
+            if m:
+                add('WARN', 'contraste-forcado', f, text[max(0, m.start() - 5):m.end() + 25] + ' (slogan "não X, Y")')
+        for m in re.finditer(r'class="[^"]*\b(card|s-card)\b[^"]*"[^>]*>(?:(?!</div>).){0,400}?class="[^"]*\b(card|s-card)\b', low, flags=re.S):
+            add('WARN', 'cartao-dentro-de-cartao', f, 'cartão dentro de cartão: agrupe por espaço ou divisória')
+            break
+
         # copy
         for w in SLOP_EN + SLOP_PT + SLOP_DE:
             if re.search(r'(?<![\w-])' + re.escape(w), tlow):

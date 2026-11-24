@@ -1,6 +1,13 @@
 # Forja: changelog
 
 
+### v2.11 (2026-11-24) — Stageshow, Impeccable, Solid Glass e outras fontes
+- Novo `references/vitrine-stageshow.md` (Stageshow, Benji Taylor, MIT): enquadramento de UI de mentira para pitch, landing, bento, cards e teaser; 3–7 palavras reais; herói saindo pela borda com satélites; regras de bento; loop de 10–16 s com pôster.
+- `anti-slop.md`: catálogo do Impeccable (eyebrow proibido, cartão fantasma, faixa lateral, sombra dura, texto em gradiente, bege por reflexo, ponto pulsando, mola em rotina, travessão demais, slogan "não X, Y", superfícies do navegador com tema) e onde a Forja diverge; crítica com rubrica (carga cognitiva, Nielsen 0–4, P0–P3), revisão de movimento e checagem de originalidade.
+- `estilo-base.md`: vidro com espessura em 3 níveis e estado único (Solid Glass); escuro sem saturate.
+- `slop_check.py`: texto-gradiente, sombra-dura, faixa-lateral, mola-overshoot, travessao-demais, contraste-forcado, cartao-dentro-de-cartao.
+- SKILL.md: pitch e landing usam a vitrine; fontes externas listadas (aiforui.dev, MengTo/skills, Open Design).
+
 ### v2.10 (2026-11-24) — cor primária própria por produto
 - O preto virou identidade do Salles Squad; o Carlos pediu cores novas para o Mossy. Agora cada produto tem a sua primária, escolhida pelo usuário entre 4 paletas aplicadas numa mini tela, sem repetir produtos anteriores (`docs/forja/paletas-usadas.md`).
 - `estilo-base.md`: tabela da base, §9.0, regra de marcador de "feito" e checklist atualizados.

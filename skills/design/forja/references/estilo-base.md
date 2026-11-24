@@ -60,6 +60,12 @@ Não copie telas, marcas ou ícones dessas referências. Pegue a **disciplina**:
 }
 ```
 
+**Espessura e estado único** (do Solid Glass, deeplethe/solid-glass, MIT):
+- **Profundidade é espessura**, em 3 níveis: *painel* fino (botão de topo, pílula, chip flutuante ≈ 45 % de opacidade), *barra/cartão* (tab bar, barra de baixo ≈ 55–60 %), *folha* grossa (sheet, menu, popover, diálogo ≈ 82–96 %). Quanto mais texto o vidro carrega, mais grosso.
+- O acabamento mora **na borda**: aro de luz em cima, linha interna clara, contorno de 0,5–1 px, sombra de contato pequena e uma sombra longa só para folhas.
+- **Escuro:** `blur(26–28px)` **sem** `saturate` (não infla as cores) e aro bem mais discreto (≈ 16 % de branco).
+- **Um estado só:** hover, selecionado e aberto vestem o mesmo painelzinho de vidro claro (ou a mesma tinta sutil); nada de três estilos para três estados.
+
 **Tab bar de vidro (padrão iOS 26 / app do Claude / Lightyear)**:
 - cápsula flutuante a 8–12 px da borda inferior, altura 60–64, 3–5 itens;
 - item ativo = **pílula clara e sutil** (`rgba(15,17,21,.07)`, ou vidro mais claro) com ícone em tinta ou acento, **nunca um bloco preto sólido**; inativos em cinza `#5F6570`;
@@ -164,6 +170,8 @@ A página Direções continua com 3 direções, mas **todas dentro da base**: el
 - [ ] Um marcador de "feito" só (primária + check branco); verde de status não se confunde com a primária.
 
 ## 11. Padrões de componentes e pesquisa de flows
+
+- Vitrine (pitch, landing, bento, cards, teaser): `vitrine-stageshow.md`.
 
 - Componentes reutilizáveis (régua numérica, gráficos com linha de base, heatmap, anel com parciais, quadro de fila, estados de IA, anatomia de componente): `padroes-ui.md`.
 - Estrutura de cada flow pesquisada no Mobbin e no Appllama antes de desenhar: `flows.md` §1b. O visual já está decidido aqui; a pesquisa é para passos, ramos, erro e desfazer.

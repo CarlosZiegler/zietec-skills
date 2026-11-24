@@ -44,6 +44,21 @@ Exceção, que vale para tudo neste arquivo: uma escolha deliberada de marca fic
 - Todas as seções entrando igual; cartão aparecendo ao rolar; parallax em texto.
 - Legenda explicando a imagem.
 
+**Catálogo do Impeccable** (impeccable.style/slop, 62 checagens; pbakaus/impeccable, Apache-2.0), o que ainda não estava acima:
+- Rótulo ou "pílula" acima do título (eyebrow, "Novo", "Apresentando"): proibido; o título carrega o próprio peso. Números de seção (01, 02) só quando a sequência importa.
+- Cartão com borda fina **e** sombra larga ("cartão fantasma"): declare a elevação uma vez, borda **ou** sombra.
+- Barra colorida num lado só de um cartão arredondado; sombra dura deslocada sem desfoque; texto em gradiente; listras de gradiente; grade de fundo decorativa.
+- Template de "métrica-herói" (número grande, rótulo pequeno, stats e acento) como estrutura de página; grade de cartões idênticos; cartão dentro de cartão.
+- Paleta bege/creme por reflexo; roxo e ciano de "IA"; halo radial e holofote atrás do conteúdo; modo escuro com brilho neon.
+- Ponto pulsando sem nada ter mudado; cursor piscando decorativo; letreiro rolando sem pausa; mola/overshoot em ação de rotina.
+- Uma palavra sozinha na última linha; título com cauda curta; mais espaço abaixo do título do que acima; parágrafo justificado; texto colado na borda.
+- Travessão em quase toda frase; slogan "não é X, é Y"; superlativo genérico; o mesmo texto repetido dentro de um cartão.
+- Superfícies do navegador sem tema: `::selection`, `caret-color`, `accent-color`, barra de rolagem e anel de foco ficam no padrão do browser. Dê a cor do produto.
+- Ilustração rabiscada em SVG imitando desenho; máscara geométrica fingindo recorte de foto.
+- Escolher claro ou escuro pela categoria: escolha pela cena de uso (quem, onde, com que luz).
+
+Onde a Forja diverge do Impeccable, de propósito: **Inter/Geist** continuam o padrão porque o usuário escolheu o visual do app do Claude, mas a fonte de interface pode variar por produto junto com a paleta (§9 do estilo-base); **raio de cartão** fica em 20–24 px no mobile (iOS nativo) e 16 px no desktop; o **número-herói** só vale quando é o dado principal real do produto (dinheiro, dias, carga), nunca como template.
+
 **Conteúdo**
 - Nome genérico, número redondo inventado ("10.000 usuários"), depoimento ou cliente inventado.
 - Palavras de slop: em EN *seamless, unlock, elevate, empower, cutting-edge, game-changer, revolutionary, robust, leverage*; em PT *revolucionário, potencialize, desbloqueie, inovador, sem complicação, solução completa, tudo em um só lugar*; em DE *nahtlos, innovativ, maßgeschneidert, ganzheitlich, aufs nächste Level, spielend leicht*. Lista completa no `scripts/slop_check.py`.
@@ -95,6 +110,12 @@ Exceção, que vale para tudo neste arquivo: uma escolha deliberada de marca fic
    - **Limites honestos**: o que não foi renderizado, testado ou corrigido?
 
    Um "não" é trabalho que falta, não motivo para baixar a régua.
+
+   **Crítica com rubrica** (do `critique` do Impeccable), gravada no mesmo arquivo para as telas-chave:
+   - **Carga cognitiva**, 8 itens: foco único, grupos de ≤ 4, agrupamento visível, hierarquia, uma decisão por vez, ≤ 4 opções visíveis num ponto de decisão, nada para decorar de uma tela para outra, revelação progressiva. 0–1 falha = ok; 2–3 = corrigir; 4+ = crítico.
+   - **Heurísticas de Nielsen** de 0 a 4 cada (4 é excelente de verdade), e cada problema com severidade **P0–P3** (P0 bloqueia a tarefa).
+   - **Revisão de movimento** (Emil, `review-animations`): liste cada animação com a causa; aprove ou bloqueie; o que não ajuda a entender sai (`remove-animations`); 60 fps; overshoot só em celebração.
+   - **Originalidade** (MengTo, `audit-reference-originality`): compare as telas com as referências do Mobbin/Appllama usadas; se alguma tela parece cópia de uma referência (layout, texto e ordem iguais), refaça.
 
 3. **Feche o ciclo**: corrija em lote, renderize de novo as telas e tamanhos afetados (390 e 1440, DE incluso), olhe as capturas e rode o `slop_check.py` outra vez. Pare quando passar; não invente trabalho. Se algo não se resolve no escopo, vai para "problemas conhecidos" da entrega.
 

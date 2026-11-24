@@ -51,6 +51,7 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
 | `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
 | `references/design-system.md` | Logo depois da direção de arte e antes das telas: camadas do design system (craft-system), regras firmes, onde ele mora (artifact Design System + instalado no canvas + páginas + tokens no código) e a auditoria antes da entrega |
+| `references/vitrine-stageshow.md` | Ao montar qualquer vitrine do produto fora do app: capa e slides do pitch, hero e features da landing, bento, cards de lançamento, screenshots de loja e teaser (enquadramento, 3–7 palavras reais, satélites, bento, loop de 10–16 s) |
 | `references/padroes-ui.md` | Ao precisar de um componente além do básico: régua numérica, gráficos (linha de base pessoal, heatmap, anel com parciais), quadro de fila, estados de IA, anatomia de componente; o que não trazer das bibliotecas |
 | `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
@@ -454,6 +455,8 @@ A documentação usa a direção de arte do produto: fonte, cor de marca, estilo
 
 ## 7. Pitch (14 slides de 1920×1080, por idioma)
 
+**Vitrine:** toda tela do produto mostrada no pitch, na landing e no Lançamento segue `references/vitrine-stageshow.md`: um herói grande saindo pela borda com no máximo um ou dois satélites de tipos diferentes, 3–7 palavras reais, nada de celular inteiro flutuando com ar nos quatro lados; a seção de features da landing é um bento planejado em tabela. Sem rótulo (eyebrow) acima dos títulos dos slides; o número do slide no rodapé basta.
+
 **Moldura** (no estilo do produto):
 
 - logo + rótulo + seletor de idioma no topo (top 56);
@@ -642,6 +645,12 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 - Para a landing: seo-audit (https://skills.sh/coreyhaines31/marketingskills/seo-audit) e ai-seo (https://skills.sh/coreyhaines31/marketingskills/ai-seo)
 - craft (https://github.com/diego3g/craft, MIT): brief DESIGN.md, catálogo de estados, eixos de divergência, regras de crítica
 - emilkowalski/skills (https://github.com/emilkowalski/skills, MIT): prototype, mobile-native, choreograph, break-ui, learn-taste; animate-expo na implementação em Expo
+- Stageshow (github.com/benjitaylor/skills, MIT): vitrine de UI para marketing, destilado em `references/vitrine-stageshow.md`; na implementação React, instale a skill
+- Impeccable (impeccable.style, Apache-2.0): catálogo anti-slop e rubrica de crítica, destilados em `references/anti-slop.md`; o detector roda em CI no repositório do produto (`npx impeccable`)
+- aiforui.dev (Emil Kowalski): animation-vocabulary, gestures, review/find/improve/remove-animations, animation-performance, break-ui, learn-taste
+- MengTo/skills (MIT): design-first-ui-prompting (ordem objetivo → formato → layout → tipo → cor → restrições, variantes em vez de rerolar, negativos como guarda; vale para os prompts do Codex), workflow-score-to-target, audit-reference-originality, estilos de ilustração com paleta medida
+- Solid Glass (deeplethe/solid-glass, MIT): espessura do vidro em 3 níveis e estado único, em `references/estilo-base.md`
+- Open Design (nexu-io/open-design, Apache-2.0): estúdio local com 151 design systems em DESIGN.md; alternativa local para explorar direções, compatível com o nosso DESIGN.md
 - Bibliotecas de componentes (padrões em `references/padroes-ui.md`): bencho.dev, uiarc.dev, boardui.com, pro.beui.dev, kobra.systems, affectui.com, libraries.dev, ui.watermelon.sh
 - Flows reais: Mobbin (https://mobbin.com, logado no Chrome do usuário; menu Flows) e Appllama (MCP, skills MIT em github.com/Appllama/appllama-skills)
 - gridlines (https://github.com/pritamux/gridlines, MIT): passe de alinhamento com `probe.js`
