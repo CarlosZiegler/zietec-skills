@@ -81,6 +81,40 @@ def colors_in(src):
     return out
 
 
+from html.parser import HTMLParser
+
+VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
+
+
+def nested_cards(src):
+    """True se um elemento de classe card/s-card estiver DENTRO de outro (pilha real de tags, não regex)."""
+    class P(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.stack, self.hit = [], False
+
+        def handle_starttag(self, tag, attrs):
+            if tag in VOID:
+                return
+            cls = (dict(attrs).get('class') or '').split()
+            card = 'card' in cls or 's-card' in cls
+            if card and any(c for _, c in self.stack):
+                self.hit = True
+            self.stack.append((tag, card))
+
+        def handle_endtag(self, tag):
+            for i in range(len(self.stack) - 1, -1, -1):
+                if self.stack[i][0] == tag:
+                    del self.stack[i:]
+                    break
+    p = P()
+    try:
+        p.feed(strip_code(src) if 'strip_code' in globals() else src)
+    except Exception:
+        return False
+    return p.hit
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('project')
@@ -225,16 +259,15 @@ def main():
         for m in re.finditer(r'cubic-bezier\(\s*[0-9.]+\s*,\s*(-?[0-9.]+)\s*,\s*[0-9.]+\s*,\s*(-?[0-9.]+)\s*\)', low):
             if float(m.group(1)) > 1 or float(m.group(2)) > 1:
                 add('WARN', 'mola-overshoot', f, m.group(0) + ': overshoot só em celebração, nunca em ação de rotina')
-        nd = text.count('—')
+        nd = len(re.findall(r'\w\s?—\s?\w', text))  # só travessão entre palavras (o "—" sozinho de valor vazio não conta)
         if nd > 2:
             add('WARN', 'travessao-demais', f, f'{nd} travessões: reescreva com ponto, vírgula ou dois-pontos')
         for p in (r'\bnot just [^.]{2,40}, ', r'\bnão é só [^.]{2,40}, é\b', r'\bnicht nur [^.]{2,40}, sondern\b'):
             m = re.search(p, tlow)
             if m:
                 add('WARN', 'contraste-forcado', f, text[max(0, m.start() - 5):m.end() + 25] + ' (slogan "não X, Y")')
-        for m in re.finditer(r'class="[^"]*\b(card|s-card)\b[^"]*"[^>]*>(?:(?!</div>).){0,400}?class="[^"]*\b(card|s-card)\b', low, flags=re.S):
+        if nested_cards(src):
             add('WARN', 'cartao-dentro-de-cartao', f, 'cartão dentro de cartão: agrupe por espaço ou divisória')
-            break
 
         # copy
         for w in SLOP_EN + SLOP_PT + SLOP_DE:
