@@ -7,3 +7,4 @@ A Forja lê este arquivo antes de propor cores (estilo-base §9.0). Uma linha po
 | Salles Squad | tinta #0F1115 | laranja #F0531C | #F2F3F5 | 2026-11 |
 | Mossy | musgo #2D5A3D | mel #E2A43B | #EEF2EC | 2026-11 |
 | Lumbo | noite #1F3A7A | lima #A6D45A | #EEF1F7 | 2026-11 |
+| Corner | violeta #6C2BD9 | ouro #FFC21A | #F5F3FA | 2026-11 |
