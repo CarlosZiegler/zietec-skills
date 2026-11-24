@@ -550,7 +550,7 @@ Renderize e **olhe** os 42 slides (14 × 3 idiomas), não só uma amostra. Só p
 
 ## 9. Verificação local antes de publicar
 
-As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py` e `i18n.py`.
+As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py`, `i18n.py`, `i18n_check.py` e `holes_check.py`.
 
 - **Fontes**: `curl` com user-agent de Chrome em `fonts.googleapis.com/css2?...`, depois baixe os woff2 e gere um `local.css` (`scripts/fetch_fonts.py`). Nunca desligue TLS.
 - **Pré-visualização**: um renderizador mínimo que preenche `{{hole}}`, `sc-for` e `sc-if` com o estado padrão e remove `support.js` e o bloco de lógica. Use-o para medir a altura natural e fazer screenshots.
@@ -559,6 +559,8 @@ As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_font
   - lógica: rode cada `class Component` no Node com um DCLogic falso, chame os handlers e confirme que todo hole do template existe em `renderVals()`;
   - JSON do `data-props` válido;
   - nenhum `{{` fora do lugar;
+  - **hole é texto**: o runtime escapa todo `{{ }}`, então HTML num valor (um `<svg>` de ícone, um `<b>`) aparece como código na tela. Ícone por item vai no template, escolhido por classe (`class="mi ic-{{ x.c }}"` + CSS) ou `sc-if`. Gate: `python3 scripts/holes_check.py project/*.dc.html` com 0 FAIL;
+  - **idioma congelado**: lista com `T()` no topo do módulo é avaliada uma vez, no idioma da importação, e EN/DE saem em PT. Gate: `python3 scripts/i18n_check.py build/*.py` com 0 FAIL;
   - **links**: todo `href="*.dc.html"` existe em `project/`, e o seletor de cada arquivo aponta para o equivalente certo e marca o atual;
   - **idioma**: procure sobras do idioma errado em cada conjunto;
   - **diferença de design**: a checagem de 4.2.

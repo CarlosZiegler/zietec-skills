@@ -1,6 +1,13 @@
 # Forja: changelog
 
 
+### v2.13 (2026-11-24) — hole é texto e idioma congelado
+- Achado no Mossy: o `<svg>` do ícone ia como valor de hole (`{{ x.i }}`); o runtime escapa e o código aparecia na tela. A pré-visualização local não escapava, então nenhum gate viu.
+- `preview.py`: escapa todo hole, como o runtime.
+- Novo `scripts/holes_check.py`: hole de texto cujo valor no bloco de lógica é HTML → FAIL. Ícone por item vai no template, escolhido por classe (`ic-{{ x.c }}`) ou `sc-if`.
+- Novo `scripts/i18n_check.py`: lista com `T()` no topo do módulo congela o idioma da importação (EN/DE saíam em PT). Use função ou `lambda`.
+- SKILL.md §9: os dois gates entram nas checagens.
+
 ### v2.12 (2026-11-24) — acabamento do Stageshow em todas as telas
 - `estilo-base.md` §5b: o acabamento do Stageshow (respiro ≥ 12 px, nada a 1–3 px, título+subtítulo como um item, rótulo centrado na letra, controle que abraça o conteúdo, colunas alinhadas, um número grande, um conjunto de ícones, IA sem brilhinho, toda mudança se move) vale no app inteiro, mobile e web. O enquadramento continua só na vitrine.
 
