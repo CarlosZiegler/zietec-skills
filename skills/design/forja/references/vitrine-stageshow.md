@@ -1,6 +1,6 @@
 # Vitrine: UI de mentira que parece produto (pitch, landing, bento, cards, teaser)
 
-Destilado do **Stageshow** de Benji Taylor (github.com/benjitaylor/skills, skill `stageshow`, MIT). Vale sempre que a Forja mostra o produto **fora do app**: capa e slides do pitch, hero e seção de features da landing (Main), cards da página Lançamento, screenshots de loja, o teaser e os bentos. As telas do app (canvas de app e flows) continuam inteiras; é a vitrine que muda.
+Destilado do **Stageshow** de Benji Taylor (github.com/benjitaylor/skills, skill `stageshow`, MIT). Vale sempre que a Forja mostra o produto **fora do app**: capa e slides do pitch, hero e seção de features da landing (Main), cards da página Lançamento, screenshots de loja, o teaser e os bentos. As telas do app (canvas de app e flows) continuam inteiras; é a vitrine que muda. As regras de **acabamento** (respiros, alinhamento, ícones, números, movimento de texto) valem também dentro do app, mobile e web: estão no `estilo-base.md` §5b.
 
 Na implementação em React, recomende no CLAUDE.md: `npx skills add benjitaylor/skills --skill stageshow` (tem o kit, os exemplos-ouro e o `film.mjs` que filma e reprova a animação). Aqui na Forja usamos as regras, não o código.
 

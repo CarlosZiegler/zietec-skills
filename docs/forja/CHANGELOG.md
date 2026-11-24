@@ -1,6 +1,9 @@
 # Forja: changelog
 
 
+### v2.12 (2026-11-24) — acabamento do Stageshow em todas as telas
+- `estilo-base.md` §5b: o acabamento do Stageshow (respiro ≥ 12 px, nada a 1–3 px, título+subtítulo como um item, rótulo centrado na letra, controle que abraça o conteúdo, colunas alinhadas, um número grande, um conjunto de ícones, IA sem brilhinho, toda mudança se move) vale no app inteiro, mobile e web. O enquadramento continua só na vitrine.
+
 ### v2.11 (2026-11-24) — Stageshow, Impeccable, Solid Glass e outras fontes
 - Novo `references/vitrine-stageshow.md` (Stageshow, Benji Taylor, MIT): enquadramento de UI de mentira para pitch, landing, bento, cards e teaser; 3–7 palavras reais; herói saindo pela borda com satélites; regras de bento; loop de 10–16 s com pôster.
 - `anti-slop.md`: catálogo do Impeccable (eyebrow proibido, cartão fantasma, faixa lateral, sombra dura, texto em gradiente, bege por reflexo, ponto pulsando, mola em rotina, travessão demais, slogan "não X, Y", superfícies do navegador com tema) e onde a Forja diverge; crítica com rubrica (carga cognitiva, Nielsen 0–4, P0–P3), revisão de movimento e checagem de originalidade.

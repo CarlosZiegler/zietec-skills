@@ -109,6 +109,25 @@ Aplique em toda tela antes de olhar a captura final:
 - **Rótulo de botão centralizado e numa linha só** (regra, não gosto): `.btn`, `.btn2`, pílulas e chips têm `text-align:center; white-space:nowrap`. Se dois botões lado a lado não cabem com o texto inteiro, **empilhe** (coluna de largura total) ou encurte o rótulo; nunca deixe quebrar em duas linhas nem alinhar à esquerda. Vale nos 3 idiomas: alemão é o pior caso.
 - **Constância de marcadores**: um só jeito de dizer "feito" no produto inteiro: círculo na cor primária do produto com check branco, em série, exercício, passo, item de lista e confirmação. Verde (`success`) fica para status **com texto** (pílula "Enviado", mensagem "Código certo"), nunca para o círculo de concluído. Seleção (rádio, plano) é outra coisa e tem o seu marcador próprio, também igual em toda parte. Antes de entregar, procure duas formas diferentes para o mesmo significado (check verde aqui, preto ali; pílula num lugar, texto no outro) e una.
 
+### 5b. Acabamento que vale em toda tela, mobile e web (do Stageshow, `craft.md`)
+
+O enquadramento do Stageshow é só da vitrine (`vitrine-stageshow.md`); o acabamento vale no app inteiro:
+- **Texto nunca encosta:** ≥ 12 px de respiro de qualquer borda de cartão, linha ou painel (8 px em lista densa); vizinhos com `gap` fixo de 8–12 px, nunca sobra de `space-between`.
+- **Nada quase encostando:** bordas a 1–3 px uma da outra parecem acidente; alinhe exato ou afaste ≥ 8 px. E nada termina "quase" na borda: ou respiro inteiro, ou sai dela de propósito.
+- **Título e subtítulo são um item** (4–6 px entre eles); o respiro vem do padding da linha. Mais espaço acima de um título do que abaixo.
+- **Rótulo centrado na letra, não na caixa:** `text-box: trim-both cap alphabetic` em pílula, botão com ícone, inicial no avatar e campo.
+- **Formas aninhadas com padding igual** e raio externo = raio interno + padding (já é a regra concêntrica).
+- **Controle abraça o conteúdo** (nada de `flex: 1` com o conteúdo numa ponta); ícone e chip com `flex: none`.
+- **Colunas alinhadas:** linhas de uma lista dividem a mesma grade; valor à direita muda contra a borda direita.
+- **Um número grande por tela;** os outros são linhas. Valor centralizado centra os dígitos, com o símbolo da moeda pendurado.
+- **Ícones de um conjunto só, um traço, um tamanho;** pequenos (≤ 14 px) preenchidos; nenhum glifo desenhado à mão; emoji não é ícone.
+- **IA sem brilhinho, varinha, estrela ou roxo;** mostre o que ela faz. **Nada de logo inventado** (letra em quadrado colorido).
+- **Ponto, selo e anel ficam dentro da borda** do conteúdo, nunca cortados.
+- **Botão cheio mantém a cor no hover** (um passo da própria cor, nunca vira cinza).
+- **Lista é feita de uma linha-padrão só;** linha montada à mão é onde o padding desanda.
+- **Toda mudança se move** (número rola, rótulo do botão muda no próprio botão, texto digitado vira chip no lugar) e o resultado aparece cheio, nunca uma superfície vazia por um quarto de segundo.
+- **Simplifique antes de polir:** o menor número de superfícies e textos que explicam a tela; borda e selo só quando ganham o lugar.
+
 ## 6. Fluxos de entrada (login e cadastro)
 
 Estude 10–20 telas reais antes (seção 8). O padrão que funciona (Revolut, Lightyear, app do Claude):
