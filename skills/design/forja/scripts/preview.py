@@ -6,6 +6,7 @@
 #   e remove support.js e o bloco de lógica.
 # FORJA_FONTS (variável de ambiente) ou o argumento fonts_dir apontam a pasta das fontes (padrão: ./fonts ao lado do build).
 import re, os
+import html as _html
 from playwright.sync_api import sync_playwright
 
 HERE = os.environ.get("FORJA_BUILD", os.getcwd())
@@ -72,7 +73,8 @@ def fill(html, ctx):
             return ""
         if isinstance(v, bool):
             return "true" if v else "false"
-        return str(v)
+        # o runtime escapa todo hole: HTML num valor aparece como código na tela; aqui também
+        return _html.escape(str(v), quote=True)
     html = re.sub(r"\{\{\s*([^}]+?)\s*\}\}", rep_hole, html)
     html = re.sub(r'\sonClick="[^"]*"', "", html)
     return html

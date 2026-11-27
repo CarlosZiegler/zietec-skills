@@ -24,17 +24,19 @@ This repository follows the folder layout supported by the [Skills CLI](https://
 
 ## At a glance
 
-33 skills in four buckets. Each skill is self-contained: install only the ones you need.
+37 skills in five buckets. Each skill is self-contained: install only the ones you need.
 
 | Bucket | Skills | What you need |
 |---|---|---|
-| [Design](#design) | design-maestro, product-studio, forja, tempera, 21 × apple-design-* | Nothing for the HIG skills. forja and tempera produce their output in Claude Design (claude.ai). |
+| [Product](#product) | produto, nome | Web search for evidence and name availability. |
+| [Design](#design) | design-maestro, product-studio, forja (v2), forja-v1, tempera, simplificar-design, 21 × apple-design-* | Nothing for the HIG skills. forja, forja-v1 and tempera produce their output in Claude Design (claude.ai). |
 | [Print](#print) | blender-print-ready, fdm-print-preflight, bambu-h2c-slice-print, bambu-print-troubleshoot | Blender (with its MCP add-on for live work), Bambu Studio, a Bambu Lab H2C for printing. |
 | [Video](#video) | tutorial-video, ads-video | ffmpeg, Chrome/Chromium, a voice provider. Details in [Requirements](#requirements-video-skills). |
 | [Agents](#agents) | grok-first, opencode-first | Claude Code plus the Grok Build CLI or OpenCode CLI, signed in. |
 
 ## What's new
 
+- **2026-11-22**: **forja v2**: product verdict and name before the screens, 3 directions with a picker, a States page, onboarding and upgrade screens, quality passes (simplify, gridlines, worst case, self-review), a Launch page and handoff files for Claude Code. **forja-v1** stays frozen next to it (commit `64941bb`); see [the changelog](./docs/forja/CHANGELOG.md). New **produto**, **nome** and **simplificar-design** skills, and a [survey of saved skills and tools](./docs/referencias/2026-11-skills-salvas-no-x.md).
 - **2026-11-02**: new **ads-video** skill: short app ads and store promo videos (9:16, 4:5, 1:1, 16:9) with cards, device frames, voice-over, music and sound effects from one JSON config.
 - **2026-10-29**: **tutorial-video** synced with its source: ElevenLabs and Higgsfield voices, `avconvert` fix for simulator recordings, pixelated stills, new scripts.
 - **2026-10-27**: iPhone Duo (foldable) guidance in **apple-design-ios**, navigation and layout skills.
@@ -43,13 +45,22 @@ This repository follows the folder layout supported by the [Skills CLI](https://
 - **2026-10-15**: new **tutorial-video** skill.
 - **2026-09-25**: collection created for skills.sh.
 
+## Product
+
+Deciding what to build and what to call it, before any design.
+
+- **[produto](./skills/product/produto/SKILL.md)**: Decide whether an app or micro-SaaS idea is worth building and sharpen it before design: pain with evidence, ICP, value proposition, pricing, activation, retention, distribution and a Build / Adjust / Stop verdict. Also audits existing products. (Portuguese.)
+- **[nome](./skills/product/nome/SKILL.md)**: Name apps, products and companies: strategy, wide generation, deal-breaker filter, a pairwise tournament, checks in Portuguese, German and English, and availability signals. Also evaluates names you bring. (Portuguese.)
+
 ## Design
 
 Product and design orchestration, plus Apple Human Interface Guidelines skills.
 
 - **[design-maestro](./skills/design/design-maestro/SKILL.md)**: Direct product, brand, website, landing-page, dashboard, and interface design work from brief to handoff.
 - **[product-studio](./skills/design/product-studio/SKILL.md)**: Run a persistent product-and-design operating system for multi-session website, app, brand, and digital-product work.
-- **[forja](./skills/design/forja/SKILL.md)**: Turn an app or micro-SaaS idea into a complete product package in Claude Design (research, 9 mobile + 9 desktop screens with motion, printable A4 product documentation and a 14-slide pitch) in EN · PT · DE, with its own art direction per product, delegated build, pitch completeness gate and in-place updates.
+- **[forja](./skills/design/forja/SKILL.md)** (v2): Turn an app or micro-SaaS idea into a complete product package in Claude Design (product verdict and name, research checked by a second agent, 3 directions, 9 mobile + 9 desktop screens with motion and every state, printable A4 product documentation, a 14-slide pitch, a launch page and handoff files for Claude Code) in EN · PT · DE, with its own art direction per product, delegated build, quality passes, pitch completeness gate and in-place updates.
+- **[forja-v1](./skills/design/forja-v1/SKILL.md)**: The frozen first version of forja (October 2026), kept to compare or roll back. Use only when asked for it explicitly.
+- **[simplificar-design](./skills/design/simplificar-design/SKILL.md)**: Simplify screens, flows and interfaces by removing what does not earn its place: one primary action, fewer elements, colors, sizes and steps, without losing function, states or accessibility. Counts before and after. (Portuguese.)
 - **[tempera](./skills/design/tempera/SKILL.md)**: Turn an app or micro-SaaS idea into a verified product package in Claude Design (research with an evidence registry, mobile and desktop screens with motion, printable docs, pitch, build handoff), with traceability, flow replay and a report of what remains unverified.
 - **[apple-design-principles](./skills/design/apple-design-principles/SKILL.md)**: Apply Apple’s Human Interface Guidelines design principles to product concepts, design tradeoffs, or interface critiques for Apple platforms. Use for reasoning about experience quality rather than detailed component specifications.
 - **[apple-design-ios](./skills/design/apple-design-ios/SKILL.md)**: Design, implement, or review iPhone interfaces using Apple’s iOS Human Interface Guidelines. Use for iOS screen structure, touch ergonomics, adaptive behavior including the foldable iPhone Duo, and integration with iPhone system experiences.
@@ -131,7 +142,8 @@ Skill bodies were **copied** into this monorepo. The original repositories remai
 - [`CarlosZiegler/grok-first`](https://github.com/CarlosZiegler/grok-first) → `skills/agents/grok-first`
 - [`CarlosZiegler/opencode-first`](https://github.com/CarlosZiegler/opencode-first) → `skills/agents/opencode-first`
 - [`CarlosZiegler/tutorial-video-skill`](https://github.com/CarlosZiegler/tutorial-video-skill) → `skills/video/tutorial-video` (templates here are generic examples)
-- `design-maestro`, `product-studio`, `forja` and `tempera` are design skills written here under `skills/design/`
+- `design-maestro`, `product-studio`, `forja`, `forja-v1`, `simplificar-design` and `tempera` are design skills written here under `skills/design/`
+- `produto` and `nome` were written here under `skills/product/`, drawing on the public skills listed in [docs/referencias](./docs/referencias/2026-11-skills-salvas-no-x.md)
 - `ads-video` was written here under `skills/video/`
 
 See [CONTEXT.md](./CONTEXT.md) for how the buckets are organized. Licensed under [MIT](./LICENSE).

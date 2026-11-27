@@ -1,18 +1,40 @@
 ---
 name: forja
-description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no Claude Design: pesquisa, telas mobile e desktop com motion, documentação de produto imprimível e pitch, em EN · PT · DE e com direção de arte própria para cada produto. Use quando o usuário mandar uma ideia de app (texto, link de um produto parecido, PDF ou print) para virar pacote, ou pedir para ajustar/pivotar um pacote Forja já publicado."
+description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no Claude Design: veredito de produto, nome, pesquisa, direções, telas mobile e desktop com motion e todos os estados, documentação de produto imprimível, pitch, material de lançamento e handoff para código, em EN · PT · DE e com direção de arte própria para cada produto. Use quando o usuário mandar uma ideia de app (texto, link de um produto parecido, PDF ou print) para virar pacote, ou pedir para ajustar/pivotar um pacote Forja já publicado, ou pedir uma versão nova (V3, V4…) dele sem perder telas."
 ---
 
-# Forja: da ideia ao pacote de produto
+# Forja v2: da ideia ao pacote de produto
 
-Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com quatro partes:
+> **Versão 2.15** (2026-11-27; v2 de 2026-11-22). A v1 está congelada em `skills/design/forja-v1` (commit `64941bb`). Se o usuário disser "usa a Forja v1" ou não gostar do resultado, use a `forja-v1`. O que mudou está em `docs/forja/CHANGELOG.md` do repositório.
+>
+> Se os arquivos de apoio (`references/`, `scripts/`) não estiverem nesta pasta, por exemplo numa skill salva só com o SKILL.md, clone https://github.com/CarlosZiegler/zietec-skills e use `skills/design/forja/`.
 
-1. **Mobile**: 9 telas de 390 px, protótipo navegável com motion.
-2. **Desktop**: as mesmas 9 telas adaptadas para 1440 px.
-3. **Pitch**: 14 slides 16:9 (1920×1080) no mesmo visual.
-4. **Documentação de Produto**: A4 paginado, cabeçalho e rodapé em toda página, 6 seções.
+Uma ideia entra. Sai **um canvas do Claude Design por ideia**, com estas partes:
 
-Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tela, slide e página (seção 8).
+1. **Direções**: brief de design e 3 direções da tela-chave, com a escolhida marcada.
+1b. **Design system** (craft-system): fundamentos por papel, regras de interação, componentes com matriz de estados e índice, publicado como artifact do tipo Design System, instalado no canvas e com páginas próprias (`references/design-system.md`).
+2. **Mobile**: 9 telas de 390 px, protótipo navegável com motion.
+3. **Desktop**: as mesmas 9 telas adaptadas para 1440 px.
+4. **Estados**: vazio, erro, offline, carregando, pior caso e afins de cada tela.
+4b. **App completo e flows**: todas as telas do v1 (inventário a partir do PRD) e uma página por flow, passo a passo, com cada ação, ramo e estado, como num arquivo de Figma ou no Mobbin (`references/flows.md`). Feature nova num pacote existente = página "<Feature> (aprovar)" com o flow completo. Antes de desenhar cada flow, pesquise a estrutura em flows reais no Mobbin (Chrome do usuário) e no Appllama (`flows.md` §1b); o inventário passa pelo checklist de cobertura por categoria (entrada, núcleo, comunicação, pagamento, perfil, estados).
+5. **Pitch**: 14 slides 16:9 (1920×1080) no mesmo visual.
+6. **Documentação de Produto**: A4 paginado, cabeçalho e rodapé em toda página, 6 seções.
+7. **Lançamento**: screenshots de App Store e roteiro do teaser em vídeo.
+
+Fora do canvas, saem também os **arquivos de handoff** para o Claude Code: `DESIGN.md`, `PRD.md` e `CLAUDE.md` (seção 10).
+
+Tudo sai em **três idiomas, EN · PT · DE**, com seletor de idioma em cada tela, slide e página (seção 8). Direções, Estados, App completo, Flows e Lançamento saem só no idioma-base.
+
+**Skills parceiras** (use se estiverem disponíveis; se não, siga o resumo de cada etapa aqui):
+
+| Skill | Etapa |
+|---|---|
+| `produto` | 0.1: veredito, ICP, ativação, preço, canal |
+| `nome` | 0.2: nome com torneio e checagem em PT/DE/EN |
+| `simplificar-design` | 9: passe de corte antes da auto-revisão |
+| `ads-video` | 10: teaser em vídeo, se o usuário pedir o vídeo pronto |
+| Codex CLI (do usuário) | 4.6: fotos, cenas e modelos 3D gerados com a geração de imagem do Codex |
+| Anti-slop (uizze, ThinkUI, Taste, Vercel, Emil; destilado em `references/anti-slop.md`) | 4: contrato de design; 9: contagens + portão de 6 perguntas |
 
 **Referência de qualidade** (não de visual): o piloto "Zugang", um monitor de acessibilidade BFSG. Ele serve de régua para profundidade, verificação e acabamento. **Não copie as cores, a fonte, os layouts nem os componentes dele.** Cada produto tem direção de arte própria (seção 4).
 
@@ -24,7 +46,17 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/brief-novo-produto.md` | Ao delegar a construção de um produto novo a um subagente |
 | `references/atualizar-produto.md` | Ajuste, pivô, novos links/referências ou retrofit de idiomas num pacote já publicado |
 | `references/build-e-publicacao.md` | Motor local, verificação e publicação no tipo Design; notas aprendidas |
-| `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
+| `references/estados-e-qualidade.md` | Ao desenhar as telas e na verificação: estados, pior caso, mobile-native, coreografia, alinhamento, auto-revisão |
+| `references/lancamento-e-handoff.md` | Depois dos portões: página Lançamento e arquivos de handoff para código |
+| `references/imagens-codex.md` | Ao decidir as imagens: quando gerar, rotas para rodar o Codex, prompts, otimização e espaço reservado |
+| `references/estilo-base.md` | **Antes de qualquer tela**: a base visual padrão (minimal nativo com vidro, legibilidade, componentes, o que varia por produto) |
+| `references/design-system.md` | Logo depois da direção de arte e antes das telas: camadas do design system (craft-system), regras firmes, onde ele mora (artifact Design System + instalado no canvas + páginas + tokens no código) e a auditoria antes da entrega |
+| `references/vitrine-stageshow.md` | Ao montar qualquer vitrine do produto fora do app: capa e slides do pitch, hero e features da landing, bento, cards de lançamento, screenshots de loja e teaser (enquadramento, 3–7 palavras reais, satélites, bento, loop de 10–16 s) |
+| `references/padroes-ui.md` | Ao precisar de um componente além do básico: régua numérica, gráficos (linha de base pessoal, heatmap, anel com parciais), quadro de fila, estados de IA, anatomia de componente; o que não trazer das bibliotecas |
+| `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
+| `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
+| `references/versoes-e-paridade.md` | Quando o usuário pede uma **versão nova** (V3, V4…) de um pacote: alinhar entregáveis, inventário e paridade (nenhuma prancha some), artifacts organizados e índice de entregas, barras fixas e dobra, prints com id estável, deck a partir dos prints, diagramas medidos, marca com pessoa real, tema por plano |
+| `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) e os gates (holes, idioma, sobreposição, barras e dobra, truncamento, paridade, prints, deck) |
 
 ---
 
@@ -37,10 +69,29 @@ Quando faltar algo essencial, use AskUserQuestion no máximo uma vez, com uma op
 - **Ideia** em 1–2 frases, **mercado/país** e **idioma-base da interface**.
 - **Público do pitch**: sócio ou mentor (padrão), investidor, ou agências/canal.
 - **Escopo**: 1 ideia piloto (recomendado) ou lote. Em lote, faça a primeira, peça aprovação e só então replique.
-- **Nome provisório**: se não vier, proponha um curto, pronunciável no mercado-alvo e sem marca conhecida. Confira conotações do nome nos 3 idiomas. Lição: "Anschluss" lembra a anexação da Áustria em 1938.
+- **Nome**: vem da etapa 0.2. Se o usuário já deu um nome, use e só confira conotações nos 3 idiomas. Lição: "Anschluss" lembra a anexação da Áustria em 1938.
 - **Idiomas**: EN · PT · DE é o padrão. Só mude se o usuário pedir.
 
 Sessão sem ninguém para responder: use os padrões e diga quais assumiu.
+
+### 0.1 Produto: vale construir?
+
+Antes das telas, rode a skill `produto` em modo rápido e grave o resultado em `produto_brief.py`. Sem a skill, faça o mínimo:
+
+- **Dor com evidência**: 5 sinais reais com fonte (reviews de concorrentes, fóruns, grupos).
+- **ICP estreito**: quem paga e quem usa, separados.
+- **Momento aha e evento de ativação**, com tempo até o valor em minutos.
+- **Preço** como hipótese: piso de custo + margem, teto de valor; 3 planos com o do meio como alvo.
+- **Gatilho de retenção** da semana 2.
+- **Canal principal** e plano para os 10 primeiros pagantes.
+- **Hipótese mais arriscada**, teste barato e critério de parada.
+- **Veredito**: Construir, Ajustar ou Parar.
+
+O veredito vai no overview. Com **Parar**, diga por quê e só construa se o usuário insistir. Com **Ajustar**, construa já com o ajuste e diga qual foi.
+
+### 0.2 Nome
+
+Rode a skill `nome` em modo rápido: estratégia, geração ampla, filtro, torneio, checagem em PT/DE/EN e sinal de disponibilidade (App Store, web, EUIPO/DPMA/INPI). Leve o top 3 ao overview com a recomendação. Sem resposta do usuário, siga com o recomendado e deixe os outros dois no slide de fechamento do pitch como alternativas.
 
 ---
 
@@ -60,12 +111,15 @@ Pesquise antes de criar qualquer artifact:
   - Metas e preços próprios vão marcados como hipótese.
   - Lacunas viram `[A DEFINIR]` ou `[medir no beta]`.
   - Guarde as URLs para a seção "Fontes" da resposta final.
+- **Checagem por outro agente**: quem pesquisou não confere a si mesmo. Antes de escrever o conteúdo, passe a lista de afirmações (leis, prazos, exceções, preços, números de mercado, "ninguém faz isso") a um subagente separado. Ele abre a fonte de cada uma e marca: confirmada, corrigida ou sem fonte. Sem fonte sai do texto ou vira hipótese. Foi assim que o erro do BFSG teria sido pego.
 
 ---
 
 ## 2. Conteúdo: escreva como dados Python e valide por script
 
 Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`). Verifique contagens e somas com `assert`: total de pontos, histórias por sprint, cada história em exatamente um sprint, MoSCoW, entidades. Não faça essas contas de cabeça.
+
+O conteúdo parte de `produto_brief.py` (etapa 0.1): ICP, aha, evento de ativação, preço, retenção, canal e hipóteses são os mesmos no doc, nas telas e no pitch.
 
 ### 01 · Product Vision Board (Pichler estendido)
 
@@ -81,11 +135,12 @@ Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`)
 
 - **Contexto**: fatos com fonte.
 - **Hipótese central**: 1 frase de efeito + teste mensurável. Exemplo do piloto: "O relatório não é o produto — a prova é."
-- **7 objetivos**: ID, objetivo, linha de base, meta.
+- **7 objetivos**: ID, objetivo, linha de base, meta. Um deles é a **taxa de ativação** (o evento de ativação da etapa 0.1).
+- **Distribuição**: canal principal, por que ele, e o plano para os 10 primeiros pagantes.
 - **3 personas**: iniciais, nome e idade, papel, contexto, 3 objetivos, 3 frustrações, citação.
 - **Escopo**: dentro e fora da v1.
 - **32 requisitos funcionais em MoSCoW**: cerca de 20 Must, 9 Should, 2 Could e 1 Won't explicado.
-- **12 requisitos não funcionais**: inclua "o próprio produto cumpre WCAG 2.1 AA" e a interface em EN/PT/DE.
+- **12 requisitos não funcionais**: inclua "o próprio produto cumpre WCAG 2.1 AA", a interface em EN/PT/DE e "toda tela tem estados vazio, erro e offline definidos".
 - **12 regras de negócio**: trial, limites, validade, cancelamento, linguagem jurídica segura.
 - **8 riscos**: probabilidade, impacto, mitigação.
 
@@ -107,11 +162,13 @@ Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`)
 ### 05 · ARD
 
 - 4 princípios.
-- **Stack padrão**: TanStack Start + React + TS, PostgreSQL + Drizzle, fila no Postgres, workers isolados, hospedagem na UE quando o mercado é europeu.
+- **Stack padrão**:
+  - web e SaaS: TanStack Start + React + TS, PostgreSQL + Drizzle, fila no Postgres, workers isolados, hospedagem na UE quando o mercado é europeu;
+  - app de consumo mobile-first: Expo + Expo UI (a stack do Kada), com o mesmo backend. Diga no overview qual das duas e por quê.
 - 6 camadas, com diagrama.
 - 22 entidades, com as imutáveis marcadas.
 - Cerca de 30 endpoints.
-- 12 eventos e automações.
+- 12 eventos e automações, incluindo o **evento de ativação** e o de upgrade no limite, com nome e propriedades.
 - **Proteção de dados**: DSGVO ou LGPD, conforme o mercado. Inclua sempre **um caso delicado** resolvido (ex.: invisível na interface, presente na exportação legal) e a lista de subprocessadores.
 - Ambientes.
 - 7 ADRs: contexto, decisão, consequências + e −.
@@ -134,13 +191,16 @@ Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`)
 1. **Criação**: `Artifact action=quickstart intent=design`, depois publish com `type_url` + `title` + `auto_open: after_first_write`. Siga as instruções que o tipo devolve.
 
 2. **Páginas** (`canvas.json`):
+   - `direcoes`: as 3 direções da tela-chave e a nota do brief (idioma-base).
    - `mobile`: 3 linhas, uma por idioma.
    - `desktop`: 3 blocos, um por idioma.
+   - `estados`: uma linha por tela (idioma-base).
    - `pitch`, `pitch-en`, `pitch-de` e `doc`, `doc-en`, `doc-de`: uma página por idioma. Assim o Export PDF gera um PDF por idioma.
+   - `lancamento`: screenshots de loja e storyboard do teaser (idioma-base).
    - Abertura: `{"view":"canvas","page":"mobile"}`.
 
 3. **Nomes de arquivo**: ASCII, sem espaço.
-   - `Main.dc.html` é a landing mobile (a entrada); depois `M-*`, `D-*`, `Pitch-NN`, `Doc-NN`.
+   - `Main.dc.html` é a landing mobile (a entrada); depois `M-*`, `D-*`, `Dir-*`, `E-*`, `L-*`, `Pitch-NN`, `Doc-NN`.
    - Os outros idiomas levam sufixo: `Main-EN.dc.html`, `D-Hoje-DE.dc.html`, `Pitch-EN-01.dc.html`, `Doc-DE-01.dc.html`.
 
 4. **Layout no canvas**:
@@ -151,6 +211,9 @@ Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`)
    | Desktop | landing em x 0, primeiro valor em x 1520; grade do app em x 3120 / 4640 / 6160, linhas com +120 |
    | Pitch | 4 por linha: x = c·2000, y = r·1200 |
    | Documentação | 8 por linha: x = c·874, y = r·1243 |
+   | Direções | 3 variantes em x = i·470; nota do brief acima da linha |
+   | Estados | uma linha por tela: x = i·470, y = r·(altura da maior + 343) |
+   | Lançamento | screenshots em x = i·1400; storyboard numa segunda linha |
 
    - Notas `kind:title1` ficam ≥ 223 px acima de cada linha.
    - Cada página tem 1 sticky explicando Play, Export PDF e o seletor. Não passe `fill`: o tipo não aceita "yellow" e o padrão já é amarelo.
@@ -181,47 +244,45 @@ Escreva o conteúdo em módulos (`content_a.py`, `content_b.py`, `content_c.py`)
 
 ---
 
-## 4. Direção de arte: própria em cada produto
+## 4. Direção de arte: base minimal nativa, identidade própria por produto
 
-O usuário quer **design real e variado**: seguir as skills de design, mas **nunca repetir o mesmo visual**. Antes de desenhar, defina a direção de arte do produto e grave-a em `brand.py` (tokens) e num parágrafo "Direção de arte" no doc (seção 01 ou anexo).
+**Padrão de todo pacote: `references/estilo-base.md`** (minimal nativo com vidro, na linha do app novo do Claude, Revolut e Flighty). Leia antes de qualquer tela. Só saia da base se o usuário pedir outro estilo com palavras; nesse caso registre o pedido em Decisões e use a variação livre do fim desta seção.
 
-### 4.1 Decida a partir do produto, não do template
+Grave a direção em `brand.py` (tokens) e num parágrafo "Direção de arte" no doc (seção 01 ou anexo).
 
-Responda por escrito, em 5 linhas:
+### 4.1 Decida a identidade a partir do produto
 
-1. Quem usa, onde e em que estado de espírito. Ex.: motorista no carro ao sol, concurseira à noite, dono de oficina entre obras, dev no terminal.
-2. Que sensação o produto precisa passar. Ex.: calma, precisão, energia, acolhimento, rigor jurídico, calor artesanal.
-3. Que referência do mundo real inspira. Ex.: painel de carro, caderno de estudo, formulário oficial, etiqueta de floricultura, terminal. Não use outro app como referência.
-4. Qual é a assinatura visual: um elemento só dele que se repete com parcimônia.
+Responda em 5 linhas antes de desenhar:
+
+1. Quem usa, onde e em que estado de espírito. Ex.: aluna no intervalo do treino, motorista ao sol, dono de oficina entre obras.
+2. Que sensação o produto precisa passar dentro da base: calma, precisão, energia, acolhimento.
+3. Qual é o **número-herói** ou o objeto central da tela mais usada (estilo Flighty/Revolut).
+4. Qual é a marca pequena do produto (o "spark"): símbolo, monograma ou glifo, pequeno e raro.
 5. O que este produto **não** pode parecer.
 
-### 4.2 Varie de verdade, em pelo menos 4 destes eixos
+Grave também um `design_brief.py`, que vira a nota do topo da página Direções e, no fim, o `DESIGN.md` do handoff:
 
-- **Paleta**:
-  - Não parta sempre do cinza neutro + azul de ação.
-  - Escolha fundo, superfície, tinta, ação e marca próprios. Pode ser fundo quente, papel creme, escuro de verdade (app noturno), alto contraste, tons terrosos ou monocromático com um acento.
-  - Status (erro, alerta, ok) podem ser ajustados à paleta, mantendo forma + texto.
-- **Tipografia**:
-  - Escolha um par do Google Fonts adequado ao produto, por exemplo:
-    - serifada editorial + sans;
-    - grotesca condensada para números grandes;
-    - humanista arredondada para consumidor;
-    - mono para produto dev.
-  - Evite Inter, Roboto, Arial e a fonte usada no produto anterior.
-- **Estrutura da landing**: hero dividido, hero editorial centrado, número gigante, produto em contexto, antes/depois, lista narrativa. Não repita a estrutura "card sobre painel colorido + carrossel de fatos + 3 passos" em todo produto.
-- **Navegação do app**: tab bar com pílula, tab bar só com ícones, barra superior segmentada, botão flutuante de ação, lista-mestre. No desktop: sidebar, topbar, rail estreito ou split view.
-- **Forma**: raios (0–4 px técnico, 12–16 equilibrado, 24+ macio); sombras em camadas versus plano com bordas; densidade compacta versus arejada.
-- **Visualização principal**: anel, número gigante, barra de progresso, linha do tempo, calendário, mapa de calor, gauge, pilha de cartões. Escolha a que o dado pede.
-- **Motion**: a assinatura de movimento muda com o produto. Pode ser contagem, desenho de linha, empilhar cartões, revelar por máscara ou seguir um percurso. Mantenha as regras de 4.4.
-- **Ilustração e ícones**: traço fino, preenchido, geométrico, recorte de papel, ou nenhum.
+- **Produto**: o que é, quem usa, em que aparelho, o trabalho da tela mais usada.
+- **Público e voz**: nível técnico, formalidade, formatos locais.
+- **Clima**: 2–3 palavras + "nunca parecer".
+- **Referências**: cada uma com "pegar: …; evitar: …".
+- **Restrições**: plataformas, WCAG, alvos de toque, tema, um só conjunto de ícones.
+- **Contrato anti-slop**: um acento, uma família de cinzas (fria, da base), escala de raios da base, um conjunto de ícones de traço, um rótulo por ação, e o porquê de cada exceção. Detalhes em `references/anti-slop.md`.
+- **Decisões**: data, decisão, porquê. Atualize ao longo do run.
+- **Perguntas em aberto**.
+
+### 4.2 Varie dentro da base
+
+O que muda de produto para produto (seção 9 do `estilo-base.md`): **acento**, **marca pequena**, **serifa de display** (Newsreader, Source Serif 4, Fraunces ou nenhuma), **fotografia** do Codex, **número-herói e visualização principal** (anel, número gigante, linha do tempo, barra, calendário, mapa) e **modo** (claro por padrão; escuro para uso noturno ou de cabine). Também variam a estrutura da landing (hero dividido, número gigante, produto em contexto, lista narrativa) e a assinatura de motion, sempre com as regras de 4.4.
+
+O que **não** muda: fundo cinza frio quase branco, Inter/Geist na interface, vidro no cromo flutuante, listas sem cartão por linha, ação primária em tinta, legibilidade (corpo ≥ 15 px, nada manuscrito).
 
 **Checagem de diferença**:
 
-- Liste os produtos Forja anteriores com `Artifact action=list type=Design`, ou os que existirem na sessão.
-- Se houver builds locais, leia o `brand.py` de cada um (paleta, fontes, arquétipo) e monte um "conjunto a evitar". Em lotes paralelos, dê a cada subagente uma direção inicial diferente.
-- Compare a nova direção com as últimas: cor de marca, fonte, estrutura da landing, navegação e visualização principal.
-- Se 3 ou mais eixos baterem com algum produto anterior, mude antes de construir. Não repita a combinação fonte + paleta + arquétipo de nenhum produto.
-- O usuário pede sempre para **caprichar no design**: a direção nasce de uma referência do mundo real do produto (caderno quadriculado, desenho técnico, painel de carro), não de um template.
+- Liste os produtos Forja anteriores (`list_artifacts` com type "Design", ou `Artifact action=list type=Design`) e leia o `brand.py` dos builds locais que existirem.
+- O acento e a marca pequena não podem repetir os dos últimos pacotes. Em lotes paralelos, dê a cada subagente um acento diferente.
+
+**Variação livre (só com pedido do usuário)**: paleta própria (fundo quente, escuro de verdade, terrosos), par de fontes fora da base, formas de 0–4 px a 24+ px. Mesmo assim valem a legibilidade e o anti-slop.
 
 ### 4.3 O que não muda (qualidade mínima, vinda das skills de design)
 
@@ -235,14 +296,25 @@ Responda por escrito, em 5 linhas:
 
 ### 4.4 Motion (regras fixas; o estilo varia)
 
-- **Um momento orquestrado por tela**. Entradas escalonadas de 40–80 ms.
-- **Nunca anime ações frequentes.** Hover só dentro de `(hover:hover)`.
+- **Um momento orquestrado por tela**. Antes de cronometrar, dê papel a cada elemento: **protagonista** (move primeiro e mais longe), **apoio** (movimento menor, logo atrás), **decoração** (só fade, ou nada) e **estático**.
+- **Escalonamento não uniforme**: intervalos que encolhem, ordem por importância. No app, 30–80 ms entre itens e total abaixo de 300 ms, animando só os primeiros itens. Na landing, passos de 100–150 ms.
+- **Uma entrada por contêiner**: se o sheet sobe, o conteúdo já está nele. Nunca anime o pai e escalone os filhos.
+- **Nunca anime ações frequentes**: troca de aba, resultado de filtro e itens de menu aparecem juntos, sem animação. Hover só dentro de `(hover:hover)`.
+- **Saídas**: todas juntas, mais curtas (cerca de 2/3 da entrada) e para onde entraram. Quem sai deixa de ocupar espaço na hora.
+- **Toque**: feedback no `:active` (pointer-down), nunca só no clique.
+- **Reduced motion**: colapse a coreografia (sem atrasos nem deslocamento, só opacidade).
 - **Easing**: saída/entrada `cubic-bezier(.23,1,.32,1)`, movimento `(.77,0,.175,1)`, sheet `(.32,.72,0,1)`.
 - **Durações**: toque 120–160 ms, UI até 300 ms, sheet ~420 ms.
 - Em estados que podem ser interrompidos, use `transition`, não `keyframes`.
 - **Kit de CSS de base** (coloque no `<helmet><style>` de cada artboard). É ponto de partida: troque `--focus` pela cor de ação do produto, ajuste durações e crie keyframes próprios para a assinatura de movimento.
 
 ```css
+/* base mobile-native: o que separa "site no navegador" de "app instalado" */
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+input,textarea,select{font-size:16px} /* abaixo de 16 o iOS dá zoom; nunca use user-scalable=no */
+button,[role="button"],[role="tab"],[role="switch"],.chip{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.z-scroll{overflow-y:auto;overscroll-behavior:contain} /* conteúdo de sheet e listas internas */
+.z-safe-b{padding-bottom:calc(var(--pb,16px) + env(safe-area-inset-bottom,0px))} /* tab bar e sheet */
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tn{font-variant-numeric:tabular-nums}
@@ -261,11 +333,58 @@ Responda por escrito, em 5 linhas:
 @keyframes z-pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}}
 @keyframes z-fill{from{transform:scaleX(0)}}
 @keyframes z-out{0%,86%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}} .z-scanlayer{animation:z-out 3000ms forwards}
-/* atrasos: .d0 … .d90 = i·60ms */
+/* atrasos com intervalos que encolhem (nunca uniformes): app .d0 0 · .d1 50 · .d2 90 · .d3 120 · .d4 140 · .d5 155ms, o resto entra com o último; landing .h0 0 · .h1 120 · .h2 220 · .h3 300 · .h4 360ms */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}.z-scanlayer{display:none!important}}
 @media (prefers-reduced-transparency:reduce){.z-glass{backdrop-filter:none!important;background:var(--surface)!important}}
 @media print{*{animation:none!important;transition:none!important}.z-scanlayer{display:none!important}}
 ```
+
+### 4.5 Três direções da tela-chave (antes das 9 telas)
+
+**Antes**, estude telas reais do mesmo tipo no Mobbin (o usuário está logado no Chrome dele) ou no Appllama (`estilo-base.md` §8) e anote os padrões em Referências. Depois de construir, aplique os detalhes do `estilo-base.md` §5 e confira as capturas em 2×.
+
+A direção de arte (4.1–4.2) fixa a marca. As direções testam a **estrutura**. Pegue a tela que mais vende o produto (normalmente Primeiro valor ou Visão geral) e desenhe 3 direções que diferem num eixo:
+
+| Eixo | O que muda |
+|---|---|
+| Estrutura | onde as coisas ficam e como se agrupam |
+| Interação | como a pessoa age (salvar explícito, autosave, edição no lugar, conversa) |
+| Densidade | quanto aparece de uma vez (tabela densa, cards, revelação progressiva) |
+| Ênfase | o que o olho encontra primeiro (status, resumo, próximo passo) |
+| Remoção | o que some (padrões inteligentes no lugar de opções) |
+
+- Cor, tema, fonte e raio **não são eixos** aqui: as 3 usam a mesma direção de arte, dentro da base de `references/estilo-base.md`.
+- Antes de desenhar, escreva a tabela: direção (nome descritivo, nunca "A/B/C"), eixo, valor, custo. Duas linhas com o mesmo eixo e valor: troque uma.
+- Uma direção é deliberadamente mais ousada. Nenhuma é espantalho.
+- Mesmos dados realistas, mesmo tamanho, mesma fidelidade, motion incluído.
+
+**Protótipo com seletor**: um `direcoes.html` local e autocontido que mostra uma direção por vez em tamanho real:
+
+- pílula escura de vidro fixa no rodapé, centralizada (`rgba(10,10,10,.82)`, blur 12px, fonte do sistema 13 px, ativo com fundo `rgba(255,255,255,.12)`);
+- um `<button>` numerado por direção, teclas 1–3 e R para repetir a entrada;
+- troca instantânea, sem animação. O seletor não leva os tokens do produto.
+
+**Parada** (só com o usuário presente e fora de lote):
+
+- Envie o `direcoes.html` com SendUserFile (`display: render`) e pergunte com AskUserQuestion qual seguir, a recomendada primeiro, com o porquê. Dá para combinar.
+- Com subagente: ele constrói as direções, devolve o arquivo e espera. O orquestrador pergunta e retoma o mesmo subagente com a escolha (`SendMessage`).
+- Rejeitou as três: reescreva o problema com o motivo dado e diverja de novo, nunca ajuste as mesmas.
+- Sem ninguém para responder, em lote ou se o usuário pediu "constrói direto": siga a recomendada e diga isso na entrega.
+
+Registre a escolha em Decisões. A página Direções guarda as 3 variantes, com a vencedora marcada na legenda.
+
+### 4.6 Imagens geradas com o Codex CLI
+
+Interface é HTML/CSS/SVG. Mas onde um desenho em CSS fica com cara de rascunho (pessoa, produto em uso, ambiente, corpo ou objeto em 3D), **gere a imagem com o Codex CLI do usuário**, que usa a assinatura dele. Exemplo: no hero de um app para mulheres, uma foto editorial de uma mulher real e fictícia treinando, não uma silhueta de boneco.
+
+- **Logo depois da direção de arte**, liste as imagens do pacote (6 a 12) em `build/imagens/prompts.json`: um prefixo `estilo` que amarra todas à direção de arte, a descrição de cada uma, o formato e o `alt` em PT, EN e DE.
+- **Gere** com `scripts/gen_images.py` (chama `codex exec` com a geração de imagem nativa e converte para WebP). Rotas: shell no Mac do usuário; na nuvem, `npm i -g @openai/codex` + `codex login --device-auth`, com o link e o código enviados ao usuário; sem Codex, espaço reservado e `prompts.json` pronto para depois.
+- **Comece o login cedo** (na etapa 0) e siga construindo enquanto o usuário entra; as imagens só precisam estar prontas antes das telas finais.
+- **Olhe cada imagem** antes de usar (mãos, rosto, texto inventado, anatomia) e regere só a que falhar.
+- **Nunca**: pessoa real identificável (o cliente, o fundador), logos ou marcas, texto dentro da imagem, antes/depois de corpo como promessa.
+- **Publicação das imagens**: o tipo Design não serve imagem solta em `project/`. Suba cada `.webp` como asset do canvas (`upload_asset`, ou `asset: true` no Artifact) e use a url `/_blob/<id>` no `<img src>`. Guarde o mapa id → url em `build/img_blobs.json` e aplique-o no fim do build, para que um rebuild não volte aos caminhos locais. As mesmas imagens servem aos 3 idiomas, aos slides e às screenshots de loja; só o `alt` muda.
+
+Detalhes em `references/imagens-codex.md`.
 
 ---
 
@@ -287,14 +406,27 @@ Responda por escrito, em 5 linhas:
 ### Conjunto padrão (9 telas; os papéis são fixos, a forma varia)
 
 1. **Landing**: promessa, prova (fatos com fonte), como funciona, diferencial, preços com toggle interativo, bloco de canal/agência, CTA, rodapé.
-2. **Primeiro valor**: o "aha" em menos de 1 minuto, com animação. O resultado entra depois do progresso, com um atraso de cerca de 2,5 s.
-3. **Visão geral**: a métrica principal, blocos de contagem, próximo passo, alertas.
+2. **Primeiro valor**: o "aha" em menos de 1 minuto, com animação. O resultado entra depois do progresso, com um atraso de cerca de 2,5 s. Entrega o resultado prometido antes de pedir cadastro ou ensinar mecânica.
+3. **Visão geral**: a métrica principal, blocos de contagem, próximo passo, alertas. Nunca vazia: dado de exemplo ou primeiro passo guiado.
 4. **Lista com filtro**: filtro interativo, `sc-for` sobre dados JSON na lógica.
 5. **Detalhe**: ação principal que abre um sheet (`sc-if`) com progresso e depois sucesso. No desktop vira diálogo centralizado. O scrim é um `<button tabindex="-1" aria-label>` e o sheet tem botão X.
-6–8. **Recursos secundários**, conforme o produto.
+6. **Entrada + onboarding ativo**: antes, o fluxo de entrada do `estilo-base.md` §6 (boas-vindas com "Criar conta"/"Entrar", entrar com Apple/Google/e-mail, código de 6 dígitos) como artboards 6a–6c; depois, no máximo 3 passos que levam ao evento de ativação, com progresso visível e celebração quando ele acontece. Atrito declarativo (que qualifica) fica; atrito administrativo sai.
+7. **Upgrade no limite**: o momento em que a pessoa bate no limite do plano, enquadrado como o que ela perde, com os 3 planos (o do meio em destaque). Nunca um paywall que interrompe sem motivo.
+8. **Recurso secundário**, conforme o produto.
 9. **Visão do canal** (agência, escritório, clínica, time) com white-label.
 
 O mínimo são **3 interações reais**: toggle, filtro e sheet. A lógica usa `class Component extends DCLogic` com `this.state` e `setState`.
+
+### Estados (página Estados)
+
+Antes de desenhar, liste os estados de cada tela em `content_*.py`, marcando cada item como **vale**, **não vale** (com o porquê) ou **em aberto**. Catálogo, regras e o fixture de pior caso estão em `references/estados-e-qualidade.md`. Resumo:
+
+- **Dados**: vazio na primeira vez, vazio por filtro, um item, muitos, texto muito longo, campos opcionais faltando.
+- **Sistema**: carregando (skeleton no layout final), não carregou, offline, falha parcial, lento, mudou enquanto via, já feito por outra pessoa, expirado.
+- **Atividade**: em andamento, concluído com Desfazer, pausado vs falhou.
+- **Pessoas**: papel e permissão, primeira vez vs recorrente.
+
+Estado que muda a tela inteira ganha artboard (`E-04-vazio`); estado que muda uma parte vai na folha da tela (`E-04-folha`). A tela de lista ganha um artboard de pior caso (`E-04-pior-caso`) com nomes longos do mercado, contagem 1 e números grandes no formato do locale.
 
 ---
 
@@ -324,6 +456,8 @@ A documentação usa a direção de arte do produto: fonte, cor de marca, estilo
 
 ## 7. Pitch (14 slides de 1920×1080, por idioma)
 
+**Vitrine:** toda tela do produto mostrada no pitch, na landing e no Lançamento segue `references/vitrine-stageshow.md`: um herói grande saindo pela borda com no máximo um ou dois satélites de tipos diferentes, 3–7 palavras reais, nada de celular inteiro flutuando com ar nos quatro lados; a seção de features da landing é um bento planejado em tabela. Sem rótulo (eyebrow) acima dos títulos dos slides; o número do slide no rodapé basta.
+
 **Moldura** (no estilo do produto):
 
 - logo + rótulo + seletor de idioma no topo (top 56);
@@ -350,7 +484,7 @@ A documentação usa a direção de arte do produto: fonte, cor de marca, estilo
 5. Tese
 6. Produto (3 celulares)
 7. Concorrência (matriz ✓ / ½ / ×)
-8. Modelo e canais
+8. Modelo e canais (canal principal e plano dos 10 primeiros pagantes)
 9. 5 hipóteses (precisa ser verdade / como testo / sinal)
 10. Riscos
 11. Plano de 60 dias + critério da v1
@@ -417,7 +551,7 @@ Renderize e **olhe** os 42 slides (14 × 3 idiomas), não só uma amostra. Só p
 
 ## 9. Verificação local antes de publicar
 
-As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py` e `i18n.py`.
+As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py`, `i18n.py`, `i18n_check.py`, `holes_check.py`, `overlap_check.py`, `bars_check.py`, `trunc_check.py`, `parity_check.py`, `prints.py` e `deck_check.py` (os cinco últimos usam a base `_common.py`).
 
 - **Fontes**: `curl` com user-agent de Chrome em `fonts.googleapis.com/css2?...`, depois baixe os woff2 e gere um `local.css` (`scripts/fetch_fonts.py`). Nunca desligue TLS.
 - **Pré-visualização**: um renderizador mínimo que preenche `{{hole}}`, `sc-for` e `sc-if` com o estado padrão e remove `support.js` e o bloco de lógica. Use-o para medir a altura natural e fazer screenshots.
@@ -426,23 +560,60 @@ As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_font
   - lógica: rode cada `class Component` no Node com um DCLogic falso, chame os handlers e confirme que todo hole do template existe em `renderVals()`;
   - JSON do `data-props` válido;
   - nenhum `{{` fora do lugar;
+  - **hole é texto**: o runtime escapa todo `{{ }}`, então HTML num valor (um `<svg>` de ícone, um `<b>`) aparece como código na tela. Ícone por item vai no template, escolhido por classe (`class="mi ic-{{ x.c }}"` + CSS) ou `sc-if`. Gate: `python3 scripts/holes_check.py project/*.dc.html` com 0 FAIL;
+  - **idioma congelado**: lista com `T()` no topo do módulo é avaliada uma vez, no idioma da importação, e EN/DE saem em PT. Gate: `python3 scripts/i18n_check.py build/*.py` com 0 FAIL;
+  - **sobreposição**: nada de texto sobre texto, controle sobre texto, nem elemento `position:absolute` com tabela ou lista cobrindo o resto da tela. Causa mais comum: classe da tela com o mesmo nome de uma classe global (ex.: `.pm`, marcador de progresso absoluto, numa `<table>`). Use nomes com prefixo da tela e procure colisões com o CSS base antes de criar classe. Exceções já previstas: badge, knob do switch, celular do pitch, camadas (sheet, dialog, menu, toast, dock, barra de abas, painel lateral) e texto cortado por overflow. Gate: `FORJA_FONTS=build/fonts python3 scripts/overlap_check.py project/*.dc.html` com 0 FAIL, nos dois canvases;
+  - **barras e dobra**: tab bar, dock, composer e CTA fixo ocupam espaço no fluxo; nada de texto ou imagem atrás deles ou do home indicator, e nenhum elemento cortado pela borda de baixo do print padrão (o último visível termina inteiro). Gate: `python3 scripts/bars_check.py project --fonts build/fonts` com 0 falhas, em todos os canvases (detalhes em `references/versoes-e-paridade.md` §4);
+  - **truncamento**: nenhum texto cortado por largura, reticências ou recorte de cartão/pílula/nó. Gate: `python3 scripts/trunc_check.py project --fonts build/fonts` com 0;
+  - **paridade** (versão nova de pacote): `python3 scripts/parity_check.py --old … --new … --map state/paridade.json` com 0 problemas; feature pedida sem tela também é falha (Mapa de features);
+  - **deck**: `python3 scripts/deck_check.py <pasta do deck> --blobs <id→arquivo>` com 0 (área segura, cover que corta, imagem cortada ou encavalada) e olhar os PNGs;
   - **links**: todo `href="*.dc.html"` existe em `project/`, e o seletor de cada arquivo aponta para o equivalente certo e marca o atual;
   - **idioma**: procure sobras do idioma errado em cada conjunto;
   - **diferença de design**: a checagem de 4.2.
 - **Falsos positivos conhecidos**: carrossel horizontal, conteúdo cortado dentro dos celulares do pitch, animação de entrada medida no meio.
 - **Screenshots**: em modo reduced-motion (estado final) e alguns no meio da animação. Inclua Main nos 3 idiomas, telas em DE (o mais longo), slides 1/6/7 e a capa, o sumário e páginas densas do doc em cada idioma. Olhe todos.
-- **Revisão de design** antes de publicar: contraste medido, alvos, estados vazio e erro, teste "parece feito por IA?", teste "parece com o produto anterior?". Corrija antes de publicar.
+- **Passes de qualidade**, nesta ordem (detalhes em `references/estados-e-qualidade.md`):
+  1. **Simplificar**: skill `simplificar-design` em modo autocheck nas telas 1–3 e 6–7. Conte elementos, ações primárias, cores e tamanhos antes e depois; corte o que não ganha seu lugar sem perder estados nem acessibilidade.
+  2. **Alinhamento (gridlines)**: `probe.js` de `pritamux/gridlines` (MIT) no preview local, a 390 e 1440 px, com sheets abertos. Cada contêiner com linha de texto, linha de caixa e linha final; corrija no padding do contêiner. Aprovado: todo item a no máximo 1 px da sua linha.
+  3. **Pior caso**: renderize a lista com o fixture de pior caso e corrija o que quebrar.
+  4. **Anti-slop**: `python3 build/slop_check.py project --radii <escala>` até zerar os FAIL (cada WARN corrigido ou com porquê no `design_brief.py`); depois responda as 6 perguntas (específico, evidência, estados, conteúdo, hierarquia, limites honestos) em `build/anti_slop.md`. Regras de copy e de interface e as metas em `references/anti-slop.md`.
+  - **Imagens**: toda imagem foi olhada; nenhuma pessoa real, logo ou texto embutido; `alt` nos 3 idiomas; `width`/`height` fixos.
+  5. **Auto-revisão de design**: renderize e olhe. O que vejo primeiro, é o mais importante, qual é a próxima ação? Depois hierarquia, espaço, estabilidade (nada muda de tamanho ao carregar, trocar rótulo ou alternar Mensal/Anual), interação, contraste medido, texto (`text-wrap: balance` em títulos), consistência e motion. Também alvos, estados e os testes "parece feito por IA?" e "parece com o produto anterior?".
+  - Classifique os achados (bloqueia > atrasa > parece descuidado), corrija dentro do escopo, renderize de novo e guarde a lista do que mudou para a entrega.
 
 O tipo Design pede para não verificar depois de publicar sem o usuário pedir. Toda verificação acontece localmente, antes.
 
 ---
 
-## 10. Entrega
+## 10. Lançamento e handoff
+
+Depois dos portões. Detalhes, tamanhos e modelos dos arquivos em `references/lancamento-e-handoff.md`.
+
+**Página Lançamento** (idioma-base):
+
+- **6 screenshots de App Store** (1290×2796): a tela real dentro de uma moldura de iPhone desenhada em CSS, com um título de benefício por imagem. A ordem segue a história: aha, prova, diferencial, retenção, canal, preço.
+- **Storyboard do teaser** (15–30 s, 9:16): 6–8 cenas com tela, frase de narração e duração. É o roteiro que a skill `ads-video` (ou hyperframes) transforma em vídeo; o vídeo só é gerado se o usuário pedir.
+
+**Arquivos de handoff** (enviados com SendUserFile, fora do canvas):
+
+- `DESIGN.md`: o `design_brief.py`, os tokens do `brand.py`, componentes, motion, estados e a direção escolhida.
+- `PRD.md`: o PRD e as user stories do doc, em markdown, no idioma-base.
+- `CLAUDE.md`: stack (web ou Expo), comandos, regras de qualidade, como verificar o próprio trabalho de ponta a ponta e as skills recomendadas para a implementação.
+
+---
+
+## 11. Entrega
 
 Resposta curta, no idioma do usuário:
 
+- o veredito de produto em 1 linha (e o ajuste, se houve);
+- o nome escolhido e as 2 alternativas;
 - o que está no canvas e onde tocar em Play;
-- a direção de arte em 1 linha (paleta, fonte, ideia);
+- a direção escolhida (ou assumida, se ninguém respondeu) e a direção de arte em 1 linha (paleta, fonte, ideia);
+- o que os passes de qualidade corrigiram e os estados que ficaram em aberto;
+- as contagens finais do `slop_check.py`, os WARN mantidos com o porquê e as 6 respostas do portão anti-slop;
+- as imagens geradas (quantas, com qual rota) e as que ficaram como espaço reservado;
+- os arquivos de handoff enviados;
 - o que é hipótese;
 - qualquer correção de afirmação anterior ou da própria ideia, como concorrente que já faz o mesmo ou regra legal diferente;
 - aviso de que o link é privado até ser compartilhado;
@@ -455,7 +626,9 @@ Resposta curta, no idioma do usuário:
 
 Para montar a lista, use `Artifact action=list` (limit alto) e filtre os títulos no formato "<Nome> · <descrição>" que são pacotes Forja; o mais novo primeiro, o piloto por último. Isso vale também quando um pacote é ajustado ou pivotado (atualize a linha dele).
 
-Ofereça o próximo passo, como replicar em outra ideia ou trocar o público do pitch.
+Ofereça o próximo passo, como replicar em outra ideia, trocar o público do pitch ou gerar o teaser em vídeo.
+
+**Aprender com as correções**: se o usuário corrigiu algo de design durante o run (pediu, editou ou rejeitou), transforme cada correção que valeria para outro produto numa regra com o porquê. Use o porquê dele; se for inferido, confirme antes. Proponha as regras como edição desta skill. Nenhuma regra que ele não expressou.
 
 ---
 
@@ -478,11 +651,32 @@ Se houver rede, releia estas páginas para atualizar valores e buscar ideias de 
 - brandkit (skills.sh): para montar paleta e tipografia de marca por produto
 - critique: https://skills.sh/pbakaus/impeccable/critique
 - Para a landing: seo-audit (https://skills.sh/coreyhaines31/marketingskills/seo-audit) e ai-seo (https://skills.sh/coreyhaines31/marketingskills/ai-seo)
+- craft (https://github.com/diego3g/craft, MIT): brief DESIGN.md, catálogo de estados, eixos de divergência, regras de crítica
+- emilkowalski/skills (https://github.com/emilkowalski/skills, MIT): prototype, mobile-native, choreograph, break-ui, learn-taste; animate-expo na implementação em Expo
+- Stageshow (github.com/benjitaylor/skills, MIT): vitrine de UI para marketing, destilado em `references/vitrine-stageshow.md`; na implementação React, instale a skill
+- Impeccable (impeccable.style, Apache-2.0): catálogo anti-slop e rubrica de crítica, destilados em `references/anti-slop.md`; o detector roda em CI no repositório do produto (`npx impeccable`)
+- aiforui.dev (Emil Kowalski): animation-vocabulary, gestures, review/find/improve/remove-animations, animation-performance, break-ui, learn-taste
+- MengTo/skills (MIT): design-first-ui-prompting (ordem objetivo → formato → layout → tipo → cor → restrições, variantes em vez de rerolar, negativos como guarda; vale para os prompts do Codex), workflow-score-to-target, audit-reference-originality, estilos de ilustração com paleta medida
+- Solid Glass (deeplethe/solid-glass, MIT): espessura do vidro em 3 níveis e estado único, em `references/estilo-base.md`
+- Open Design (nexu-io/open-design, Apache-2.0): estúdio local com 151 design systems em DESIGN.md; alternativa local para explorar direções, compatível com o nosso DESIGN.md
+- Bibliotecas de componentes (padrões em `references/padroes-ui.md`): bencho.dev, uiarc.dev, boardui.com, pro.beui.dev, kobra.systems, affectui.com, libraries.dev, ui.watermelon.sh
+- Flows reais: Mobbin (https://mobbin.com, logado no Chrome do usuário; menu Flows) e Appllama (MCP, skills MIT em github.com/Appllama/appllama-skills)
+- gridlines (https://github.com/pritamux/gridlines, MIT): passe de alinhamento com `probe.js`
+- anti-ui-slop (https://github.com/uizze/uizze/tree/main/skills/anti-ui-slop, Apache-2.0): contrato, contagens rápidas, craft e auditoria
+- thinkui-anti-slop (https://thinkui.xyz/skills, licença não declarada): só a ideia do portão de 6 perguntas, reescrita
+- taste-skill (https://github.com/Leonxlnx/taste-skill, MIT): palavras e frases de slop, regras de copy, "um sistema"
+- web-design-guidelines (https://github.com/vercel-labs/agent-skills, MIT): regras de interface; rode-o também no código, na implementação
+- impeccable distill (https://github.com/pbakaus/impeccable, Apache-2.0): base da `simplificar-design`
+- revenue-centric-design (https://github.com/heliocosta-dev/revenue-centric-design, licença própria, nada de apostas): base da `produto`
+- device-frames, hyperframes e brag: molduras de aparelho e teaser em vídeo para a página Lançamento
+- Levantamento completo dos salvos do X: `docs/referencias/2026-11-skills-salvas-no-x.md` no repositório
 
 **Cuidados**:
 
+- **craft**: o plugin instala um hook que roda no início de toda sessão. Use só as regras destiladas aqui.
 - **design-review**: manda um ping de uso para um servidor externo a cada revisão, e o modo Pro envia o design para fora.
 - **critique**: roda `npx impeccable` e injeta um script na página.
 - **claude-handoff**: aparece com auditoria "Warn" no skills.sh.
+- **taste-skill**: instala um hook `Stop` e um gate em Node + Chrome. **ThinkUI e uizze**: o MCP de referências é pago (opcional); sem ele, a etapa de evidência fica registrada como não feita.
 
 Não execute nada disso sem o usuário pedir.
