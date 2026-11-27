@@ -15,7 +15,7 @@ import preview as P
 
 CTX_JS = r"""
 const fs = require('fs');
-const s = fs.readFileSync(process.argv[1], 'utf8');
+const s = fs.readFileSync(process.argv[2], 'utf8');
 const m = s.match(/<script type="text\/x-dc" data-dc-script data-props='([^']*)'>([\s\S]*?)<\/script>/);
 if (!m) { process.stdout.write('{}'); process.exit(0); }
 class DCLogic { constructor() { this.props = {}; this.state = undefined; } setState(o) { this.state = Object.assign({}, this.state || {}, o); } forceUpdate() {} }

@@ -2,6 +2,9 @@
 
 
 
+### v2.15.1 (2026-11-27)
+- Correção: o `CTX_JS` do `overlap_check.py` lia `process.argv[1]` (o próprio script) em vez de `process.argv[2]` (a prancha). Com isso, o estado de `renderVals()` nunca entrava, e os gates de sobreposição, barras e truncamento mediam as telas sem estado. Achado no Salles V5.
+
 ### v2.15 (2026-11-27) — versões sem perder conteúdo, barras e dobra, deck a partir dos prints
 Nasceu no Salles Club. Foram 4 versões em 5 dias, mais de 500 pranchas e um deck de 73 slides para reunião com o cliente. As reclamações do usuário viraram regra: "não quero a cada versão perder conteúdos", "quero os artifacts organizados", "imagens do celular encavaladas, telas cortando" e "diagramas feios".
 - Novo `references/versoes-e-paridade.md`, que cobre:
