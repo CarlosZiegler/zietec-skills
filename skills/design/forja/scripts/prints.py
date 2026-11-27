@@ -30,9 +30,12 @@ def main():
     pairs = [x.split("=", 1) for x in a if "=" in x and not x.startswith("--")]
     _, opt = C.parse([x for x in a if "=" not in x])
     idx_path = os.path.join(out, "index.json")
-    old = {e["uid"] if "uid" in e else e["arquivo"]: e for e in (json.load(open(idx_path)) if os.path.exists(idx_path) else [])}
+    old = {}
+    for e in (json.load(open(idx_path)) if os.path.exists(idx_path) else []):
+        u = e.get("uid") or e["arquivo"]
+        old[u] = e; old[u[:-4] if u.endswith(".png") else u + ".png"] = e  # aceita uid com e sem .png
     used = {e["id"] for e in old.values()}
-    index = [e for e in old.values() if e.get("canvas") not in {c for c, _ in pairs}]
+    index = list({id(e): e for e in old.values() if e.get("canvas") not in {c for c, _ in pairs}}.values())
     tmp = os.path.join(tempfile.gettempdir(), "forja_print.html")
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
@@ -48,7 +51,7 @@ def main():
                 path = os.path.join(proj, f); bd = c.get("boards", {}).get(f, {})
                 w, h = (bd["w"], bd["h"]) if "w" in bd else O.size_of(open(path).read())
                 titulo = bd.get("name") or f[:-8]; uid = cv + "/" + f[:-8] + ".png"
-                e = old.get(uid) or old.get(cv + "/" + f[:-8] + ".png")
+                e = old.get(uid) or old.get(cv + "/" + f[:-8])
                 if e:
                     pid = e["id"]
                 else:

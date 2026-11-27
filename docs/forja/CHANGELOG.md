@@ -2,6 +2,9 @@
 
 
 
+### v2.15.2 (2026-11-27)
+- `prints.py` aceita `uid` com e sem `.png` no índice antigo, para não trocar ids de prints já usados no deck. Achado no Salles V5.1.
+
 ### v2.15.1 (2026-11-27)
 - Correção: o `CTX_JS` do `overlap_check.py` lia `process.argv[1]` (o próprio script) em vez de `process.argv[2]` (a prancha). Com isso, o estado de `renderVals()` nunca entrava, e os gates de sobreposição, barras e truncamento mediam as telas sem estado. Achado no Salles V5.
 
