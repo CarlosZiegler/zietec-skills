@@ -1,6 +1,29 @@
 # Forja: changelog
 
 
+
+### v2.15 (2026-11-27) — versões sem perder conteúdo, barras e dobra, deck a partir dos prints
+Nasceu no Salles Club. Foram 4 versões em 5 dias, mais de 500 pranchas e um deck de 73 slides para reunião com o cliente. As reclamações do usuário viraram regra: "não quero a cada versão perder conteúdos", "quero os artifacts organizados", "imagens do celular encavaladas, telas cortando" e "diagramas feios".
+- Novo `references/versoes-e-paridade.md`, que cobre:
+  - alinhar o que vai ser entregue antes de começar;
+  - inventário das versões anteriores e Mapa de features (feature pedida em reunião sem tela = falha);
+  - versão nova em artifacts novos, com títulos `<Produto> · V<n> · <superfície>`, páginas em ordem fixa e um artifact "Índice de entregas";
+  - paridade com status fechados;
+  - barras fixas ocupando espaço no fluxo e encaixe da dobra;
+  - prints com id estável e deck a partir deles (chave → id do print, caixa na proporção do print, nada encavalado);
+  - diagramas medidos (grid, nós com altura automática, conectores ortogonais com raio limitado);
+  - marca com pessoa real (só molduras);
+  - tema por plano.
+- Novos scripts:
+  - `bars_check.py`: barras e dobra; no Salles foram 323 achados → 0;
+  - `trunc_check.py`: truncamento; 27 → 0;
+  - `parity_check.py`: rascunho e validação do mapa de paridade;
+  - `prints.py`: prints 2x com `index.json` estável e versões longas;
+  - `deck_check.py`: área segura, cover que corta, imagem cortada, celulares encavalados;
+  - `_common.py`: base comum.
+- SKILL.md: descrição cobre "versão nova"; §9 ganha os gates de barras, truncamento, paridade e deck; tabela de referências e de scripts atualizada.
+- README reescrito: o que a skill entrega, como roda, tabela de todos os scripts e comparação v1 × v2.
+
 ### v2.14 (2026-11-24) — sobreposição vira gate
 - Achado no Corner: a tabela de “Quem vê o quê” usava `class="tbl pm"`; `.pm` é o marcador de progresso global (absoluto, com translateX), e a tabela cobria a barra lateral. Nenhum gate via, porque overflow e botões medem bordas, não camadas.
 - Novo `scripts/overlap_check.py`: renderiza com o preview (holes escapados) e marca texto sobre texto (caixas de texto visíveis que se cruzam, fora de pais comuns, tolerância de 2 px), controle sobre texto e elemento absoluto/fixo com tabela ou lista cobrindo texto de fora. Ignora badge, knob, celular do pitch, camadas (dialog, sheet, menu, toast, dock, abas, painel lateral) e mede só a parte visível de texto cortado por overflow.

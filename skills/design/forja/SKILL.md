@@ -1,11 +1,11 @@
 ---
 name: forja
-description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no Claude Design: veredito de produto, nome, pesquisa, direções, telas mobile e desktop com motion e todos os estados, documentação de produto imprimível, pitch, material de lançamento e handoff para código, em EN · PT · DE e com direção de arte própria para cada produto. Use quando o usuário mandar uma ideia de app (texto, link de um produto parecido, PDF ou print) para virar pacote, ou pedir para ajustar/pivotar um pacote Forja já publicado."
+description: "Transforma uma ideia de app ou micro-SaaS num pacote completo no Claude Design: veredito de produto, nome, pesquisa, direções, telas mobile e desktop com motion e todos os estados, documentação de produto imprimível, pitch, material de lançamento e handoff para código, em EN · PT · DE e com direção de arte própria para cada produto. Use quando o usuário mandar uma ideia de app (texto, link de um produto parecido, PDF ou print) para virar pacote, ou pedir para ajustar/pivotar um pacote Forja já publicado, ou pedir uma versão nova (V3, V4…) dele sem perder telas."
 ---
 
 # Forja v2: da ideia ao pacote de produto
 
-> **Versão 2** (2026-11-22). A v1 está congelada em `skills/design/forja-v1` (commit `64941bb`). Se o usuário disser "usa a Forja v1" ou não gostar do resultado, use a `forja-v1`. O que mudou está em `docs/forja/CHANGELOG.md` do repositório.
+> **Versão 2.15** (2026-11-27; v2 de 2026-11-22). A v1 está congelada em `skills/design/forja-v1` (commit `64941bb`). Se o usuário disser "usa a Forja v1" ou não gostar do resultado, use a `forja-v1`. O que mudou está em `docs/forja/CHANGELOG.md` do repositório.
 >
 > Se os arquivos de apoio (`references/`, `scripts/`) não estiverem nesta pasta, por exemplo numa skill salva só com o SKILL.md, clone https://github.com/CarlosZiegler/zietec-skills e use `skills/design/forja/`.
 
@@ -55,7 +55,8 @@ Arquivos de apoio (leia quando a etapa pedir):
 | `references/padroes-ui.md` | Ao precisar de um componente além do básico: régua numérica, gráficos (linha de base pessoal, heatmap, anel com parciais), quadro de fila, estados de IA, anatomia de componente; o que não trazer das bibliotecas |
 | `references/flows.md` | Depois das 9 telas e dos Estados: inventário do app, página por flow (caminho principal, ramos, alternativos), notas por passo, protótipo tocável; e para toda feature nova pedida depois |
 | `references/anti-slop.md` | Ao fechar a direção de arte (contrato) e no passe anti-slop da seção 9: o que conta como slop, regras de copy e de interface, contagens e as 6 perguntas |
-| `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) |
+| `references/versoes-e-paridade.md` | Quando o usuário pede uma **versão nova** (V3, V4…) de um pacote: alinhar entregáveis, inventário e paridade (nenhuma prancha some), artifacts organizados e índice de entregas, barras fixas e dobra, prints com id estável, deck a partir dos prints, diagramas medidos, marca com pessoa real, tema por plano |
+| `scripts/` | Ferramentas reutilizáveis do motor (fontes, preview, overflow, lógica, links/idioma, contraste, i18n) e os gates (holes, idioma, sobreposição, barras e dobra, truncamento, paridade, prints, deck) |
 
 ---
 
@@ -550,7 +551,7 @@ Renderize e **olhe** os 42 slides (14 × 3 idiomas), não só uma amostra. Só p
 
 ## 9. Verificação local antes de publicar
 
-As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py`, `i18n.py`, `i18n_check.py`, `holes_check.py` e `overlap_check.py`.
+As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_fonts.py`, `preview.py`, `verify_pages.py`, `checklogic.js`, `check_links.py`, `contrast.py`, `i18n.py`, `i18n_check.py`, `holes_check.py`, `overlap_check.py`, `bars_check.py`, `trunc_check.py`, `parity_check.py`, `prints.py` e `deck_check.py` (os cinco últimos usam a base `_common.py`).
 
 - **Fontes**: `curl` com user-agent de Chrome em `fonts.googleapis.com/css2?...`, depois baixe os woff2 e gere um `local.css` (`scripts/fetch_fonts.py`). Nunca desligue TLS.
 - **Pré-visualização**: um renderizador mínimo que preenche `{{hole}}`, `sc-for` e `sc-if` com o estado padrão e remove `support.js` e o bloco de lógica. Use-o para medir a altura natural e fazer screenshots.
@@ -562,6 +563,10 @@ As ferramentas estão em `scripts/` (veja o cabeçalho de cada uma): `fetch_font
   - **hole é texto**: o runtime escapa todo `{{ }}`, então HTML num valor (um `<svg>` de ícone, um `<b>`) aparece como código na tela. Ícone por item vai no template, escolhido por classe (`class="mi ic-{{ x.c }}"` + CSS) ou `sc-if`. Gate: `python3 scripts/holes_check.py project/*.dc.html` com 0 FAIL;
   - **idioma congelado**: lista com `T()` no topo do módulo é avaliada uma vez, no idioma da importação, e EN/DE saem em PT. Gate: `python3 scripts/i18n_check.py build/*.py` com 0 FAIL;
   - **sobreposição**: nada de texto sobre texto, controle sobre texto, nem elemento `position:absolute` com tabela ou lista cobrindo o resto da tela. Causa mais comum: classe da tela com o mesmo nome de uma classe global (ex.: `.pm`, marcador de progresso absoluto, numa `<table>`). Use nomes com prefixo da tela e procure colisões com o CSS base antes de criar classe. Exceções já previstas: badge, knob do switch, celular do pitch, camadas (sheet, dialog, menu, toast, dock, barra de abas, painel lateral) e texto cortado por overflow. Gate: `FORJA_FONTS=build/fonts python3 scripts/overlap_check.py project/*.dc.html` com 0 FAIL, nos dois canvases;
+  - **barras e dobra**: tab bar, dock, composer e CTA fixo ocupam espaço no fluxo; nada de texto ou imagem atrás deles ou do home indicator, e nenhum elemento cortado pela borda de baixo do print padrão (o último visível termina inteiro). Gate: `python3 scripts/bars_check.py project --fonts build/fonts` com 0 falhas, em todos os canvases (detalhes em `references/versoes-e-paridade.md` §4);
+  - **truncamento**: nenhum texto cortado por largura, reticências ou recorte de cartão/pílula/nó. Gate: `python3 scripts/trunc_check.py project --fonts build/fonts` com 0;
+  - **paridade** (versão nova de pacote): `python3 scripts/parity_check.py --old … --new … --map state/paridade.json` com 0 problemas; feature pedida sem tela também é falha (Mapa de features);
+  - **deck**: `python3 scripts/deck_check.py <pasta do deck> --blobs <id→arquivo>` com 0 (área segura, cover que corta, imagem cortada ou encavalada) e olhar os PNGs;
   - **links**: todo `href="*.dc.html"` existe em `project/`, e o seletor de cada arquivo aponta para o equivalente certo e marca o atual;
   - **idioma**: procure sobras do idioma errado em cada conjunto;
   - **diferença de design**: a checagem de 4.2.
